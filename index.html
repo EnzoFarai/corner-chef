@@ -3,53 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bon Appétit - Koeksisters</title>
-    <!-- Add Material Symbols Outlined -->
+    <title>Bon Appétit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <style>
-        /* General Styles */
-        body {
-            font-family: 'Georgia', serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
+        :root {
+            --primary: #FF6B35;  /* Vibrant orange */
+            --secondary: #FFD100; /* Warm yellow */
+            --dark: #2D2D2D;      /* Dark gray */
+            --light: #FFFFFF;     /* Pure white */
+            --gray: #777777;      /* Medium gray */
+            --light-gray: #F5F5F5;/* Light background */
+            --accent: #4A4A4A;    /* Secondary text */
         }
 
-        /* Header and Navigation Bar */
+        /* General Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            color: var(--dark);
+            background: var(--light);
+        }
+
+        /* Header and Navigation */
         header {
-            background-color: #f8f8f8;
-            padding: 10px 20px;
-            border-bottom: 1px solid #ddd;
+            background-color: var(--light);
+            padding: 1rem 2rem;
+            border-bottom: 1px solid var(--light-gray);
             display: flex;
             align-items: center;
             position: relative;
         }
 
-        .nav-icon {
-            font-size: 24px;
-            cursor: pointer;
-            z-index: 1000;
-            margin-right: 20px;
-        }
-
         .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
             margin-right: auto;
-            text-align: left;
         }
 
-        .nav-overlay {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            display: none;
-            z-index: 999;
-        }
-
-        .nav-overlay.active {
-            display: block;
+        .nav-icon {
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+            margin-right: 1rem;
         }
 
         .nav-menu {
@@ -59,8 +57,8 @@
             width: 80%;
             max-width: 300px;
             height: 100%;
-            background-color: #fff;
-            padding: 20px;
+            background-color: var(--light);
+            padding: 1rem;
             box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
             transform: translateX(-100%);
             transition: transform 0.3s ease;
@@ -72,80 +70,90 @@
             transform: translateX(0);
         }
 
-        /* Improved Search Bar */
+        .nav-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .nav-overlay.active {
+            display: block;
+        }
+
+        /* Search Bar */
         .search-bar {
             position: relative;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
+            margin-bottom: 1.5rem;
         }
 
         .search-bar input {
             width: 100%;
-            padding: 10px 10px 10px 35px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            font-size: 16px;
-            background-color: transparent;
+            padding: 0.75rem 1rem 0.75rem 2.5rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 0.5rem;
+            font-size: 1rem;
         }
 
         .search-icon {
             position: absolute;
-            left: 10px;
-            color: #999;
-        }
-
-        .search-suggestions {
-            position: absolute;
+            left: 1rem;
             top: 50%;
-            left: 35px;
             transform: translateY(-50%);
-            pointer-events: none;
-            color: #999;
-            font-size: 16px;
+            color: var(--gray);
         }
 
-        /* Main Navigation Items */
+        /* Navigation Items */
         .nav-menu ul {
-            list-style-type: none;
+            list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .nav-menu > ul > li {
-            margin: 15px 0;
+            margin: 0.75rem 0;
             position: relative;
         }
 
-        .nav-menu > ul > li > a {
+        .nav-menu a {
+            color: var(--dark);
             text-decoration: none;
-            color: #333;
-            font-size: 18px;
+            font-size: 1rem;
+            font-weight: 600;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 0.75rem;
+            border-radius: 0.25rem;
+            transition: all 0.2s;
         }
 
-        .nav-menu > ul > li > a:hover {
-            color: #555;
+        .nav-menu a:hover {
+            background-color: var(--light-gray);
+            color: var(--primary);
         }
 
-        /* Dropdown Arrows */
-        .has-submenu::after {
-            content: '+';
-            font-size: 18px;
+        /* Submenu Indicators (Downward Arrows) */
+        .has-submenu > a::after {
+            content: "↓";
+            font-size: 0.9rem;
+            margin-left: 0.5rem;
             transition: transform 0.3s ease;
         }
 
-        .has-submenu.active::after {
-            content: '-';
+        .has-submenu.active > a::after {
+            transform: rotate(180deg);
         }
 
-        /* Submenus */
         .submenu {
             max-height: 0;
             overflow: hidden;
             transition: max-height 0.3s ease;
-            padding-left: 15px;
+            padding-left: 1rem;
         }
 
         .submenu.active {
@@ -153,502 +161,133 @@
         }
 
         .submenu li {
-            margin: 10px 0;
+            margin: 0.5rem 0;
         }
 
         .submenu a {
-            text-decoration: none;
-            color: #666;
-            font-size: 16px;
-            display: block;
+            font-weight: 500;
+            padding: 0.5rem 0.75rem;
+            font-size: 0.95rem;
         }
 
-        .submenu a:hover {
-            color: #333;
-        }
-
-        /* Nested Submenus */
-        .submenu .submenu {
-            padding-left: 15px;
+        .submenu .submenu a {
+            font-size: 0.9rem;
+            padding-left: 1.25rem;
         }
 
         .separator {
-            border-top: 1px solid #ddd;
-            margin: 20px 0;
+            border-top: 1px solid var(--light-gray);
+            margin: 1.5rem 0;
         }
 
         .user-options {
-            margin-top: 20px;
+            margin-top: 1rem;
         }
 
         .user-options a {
             display: block;
-            margin: 10px 0;
+            margin: 0.75rem 0;
+            padding: 0.75rem;
             text-decoration: none;
-            color: #333;
-            font-size: 16px;
+            color: var(--dark);
+            font-weight: 600;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            transition: all 0.2s;
         }
 
         .user-options a:hover {
-            color: #555;
+            background-color: var(--light-gray);
+            color: var(--primary);
         }
 
-        /* Recipe Page Styles */
-        .recipe-top-link {
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-            padding: 10px;
-            margin: 10px auto 20px;
-            width: fit-content;
-            border-radius: 25px;
-        }
-
-        .recipe-top-link a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 18px;
-            padding: 0 20px;
-        }
-
-        .recipe-top-link a:hover {
-            text-decoration: underline;
-        }
-
-        .recipe-header {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .recipe-header img {
-            max-width: 100%;
-            height: auto;
-        }
-
-        .recipe-caption {
-            text-align: center;
-            font-style: italic;
-            margin-top: 10px;
-        }
-
-        .recipe-caption a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        .recipe-caption a:hover {
-            text-decoration: underline;
-        }
-
-        .recipe-title {
-            text-align: center;
-            font-size: 36px;
-            margin: 20px 0;
-        }
-
-        .recipe-author {
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        .recipe-author a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        .recipe-author a:hover {
-            text-decoration: underline;
-        }
-
-        .recipe-date {
-            text-align: center;
-            margin: 10px 0;
-        }
-
-        .recipe-content {
-            padding: 0 20px;
-        }
-
-        .recipe-content p {
-            line-height: 1.6;
-        }
-
-        .recipe-info {
-            background-color: #f8f8f8;
-            padding: 10px;
-            margin: 20px 0;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-        }
-
-        .recipe-info p {
-            margin: 5px 0;
-            flex: 1;
-            text-align: left;
-        }
-
-        .recipe-info p:first-child {
-            border-right: 1px solid #ddd;
-            padding-right: 10px;
-        }
-
-        .recipe-info p:last-child {
-            padding-left: 10px;
-        }
-
-        .recipe-info strong {
-            display: flex;
-            align-items: center;
-        }
-
-        .recipe-info strong::before {
-            margin-right: 8px;
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-        }
-
-        .recipe-info .total-time::before {
-            content: "\f017"; /* Font Awesome clock icon */
-        }
-
-        .recipe-info .yield::before {
-            content: "\f2e7"; /* Font Awesome utensils icon */
-        }
-
-        .ingredients {
-            margin: 20px 0;
-        }
-
-        .ingredients ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        .ingredients li {
-            margin: 10px 0;
-        }
-
-        .jump-to-recipe-container {
-            display: flex;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .jump-to-recipe {
-            display: inline-flex;
-            align-items: center;
-            padding: 10px 20px;
-            border: 2px solid #333;
-            border-radius: 25px;
-            position: relative;
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        .jump-to-recipe::after {
-            content: "↓"; /* Downward arrow */
-            margin-left: 10px;
-        }
-
-        .bookmark-btn {
-            background: none;
-            border: none;
-            margin-right: 10px;
-            cursor: pointer;
-            color: #333;
-            display: flex;
-            align-items: center;
-        }
-
-        .material-symbols-outlined {
-            font-variation-settings:
-            'FILL' 0,
-            'wght' 400,
-            'GRAD' 0,
-            'opsz' 24
-        }
-
-        .preparation {
-            margin: 20px 0;
-        }
-
-        .preparation h3 {
-            font-size: 20px;
-            margin: 15px 0;
-        }
-
-        .preparation ol {
-            padding-left: 20px;
-            list-style-type: none;
-        }
-
-        .preparation li {
-            margin: 10px 0;
-        }
-
-        .tags {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .tags h3 {
-            margin-bottom: 15px;
-        }
-
-        .tags ul {
-            list-style-type: none;
-            padding: 0;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-
-        .tags li {
-            display: inline-block;
-            margin: 5px;
-            padding: 5px 10px;
-            background-color: #f8f8f8;
-            border-radius: 5px;
-        }
-
-        .tags a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        .recipe-notes {
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .recipe-notes a {
-            text-decoration: none;
-            color: #333;
-            font-weight: bold;
-        }
-
-        hr {
-            border: 0;
-            height: 1px;
-            background: #ddd;
-            margin: 20px 0;
-        }
-
-        .rating {
-            text-align: center;
-            margin: 20px 0;
-        }
-
-        .rating span {
-            font-size: 24px;
-            color: #ffcc00;
-        }
-
-        /* Enhanced Comment Section */
-        .comment-section {
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-
-        .comment-section h2 {
-            font-size: 22px;
-            font-weight: bold;
-            color: #000;
-            margin-bottom: 20px;
-        }
-
-        .signin-prompt {
-            text-align: center;
-            background: #F8F8F8;
-            padding: 20px;
-            border: 1px solid #ddd;
-            margin-bottom: 20px;
-            cursor: pointer;
-        }
-
-        .signin-prompt button {
-            background-color: #000;
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            cursor: pointer;
-        }
-
-        .comment-box {
-            background: #fff;
-            border-top: 1px solid #ddd;
-        }
-
-        .comment {
-            padding: 15px;
-            border-bottom: 1px solid #ddd;
-            color: #000;
-            text-align: left;
-        }
-
-        .comment strong {
-            font-size: 14px;
-        }
-
-        .comment p {
-            font-size: 14px;
-            margin-top: 5px;
-        }
-
-        .actions {
-            display: flex;
-            gap: 20px;
-            cursor: pointer;
-            color: #555;
-            font-size: 14px;
-            align-items: center;
-        }
-
-        .actions span {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .actions span:hover {
-            text-decoration: underline;
-        }
-
-        .heart-icon::before {
-            content: '\2665';
-            color: #C4C4C4;
-            font-size: 16px;
-        }
-
-        .message-icon::before {
-            content: '\2709';
-            color: #C4C4C4;
-            font-size: 16px;
-        }
-
-        .more-from-ba {
-            margin: 20px 0;
-        }
-
-        .more-from-ba h3 {
-            font-size: 24px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .more-from-ba .recipe-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .more-from-ba .recipe-item {
-            text-align: center;
-        }
-
-        .more-from-ba .recipe-item a {
-            text-decoration: none;
-            color: #333;
-        }
-
-        .more-from-ba .recipe-item a:hover {
-            text-decoration: underline;
-        }
-
-        .more-from-ba .recipe-item img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
-        .gif-section {
-            text-align: center;
-            margin: 40px 0;
-        }
-
-        .gif-section img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 10px;
-        }
-
+        /* Footer Styles */
         .footer {
-            background-color: #f8f8f8;
-            padding: 20px;
+            background: var(--light-gray);
+            padding: 3rem 1rem;
             text-align: center;
             border-top: 1px solid #ddd;
         }
 
         .footer h2 {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
         }
 
         .footer p {
-            font-size: 16px;
-            margin-bottom: 20px;
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            font-size: 1rem;
         }
 
-        .footer .social-media {
-            margin-bottom: 20px;
+        .social-media {
+            margin: 1.5rem 0;
         }
 
-        .footer .social-media a {
-            margin: 0 10px;
+        .social-media a {
+            color: var(--dark);
+            margin: 0 1rem;
+            font-size: 1.5rem;
+            transition: color 0.2s;
+        }
+
+        .social-media a:hover {
+            color: var(--primary);
+        }
+
+        .links {
+            margin-bottom: 1.5rem;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem 1rem;
+        }
+
+        .links a {
+            color: var(--dark);
             text-decoration: none;
-            color: #333;
-            font-size: 24px;
+            font-size: 0.9rem;
+            transition: color 0.2s;
         }
 
-        .footer .social-media a:hover {
-            color: #555;
-        }
-
-        .footer .links {
-            margin-bottom: 20px;
-        }
-
-        .footer .links a {
-            margin: 0 10px;
-            text-decoration: none;
-            color: #333;
-            font-size: 14px;
-        }
-
-        .footer .links a:hover {
+        .links a:hover {
+            color: var(--primary);
             text-decoration: underline;
         }
 
-        .footer .legal {
-            font-size: 12px;
-            color: #888;
+        .legal {
+            color: var(--gray);
+            font-size: 0.8rem;
+            margin-top: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .nav-menu {
+                width: 90%;
+            }
+            
+            .footer {
+                padding: 2rem 1rem;
+            }
         }
     </style>
-    <!-- Font Awesome for Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
+    <!-- Header -->
     <header>
-        <div class="nav-icon" id="menuToggle">&#9776;</div>
-        <h1 class="logo">bon appétit</h1>
+        <div class="nav-icon" id="menuToggle">☰</div>
+        <div class="logo">bon appétit</div>
         <div class="nav-overlay" id="navOverlay"></div>
-        <div class="nav-menu" id="navMenu">
+        <nav class="nav-menu" id="navMenu">
             <div class="search-bar">
                 <i class="fas fa-search search-icon"></i>
-                <input type="text" placeholder=" " id="searchInput">
-                <div class="search-suggestions" id="searchSuggestions">
-                    <p>Looking for something to eat?</p>
-                </div>
+                <input type="text" placeholder="Search recipes...">
             </div>
             <ul>
                 <li><a href="#">Home</a></li>
-                
                 <li><a href="#">Recipes</a></li>
-                
                 <li class="has-submenu">
                     <a href="#">Ingredients</a>
                     <ul class="submenu">
@@ -657,7 +296,6 @@
                         <li><a href="#">Vegetables and Fruits</a></li>
                     </ul>
                 </li>
-                
                 <li class="has-submenu">
                     <a href="#">Cuisine</a>
                     <ul class="submenu">
@@ -668,7 +306,6 @@
                         <li><a href="#">Global</a></li>
                     </ul>
                 </li>
-                
                 <li class="has-submenu">
                     <a href="#">Occasions</a>
                     <ul class="submenu">
@@ -695,7 +332,6 @@
                         </li>
                     </ul>
                 </li>
-                
                 <li><a href="#">Foodways</a></li>
                 <li><a href="#">How to Cook</a></li>
                 <li><a href="#">Where to Eat</a></li>
@@ -708,239 +344,38 @@
                 <a href="#">Shopping List</a>
                 <a href="#">Log In/Sign Up</a>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <!-- Black block above the image -->
-    <div class="recipe-top-link">
-        <a href="recipes.html">Recipes</a>
-    </div>
+    <!-- Your page content would go here -->
 
-    <!-- Recipe Header -->
-    <div class="recipe-header">
-        <img src="https://img.taste.com.au/5y-hRDhf/w720-h480-cfill-q80/taste/2022/07/koeksisters-south-african-plaited-doughnuts-in-syrup-180738-2.jpg" alt="Koeksisters">
-        <!-- Caption below the image -->
-        <div class="recipe-caption">
-            Photograph by <a href="melusi-le-roux.html">Melusi Le Roux</a>
+    <!-- Footer Section -->
+    <footer class="footer">
+        <h2>bon appétit</h2>
+        <p>Recipes you want to make. Cooking advice that works. Restaurant recommendations you trust.</p>
+        <div class="social-media">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-threads"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
         </div>
-    </div>
-
-    <!-- Recipe Title, Author, Date, and Rating -->
-    <div class="recipe-content">
-        <h1 class="recipe-title">Koeksisters</h1>
-        <div class="recipe-author">
-            BY <a href="charlene-pretorius.html">Charlene Pretorius</a>
+        <div class="links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
         </div>
-        <div class="rating">
-            <span>★★★★</span> (4)
+        <div class="legal">
+            <p>&copy; 2025 Bon Appétit. All rights reserved.</p>
         </div>
-        <hr>
-        
-        <div class="jump-to-recipe-container">
-            <a href="#ingredients" class="jump-to-recipe">
-                <button class="bookmark-btn" id="bookmarkBtn">
-                    <span class="material-symbols-outlined" id="bookmarkIcon">bookmark_add</span>
-                </button>
-                JUMP TO RECIPE
-            </a>
-        </div>
-        
-        <p>For many South Africans, tea time is incomplete without a sweet indulgence, and koeksisters are a beloved favorite. Translating to "cake sister" in Afrikaans, this treat is more akin to a doughnut than a cake. Koeksisters are plaited dough braids, deep-fried to a golden crisp and then soaked in ice-cold syrup, creating a delightful contrast of textures—crunchy on the outside and syrupy-soft on the inside. These sticky, syrup-drenched delights are irresistible, though not for the faint of heart (or those on a diet). One bite, and you'll understand why they're a cherished part of South African culinary tradition.</p>
-        
-        <p>The origins of koeksisters are somewhat shrouded in history, but they are widely believed to have been inspired by recipes brought to the Cape by Dutch settlers in the 17th century. Over time, they evolved into a uniquely South African treat, deeply intertwined with Afrikaans culture and heritage.</p>
-        
-        <p>Koeksisters also hold a special place in South Africa's history as a symbol of reconciliation: in 1995, Nelson Mandela shared a plate of koeksisters with Mrs. Betsie Verwoerd, the widow of former Prime Minister Hendrik Verwoerd, during an afternoon tea in Orania. This gesture, coming from a man who had suffered under the apartheid policies implemented by Verwoerd, was a powerful act of forgiveness and unity. The humble koeksister, often made for community fundraisers and family gatherings, became a poignant reminder of the possibility of healing and connection.</p>
-        
-        <p><strong>Cook's note:</strong> Make the syrup a day before in order to get it sufficiently cold for serving.</p>
-        
-        <div class="recipe-info">
-            <p><strong class="yield">YIELD</strong> 4 servings</p>
-            <p><strong class="total-time">TOTAL TIME</strong> Prep Time: 45 minutes<br>Cooking Time: 20 minutes</p>
-        </div>
-        <hr>
-        
-        <div class="ingredients" id="ingredients">
-            <h3>Ingredients</h3>
-            <h4>For the syrup</h4>
-            <ul>
-                <li>1 kg granulated sugar</li>
-                <li>2 cups water</li>
-                <li>2 sticks cinnamon</li>
-                <li>1 2.5cm piece fresh ginger, peeled and sliced</li>
-                <li>1 lemon, juice and zest</li>
-            </ul>
-            
-            <h4>For the dough</h4>
-            <ul>
-                <li>280 g cake flour</li>
-                <li>1/2 t sea salt</li>
-                <li>2 T baking powder</li>
-                <li>4 T butter, softened</li>
-                <li>1 large free range egg, lightly beaten</li>
-                <li>7 T water</li>
-                <li>6 cups vegetable oil</li>
-            </ul>
-        </div>
-        <hr>
-        
-        <div class="preparation">
-            <h3>Method</h3>
-            
-            <h4>Make the syrup</h4>
-            <ol>
-                <li><strong>Step 1</strong><br>In a saucepan over low heat, dissolve the sugar in water, stirring frequently. Do not bring to a boil until all the sugar has dissolved.</li>
-                
-                <li><strong>Step 2</strong><br>Once dissolved, bring to a boil and cook for 1 minute. Add cinnamon, ginger, lemon juice, and zest.</li>
-                
-                <li><strong>Step 3</strong><br>Reduce heat and simmer for 5 minutes. Remove from heat and let cool completely. Transfer to an airtight container and refrigerate overnight.</li>
-            </ol>
-            
-            <h4>Make the dough</h4>
-            <ol start="4">
-                <li><strong>Step 4</strong><br>Sift together flour, salt, and baking powder in a large bowl. Rub in butter until the mixture resembles breadcrumbs.</li>
-                
-                <li><strong>Step 5</strong><br>Using a palette knife, mix in the egg. Gradually add water, a little at a time, until a dough forms. If too sticky, add a little more flour.</li>
-                
-                <li><strong>Step 6</strong><br>Knead the dough for 30 seconds to form a smooth ball. Cover with clingfilm and let rest at room temperature for at least 1 hour.</li>
-            </ol>
-            
-            <h4>Shape the koeksisters</h4>
-            <ol start="7">
-                <li><strong>Step 7</strong><br>On a lightly floured surface, roll out the dough to 1 cm thickness. Cut into rectangles, then slice into <strong>12 x 4 cm</strong> strips.</li>
-                
-                <li><strong>Step 8</strong><br>Make two incisions down each strip, leaving the top intact. Tightly braid the three strands and pinch the ends together. Fold the top slightly inward to match the bottom. Repeat with the remaining dough.</li>
-            </ol>
-            
-            <h4>Fry and soak</h4>
-            <ol start="9">
-                <li><strong>Step 9</strong><br>Heat oil in a deep saucepan over medium heat. When hot, fry three koeksisters at a time for about 3 minutes, turning occasionally.</li>
-                
-                <li><strong>Step 10</strong><br>Once golden brown, remove with a slotted spoon and drain briefly on paper towels. Immediately plunge into the ice-cold syrup, coating well. Soak for 1 minute before transferring to a wire rack.</li>
-                
-                <li><strong>Step 11</strong><br>Let cool slightly before serving.</li>
-            </ol>
-        </div>
-        <hr>
-        
-        <div class="tags">
-            <h3>Explore Bon Appétit</h3>
-            <ul>
-                <li><a href="#">Southern Africa</a></li>
-                <li><a href="#">Desserts</a></li>
-                <li><a href="#">Picnics</a></li>
-                <li><a href="#">Tea Time</a></li>
-                <li><a href="#">Celebrations</a></li>
-                <li><a href="#">Traditional</a></li>
-            </ul>
-        </div>
-        <hr>
-        
-        <div class="recipe-notes">
-            <p><a href="#">BACK TO TOP</a></p>
-        </div>
-        <hr>
-        
-        <!-- Enhanced Comment Section -->
-        <div class="comment-section">
-            <h2>Recipe Notes</h2>
-            <div class="signin-prompt" onclick="showSignIn()">
-                <p><strong>Join the home cook community</strong></p>
-                <button>Sign In or Create Account</button>
-            </div>
-
-            <div class="comment-box">
-                <div class="comment"><strong>Lisa Kristel</strong> (4 years ago)
-                    <p>I'm sure this will be delicious when I make it, but first, please make a correction: As much juice as you can!</p>
-                    <div class="actions">
-                        <span class="heart-icon" onclick="showSignIn()"> 0</span>
-                        <span class="message-icon" onclick="showSignIn()"> Reply</span>
-                    </div>
-                </div>
-                <div class="comment"><strong>Dreamer</strong> (4 years ago)
-                    <p>This would be good in so many ways....with raw veggies, on pasta, drizzled on chicken, YUMM</p>
-                    <div class="actions">
-                        <span class="heart-icon" onclick="showSignIn()"> 0</span>
-                        <span class="message-icon" onclick="showSignIn()"> Reply</span>
-                    </div>
-                </div>
-                <div class="comment"><strong>Casey</strong> (4 years ago)
-                    <p>I added garlic and red pepper flakes as previous reviewer did...</p>
-                    <div class="actions">
-                        <span class="heart-icon" onclick="showSignIn()"> 0</span>
-                        <span class="message-icon" onclick="showSignIn()"> Reply</span>
-                    </div>
-                </div>
-                <div class="comment"><strong>Anonymous</strong> (5 years ago)
-                    <p>Just finished making this and nearly sliced my fingers trying to lick the blender clean...</p>
-                    <div class="actions">
-                        <span class="heart-icon" onclick="showSignIn()"> 0</span>
-                        <span class="message-icon" onclick="showSignIn()"> Reply</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <hr>
-        
-        <!-- MORE FROM BA Section -->
-        <div class="more-from-ba">
-            <h3>MORE FROM BA</h3>
-            <div class="recipe-grid">
-                <div class="recipe-item">
-                    <img src="https://assets.bonappetit.com/photos/57acae2d1b33404414975121/1:1/w_2560%2Cc_limit/BA-best-grilled-cheese.jpg" alt="BA's Best Grilled Cheese">
-                    <a href="#">BA's Best Grilled Cheese</a>
-                </div>
-                <div class="recipe-item">
-                    <img src="https://assets.bonappetit.com/photos/57acae2d1b33404414975121/1:1/w_2560%2Cc_limit/BA-best-grilled-cheese.jpg" alt="Paneer and Green Bean Stir-Fry">
-                    <a href="#">Paneer and Green Bean Stir-Fry</a>
-                    <p>BY ALISON ROMAN</p>
-                </div>
-                <div class="recipe-item">
-                    <img src="https://assets.bonappetit.com/photos/57acae2d1b33404414975121/1:1/w_2560%2Cc_limit/BA-best-grilled-cheese.jpg" alt="Shrimp Scampi">
-                    <a href="#">Shrimp Scampi</a>
-                    <p>BY CHRIS MOROCCO</p>
-                </div>
-                <div class="recipe-item">
-                    <img src="https://assets.bonappetit.com/photos/57acae2d1b33404414975121/1:1/w_2560%2Cc_limit/BA-best-grilled-cheese.jpg" alt="Ultra-Creamy Mashed Potatoes">
-                    <a href="#">Ultra-Creamy Mashed Potatoes</a>
-                    <p>BY ANDY BARAGHANI</p>
-                </div>
-            </div>
-        </div>
-        <hr>
-        
-        <!-- GIF Section -->
-        <div class="gif-section">
-            <img src="https://media.giphy.com/media/K4x1ZL36xWCf6/giphy.gif" alt="Fun GIF">
-        </div>
-        
-        <!-- Footer Section -->
-        <div class="footer">
-            <h2>bon appétit</h2>
-            <p>Recipes you want to make. Cooking advice that works. Restaurant recommendations you trust.</p>
-            <div class="social-media">
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-threads"></i></a>
-                <a href="#"><i class="fab fa-pinterest"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-youtube"></i></a>
-            </div>
-            <div class="links">
-                <a href="#">About Us</a>
-                <a href="#">Contact</a>
-                <a href="#">Privacy Policy</a>
-                <a href="#">Terms of Use</a>
-            </div>
-            <div class="legal">
-                <p>&copy; 2025 Bon Appétit. All rights reserved.</p>
-            </div>
-        </div>
-    </div>
+    </footer>
 
     <script>
         // Toggle Navigation Menu
         const menuToggle = document.getElementById('menuToggle');
-        const navOverlay = document.getElementById('navOverlay');
         const navMenu = document.getElementById('navMenu');
+        const navOverlay = document.getElementById('navOverlay');
 
         menuToggle.addEventListener('click', () => {
             navMenu.classList.toggle('active');
@@ -953,8 +388,7 @@
         });
 
         // Toggle Submenus
-        const hasSubmenu = document.querySelectorAll('.has-submenu > a');
-        hasSubmenu.forEach(item => {
+        document.querySelectorAll('.has-submenu > a').forEach(item => {
             item.addEventListener('click', function(e) {
                 e.preventDefault();
                 const parent = this.parentElement;
@@ -975,45 +409,12 @@
             });
         });
 
-        // Hide Search Suggestions When Typing
-        const searchInput = document.getElementById('searchInput');
-        const searchSuggestions = document.getElementById('searchSuggestions');
-
-        searchInput.addEventListener('input', () => {
-            if (searchInput.value.trim() !== '') {
-                searchSuggestions.style.display = 'none';
-            } else {
-                searchSuggestions.style.display = 'block';
+        // Close menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!navMenu.contains(e.target) && !menuToggle.contains(e.target)) {
+                navMenu.classList.remove('active');
+                navOverlay.classList.remove('active');
             }
-        });
-
-        searchInput.addEventListener('focus', () => {
-            if (searchInput.value.trim() === '') {
-                searchSuggestions.style.display = 'block';
-            }
-        });
-
-        searchInput.addEventListener('blur', () => {
-            if (searchInput.value.trim() === '') {
-                searchSuggestions.style.display = 'block';
-            }
-        });
-
-        // Sign In Prompt
-        function showSignIn() {
-            alert("Please sign in or create an account to like or comment.");
-        }
-
-        // Bookmark Toggle
-        const bookmarkBtn = document.getElementById('bookmarkBtn');
-        const bookmarkIcon = document.getElementById('bookmarkIcon');
-        let isBookmarked = false;
-
-        bookmarkBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            e.stopPropagation();
-            isBookmarked = !isBookmarked;
-            bookmarkIcon.textContent = isBookmarked ? 'bookmark_added' : 'bookmark_add';
         });
     </script>
 </body>
