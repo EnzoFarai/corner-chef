@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping List - Bon Appétit</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/recipe-styles.css">
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-container"></div>
+    
+    <main>
+        <div class="shopping-list-container">
+            <div class="shopping-list-header">
+                <h1 class="shopping-list-title">My Shopping List</h1>
+                <div class="shopping-list-actions">
+                    <button id="printList" class="shopping-list-btn print-btn">
+                        <i class="fas fa-print"></i> Print
+                    </button>
+                    <button id="clearList" class="shopping-list-btn clear-btn">
+                        <i class="fas fa-trash"></i> Clear All
+                    </button>
+                </div>
+            </div>
+            
+            <ul id="shoppingListItems" class="shopping-list-items">
+                <!-- Items will be loaded here by JavaScript -->
+            </ul>
+        </div>
+    </main>
+
+    <!-- Footer will be loaded here -->
+    <div id="footer-container"></div>
+
+    <script src="JS/scripts.js"></script>
+    <script src="JS/recipe-scripts.js"></script>
+</body>
+</html>
