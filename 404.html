@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>404 - corner chef</title>
+    <title>404 - Corner Chef</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -20,7 +20,7 @@
         .error-content {
             position: relative;
             z-index: 2;
-            background-color: rgba(255, 255, 255, 0.9);
+            background-color: rgba(255, 255, 255, 0.95);
             border-radius: 8px;
             padding: 2rem;
             margin: 2rem auto;
@@ -111,6 +111,26 @@
         .surprise-btn:hover {
             transform: scale(1.05);
         }
+
+        /* Fix for header/footer visibility */
+        #header-container, #footer-container {
+            position: relative;
+            z-index: 3;
+        }
+
+        header, .footer {
+            background-color: rgba(255, 255, 255, 0.98) !important;
+        }
+
+        /* Center-align "What now?" section */
+        .what-now-section {
+            text-align: center;
+        }
+
+        .what-now-section h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
         
         @media (max-width: 768px) {
             .error-title {
@@ -145,14 +165,14 @@
                 <li>A rogue pineapple snuck onto the pizza and broke everything.</li>
             </ul>
             
-            <h2><em>What now?</em></h2>
-            
-            <div class="error-actions">
-                <a href="index.html" class="error-btn primary">Head back to our homepage</a>
-                <a href="404.html" class="error-btn secondary">Browse top-rated recipes</a>
-            </div>
-            
-            <div style="text-align: center;">
+            <div class="what-now-section">
+                <h2><em>What now?</em></h2>
+                
+                <div class="error-actions">
+                    <a href="index.html" class="error-btn primary">Head back to our homepage</a>
+                    <a href="404.html" class="error-btn secondary">Browse top-rated recipes</a>
+                </div>
+                
                 <p>Or, you can try your luck and hit the "surprise me" button. Who knows? You might find your next favorite dish!</p>
                 <button class="surprise-btn" onclick="window.location.href='#'">Surprise Me!</button>
             </div>
@@ -179,6 +199,13 @@
             const randomPage = surprisePages[Math.floor(Math.random() * surprisePages.length)];
             alert(`Taking you to: ${randomPage}\n(In a real implementation, this would redirect)`);
             // window.location.href = randomPage;
+        });
+
+        // Ensure navigation works by reinitializing after load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof initNavigation === 'function') {
+                initNavigation();
+            }
         });
     </script>
 </body>
