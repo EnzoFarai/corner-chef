@@ -4,77 +4,84 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corner Chef</title>
-    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <!-- Main CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <header class="site-header">
-        <div class="header-container">
-            <!-- Logo -->
-            <div class="logo">
-                <h1><span class="small-caps">corner chef</span></h1>
+    <!-- Header -->
+    <header>
+        <div class="nav-icon" id="menuToggle">☰</div>
+        <div class="logo"><span class="small-caps">corner chef</span></div>
+        <div class="nav-overlay" id="navOverlay"></div>
+        <nav class="nav-menu" id="navMenu">
+            <div class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Search recipes...">
             </div>
-
-            <!-- Mobile Menu Toggle -->
-            <button class="menu-toggle" aria-label="Toggle menu">
-                <i class="fas fa-bars"></i>
-            </button>
-
-            <!-- Main Navigation -->
-            <nav class="main-nav">
-                <ul class="nav-list">
-                    <li><a href="index.html">Home</a></li>
-                    
-                    <!-- Recipes Dropdown -->
-                    <li class="has-submenu">
-                        <a href="#">Recipes <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li><a href="koeksisters.html">Koeksisters</a></li>
-                            <!-- Add more recipe pages as needed -->
-                        </ul>
-                    </li>
-                    
-                    <!-- Ingredients Dropdown -->
-                    <li class="has-submenu">
-                        <a href="#">Ingredients <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li><a href="#">Meat & Poultry</a></li>
-                            <li><a href="#">Fish & Seafood</a></li>
-                            <li><a href="#">Vegetables & Fruits</a></li>
-                        </ul>
-                    </li>
-                    
-                    <!-- Cuisine Dropdown -->
-                    <li class="has-submenu">
-                        <a href="#">Cuisine <i class="fas fa-chevron-down"></i></a>
-                        <ul class="submenu">
-                            <li><a href="#">Southern Africa</a></li>
-                            <li><a href="#">East Africa</a></li>
-                            <li><a href="#">North Africa</a></li>
-                            <li><a href="#">West Africa</a></li>
-                            <li><a href="#">Global</a></li>
-                        </ul>
-                    </li>
-                    
-                    <!-- User Actions -->
-                    <li class="user-actions">
-                        <a href="#" class="btn btn-primary" id="submit-recipe">Submit Recipe</a>
-                        <a href="shopping-list.html" class="btn btn-outline"><i class="fas fa-shopping-basket"></i></a>
-                        <a href="#" class="btn btn-outline" id="login-btn">Log In</a>
-                    </li>
-                </ul>
-            </nav>
-        </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="koeksisters.html">Recipes</a></li>
+                <li class="has-submenu">
+                    <a href="#">Ingredients</a>
+                    <ul class="submenu">
+                        <li><a href="#">Meat and Poultry</a></li>
+                        <li><a href="#">Fish and Seafood</a></li>
+                        <li><a href="#">Vegetables and Fruits</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#">Cuisine</a>
+                    <ul class="submenu">
+                        <li><a href="#">Southern Africa</a></li>
+                        <li><a href="#">East Africa</a></li>
+                        <li><a href="#">North Africa</a></li>
+                        <li><a href="#">West Africa</a></li>
+                        <li><a href="#">Global</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu">
+                    <a href="#">Occasions</a>
+                    <ul class="submenu">
+                        <li class="has-submenu">
+                            <a href="#">Events</a>
+                            <ul class="submenu">
+                                <li><a href="#">Parties</a></li>
+                                <li><a href="#">Picnics</a></li>
+                                <li><a href="#">Date Night</a></li>
+                            </ul>
+                        </li>
+                        <li class="has-submenu">
+                            <a href="#">Celebrations</a>
+                            <ul class="submenu">
+                                <li><a href="#">Ramadan</a></li>
+                                <li><a href="#">Eid</a></li>
+                                <li><a href="#">Easter</a></li>
+                                <li><a href="#">Pesach</a></li>
+                                <li><a href="#">Diwali</a></li>
+                                <li><a href="#">Hanukkah</a></li>
+                                <li><a href="#">Christmas</a></li>
+                                <li><a href="#">New Year</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">Foodways</a></li>
+                <li><a href="#">How to Cook</a></li>
+                <li><a href="#">Where to Eat</a></li>
+            </ul>
+            
+            <div class="separator"></div>
+            
+            <div class="user-options">
+                <a href="#">Submit Recipe</a>
+                <a href="shopping-list.html">Shopping List</a>
+                <a href="#" id="login-btn">Log In/Sign Up</a>
+            </div>
+        </nav>
     </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div class="nav-overlay"></div>
-
-    <!-- Login Modal (will be shown via JavaScript) -->
+    <!-- Login Modal -->
     <div id="loginModal" class="modal">
         <div class="modal-content">
             <span class="close-modal">&times;</span>
@@ -88,9 +95,9 @@
                     <label for="loginPassword">Password</label>
                     <input type="password" id="loginPassword" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Login</button>
+                <button type="submit" class="btn">Login</button>
             </form>
-            <p>Don't have an account? <a href="#" id="show-register">Register</a></p>
+            <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>
         </div>
     </div>
 
@@ -131,7 +138,7 @@
                     <label for="registerDob">Date of Birth</label>
                     <input type="date" id="registerDob" required>
                 </div>
-                <button type="submit" class="btn btn-primary">Register</button>
+                <button type="submit" class="btn">Register</button>
             </form>
         </div>
     </div>
