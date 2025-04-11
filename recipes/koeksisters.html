@@ -4,62 +4,501 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Koeksisters Recipe | corner chef</title>
+    <!-- Add Material Symbols Outlined -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="CSS/styles.css">
     <link rel="stylesheet" href="CSS/recipe-styles.css">
     <style>
+        /* General Styles */
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Recipe Page Styles */
+        .recipe-top-link {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin: 10px auto 20px;
+            width: fit-content;
+            border-radius: 25px;
+        }
+
+        .recipe-top-link a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 0 20px;
+        }
+
+        .recipe-top-link a:hover {
+            text-decoration: underline;
+        }
+
+        .recipe-header {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .recipe-header img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .recipe-caption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .recipe-caption a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .recipe-caption a:hover {
+            text-decoration: underline;
+        }
+
+        .recipe-title {
+            text-align: center;
+            font-size: 36px;
+            margin: 20px 0;
+        }
+
+        .recipe-author {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .recipe-author a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .recipe-author a:hover {
+            text-decoration: underline;
+        }
+
+        .recipe-date {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .recipe-content {
+            padding: 0 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .recipe-content p {
+            line-height: 1.6;
+        }
+
+        .recipe-info {
+            background-color: #f8f8f8;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .recipe-info p {
+            margin: 5px 0;
+            flex: 1;
+            text-align: left;
+        }
+
+        .recipe-info p:first-child {
+            border-right: 1px solid #ddd;
+            padding-right: 10px;
+        }
+
+        .recipe-info p:last-child {
+            padding-left: 10px;
+        }
+
+        .recipe-info strong {
+            display: flex;
+            align-items: center;
+        }
+
+        .recipe-info .total-time::before {
+            content: "\f017";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 8px;
+        }
+
+        .recipe-info .yield::before {
+            content: "\f2e7";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 8px;
+        }
+
+        .ingredients {
+            margin: 20px 0;
+        }
+
+        .ingredients ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .ingredients li {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .ingredients li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .ingredients li.added-to-list {
+            background-color: #e8f5e9;
+            position: relative;
+        }
+
+        .ingredients li.added-to-list::after {
+            content: "✓";
+            color: #2e7d32;
+            margin-left: 10px;
+        }
+
         .add-notification {
             position: absolute;
             right: 10px;
-            background: #4CAF50;
+            background: #4caf50;
             color: white;
             padding: 2px 8px;
             border-radius: 10px;
-            font-size: 0.8rem;
-            animation: fadeIn 0.3s;
+            font-size: 12px;
+            animation: fadeOut 2s forwards;
         }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(10px); }
-            to { opacity: 1; transform: translateX(0); }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; display: none; }
         }
-        
-        .ingredient-item {
+
+        .jump-to-recipe-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .jump-to-recipe {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            border-radius: 25px;
             position: relative;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .jump-to-recipe::after {
+            content: "↓";
+            margin-left: 10px;
+        }
+
+        .bookmark-btn {
+            background: none;
+            border: none;
+            margin-right: 10px;
+            cursor: pointer;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+
+        .preparation {
+            margin: 20px 0;
+        }
+
+        .preparation h3 {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+
+        .preparation ol {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .preparation li {
+            margin: 10px 0;
+        }
+
+        .tags {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .tags h3 {
+            margin-bottom: 15px;
+        }
+
+        .tags ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tags li {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+        }
+
+        .tags a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .recipe-notes {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .recipe-notes a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+        }
+
+        .rating {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .rating span {
+            font-size: 24px;
+            color: #ffcc00;
+        }
+
+        /* Enhanced Comment Section */
+        .comment-section {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .comment-section h2 {
+            font-size: 22px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .signin-prompt {
+            text-align: center;
+            background: #F8F8F8;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .signin-prompt button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .comment-box {
+            background: #fff;
+            border-top: 1px solid #ddd;
+        }
+
+        .comment {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            color: #000;
+            text-align: left;
+        }
+
+        .comment strong {
+            font-size: 14px;
+        }
+
+        .comment p {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 20px;
+            cursor: pointer;
+            color: #555;
+            font-size: 14px;
+            align-items: center;
+        }
+
+        .actions span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .actions span:hover {
+            text-decoration: underline;
+        }
+
+        .heart-icon::before {
+            content: '\2665';
+            color: #C4C4C4;
+            font-size: 16px;
+        }
+
+        .message-icon::before {
+            content: '\2709';
+            color: #C4C4C4;
+            font-size: 16px;
+        }
+
+        /* More From BA Section */
+        .more-from-ba {
+            margin: 40px 0;
+            padding: 0 20px;
+        }
+
+        .more-from-ba .section-title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .more-from-ba .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .more-from-ba .grid-item {
+            margin-bottom: 20px;
+        }
+
+        .more-from-ba .grid-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .more-from-ba .tag {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .more-from-ba .recipe-info {
+            margin-top: 5px;
+        }
+
+        .more-from-ba .recipe-name {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .more-from-ba .recipe-name a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .more-from-ba .recipe-name a:hover {
+            text-decoration: underline;
+        }
+
+        .more-from-ba .recipe-author {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .more-from-ba .recipe-author a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .more-from-ba .recipe-author a:hover {
+            text-decoration: underline;
+        }
+
+        .gif-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .gif-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
     <!-- Header will be loaded here -->
     <div id="header-container"></div>
-    
+
     <!-- Black block above the image -->
     <div class="recipe-top-link">
-        <a href="index.html">Recipes</a>
+        <a href="recipes.html">Recipes</a>
     </div>
 
     <!-- Recipe Header -->
     <div class="recipe-header">
-        <img src="assets/images/koeksisters.jpg" alt="Koeksisters">
-        <div class="recipe-photo-credit">
-            <a href="404.html">Melusi Le Roux</a>
+        <img src="https://img.taste.com.au/5y-hRDhf/w720-h480-cfill-q80/taste/2022/07/koeksisters-south-african-plaited-doughnuts-in-syrup-180738-2.jpg" alt="Koeksisters">
+        <!-- Caption below the image -->
+        <div class="recipe-caption">
+            Photograph by <a href="melusi-le-roux.html">Melusi Le Roux</a>
         </div>
     </div>
 
-    <!-- Recipe Content -->
+    <!-- Recipe Title, Author, Date, and Rating -->
     <div class="recipe-content">
         <h1 class="recipe-title">Koeksisters</h1>
         <div class="recipe-author">
-            BY <a href="404.html">Charlene Pretorius</a>
-        </div>
-        <div class="recipe-date">
-            July 15, 2022
+            BY <a href="charlene-pretorius.html">Charlene Pretorius</a>
         </div>
         <div class="rating">
-            <div class="rating-stars">
-                <span>★★★★</span>
-            </div>
-            <div class="rating-count">(4)</div>
+            <span>★★★★</span> (4)
         </div>
         <hr>
         
@@ -72,13 +511,17 @@
             </a>
         </div>
         
-        <p>For many South Africans, tea time is incomplete without a sweet indulgence, and koeksisters are a beloved favorite. Translating to "cake sister" in Afrikaans, this treat is more akin to a doughnut than a cake. Koeksisters are plaited dough braids, deep-fried to a golden crisp and then soaked in ice-cold syrup, creating a delightful contrast of textures—crunchy on the outside and syrupy-soft on the inside.</p>
+        <p>For many South Africans, tea time is incomplete without a sweet indulgence, and koeksisters are a beloved favorite. Translating to "cake sister" in Afrikaans, this treat is more akin to a doughnut than a cake. Koeksisters are plaited dough braids, deep-fried to a golden crisp and then soaked in ice-cold syrup, creating a delightful contrast of textures—crunchy on the outside and syrupy-soft on the inside. These sticky, syrup-drenched delights are irresistible, though not for the faint of heart (or those on a diet). One bite, and you'll understand why they're a cherished part of South African culinary tradition.</p>
+        
+        <p>The origins of koeksisters are somewhat shrouded in history, but they are widely believed to have been inspired by recipes brought to the Cape by Dutch settlers in the 17th century. Over time, they evolved into a uniquely South African treat, deeply intertwined with Afrikaans culture and heritage.</p>
+        
+        <p>Koeksisters also hold a special place in South Africa's history as a symbol of reconciliation: in 1995, Nelson Mandela shared a plate of koeksisters with Mrs. Betsie Verwoerd, the widow of former Prime Minister Hendrik Verwoerd, during an afternoon tea in Orania. This gesture, coming from a man who had suffered under the apartheid policies implemented by Verwoerd, was a powerful act of forgiveness and unity. The humble koeksister, often made for community fundraisers and family gatherings, became a poignant reminder of the possibility of healing and connection.</p>
+        
+        <p><strong>Cook's note:</strong> Make the syrup a day before in order to get it sufficiently cold for serving.</p>
         
         <div class="recipe-info">
-            <p><strong>PREP TIME</strong> 45 minutes</p>
-            <p><strong>COOK TIME</strong> 20 minutes</p>
-            <p><strong>TOTAL TIME</strong> 1 hour 5 minutes</p>
-            <p><strong>YIELD</strong> 4 servings</p>
+            <p><strong class="yield">YIELD</strong> 4 servings</p>
+            <p><strong class="total-time">TOTAL TIME</strong> Prep Time: 45 minutes<br>Cooking Time: 20 minutes</p>
         </div>
         <hr>
         
@@ -86,22 +529,22 @@
             <h3>Ingredients</h3>
             <h4>For the syrup</h4>
             <ul>
-                <li class="ingredient-item">1 kg granulated sugar</li>
-                <li class="ingredient-item">2 cups water</li>
-                <li class="ingredient-item">2 sticks cinnamon</li>
-                <li class="ingredient-item">1 2.5cm piece fresh ginger, peeled and sliced</li>
-                <li class="ingredient-item">1 lemon, juice and zest</li>
+                <li>1 kg granulated sugar</li>
+                <li>2 cups water</li>
+                <li>2 sticks cinnamon</li>
+                <li>1 2.5cm piece fresh ginger, peeled and sliced</li>
+                <li>1 lemon, juice and zest</li>
             </ul>
             
             <h4>For the dough</h4>
             <ul>
-                <li class="ingredient-item">280 g cake flour</li>
-                <li class="ingredient-item">1/2 t sea salt</li>
-                <li class="ingredient-item">2 T baking powder</li>
-                <li class="ingredient-item">4 T butter, softened</li>
-                <li class="ingredient-item">1 large free range egg, lightly beaten</li>
-                <li class="ingredient-item">7 T water</li>
-                <li class="ingredient-item">6 cups vegetable oil</li>
+                <li>280 g cake flour</li>
+                <li>1/2 t sea salt</li>
+                <li>2 T baking powder</li>
+                <li>4 T butter, softened</li>
+                <li>1 large free range egg, lightly beaten</li>
+                <li>7 T water</li>
+                <li>6 cups vegetable oil</li>
             </ul>
         </div>
         <hr>
@@ -112,48 +555,725 @@
             <h4>Make the syrup</h4>
             <ol>
                 <li><strong>Step 1</strong><br>In a saucepan over low heat, dissolve the sugar in water, stirring frequently. Do not bring to a boil until all the sugar has dissolved.</li>
+                
                 <li><strong>Step 2</strong><br>Once dissolved, bring to a boil and cook for 1 minute. Add cinnamon, ginger, lemon juice, and zest.</li>
+                
                 <li><strong>Step 3</strong><br>Reduce heat and simmer for 5 minutes. Remove from heat and let cool completely. Transfer to an airtight container and refrigerate overnight.</li>
             </ol>
             
             <h4>Make the dough</h4>
             <ol start="4">
                 <li><strong>Step 4</strong><br>Sift together flour, salt, and baking powder in a large bowl. Rub in butter until the mixture resembles breadcrumbs.</li>
+                
                 <li><strong>Step 5</strong><br>Using a palette knife, mix in the egg. Gradually add water, a little at a time, until a dough forms. If too sticky, add a little more flour.</li>
+                
                 <li><strong>Step 6</strong><br>Knead the dough for 30 seconds to form a smooth ball. Cover with clingfilm and let rest at room temperature for at least 1 hour.</li>
             </ol>
             
             <h4>Shape the koeksisters</h4>
             <ol start="7">
                 <li><strong>Step 7</strong><br>On a lightly floured surface, roll out the dough to 1 cm thickness. Cut into rectangles, then slice into <strong>12 x 4 cm</strong> strips.</li>
-                <li><strong>Step 8</strong><br>Make two incisions down each strip, leaving the top intact. Tightly braid the three strands and pinch the ends together.</li>
+                
+                <li><strong>Step 8</strong><br>Make two incisions down each strip, leaving the top intact. Tightly braid the three strands and pinch the ends together. Fold the top slightly inward to match the bottom. Repeat with the remaining dough.</li>
             </ol>
             
             <h4>Fry and soak</h4>
             <ol start="9">
                 <li><strong>Step 9</strong><br>Heat oil in a deep saucepan over medium heat. When hot, fry three koeksisters at a time for about 3 minutes, turning occasionally.</li>
-                <li><strong>Step 10</strong><br>Once golden brown, remove with a slotted spoon and drain briefly on paper towels. Immediately plunge into the ice-cold syrup, coating well.</li>
+                
+                <li><strong>Step 10</strong><br>Once golden brown, remove with a slotted spoon and drain briefly on paper towels. Immediately plunge into the ice-cold syrup, coating well. Soak for 1 minute before transferring to a wire rack.</li>
+                
+                <li><strong>Step 11</strong><br>Let cool slightly before serving.</li>
             </ol>
         </div>
+        <hr>
         
         <div class="tags">
-            <h3>Explore corner chef</h3>
+            <h3>Explore Bon Appétit</h3>
             <ul>
-                <li><a href="../cuisine/southern-africa.html">Southern Africa</a></li>
-                <li><a href="../ingredients/desserts.html">Desserts</a></li>
-                <li><a href="../occasions/tea-time.html">Tea Time</a></li>
+                <li><a href="#">Southern Africa</a></li>
+                <li><a href="#">Desserts</a></li>
+                <li><a href="#">Picnics</a></li>
+                <li><a href="#">Tea Time</a></li>
+                <li><a href="#">Celebrations</a></li>
+                <li><a href="#">Traditional</a></li>
             </ul>
         </div>
+        <hr>
         
-        <div class="shopping-list-link">
-            <a href="shopping-list.html" class="shopping-list-btn">View Shopping List</a>
+        <div class="recipe-notes">
+            <p><a href="#">BACK TO TOP</a></p>
+        </div>
+        <hr>
+        
+        <!-- Enhanced Comment Section -->
+        <div class="comment-section">
+            <h2>Recipe Notes</h2>
+            <div class="signin-prompt" onclick="showSignIn()">
+                <p><strong>Join the home cook community</strong></p>
+                <button>Sign In or Create Account</button>
+            </div>
+
+            <div class="comment-box">
+                <div class="comment"><strong>Lisa Kristel</strong> (4 years ago)
+                    <p>I'm sure this will be delicious when I make it, but first, please make a correction: As much juice as you can!</p>
+                    <div class="actions">
+                        <span class="heart-icon" onclick="showSignIn()"> 0</span>
+                        <span class="message-icon" onclick="showSignIn()"> Reply</span>
+                    </div>
+                </div>
+                <div class="comment"><strong>Dreamer</strong> (4 years ago)
+                    <p>This would be good in so many ways....with raw veggies, on pasta, drizzled on chicken, YUMM</p>
+                    <div class="actions">
+                        <span class="heart-icon" onclick="showSignIn()"> 0</span>
+                        <span class="message-icon" onclick="showSignIn()"> Reply</span>
+                    </div>
+                </div>
+                <div class="comment"><strong>Casey</strong> (4 years ago)
+                    <p>I added garlic and red pepper flakes as previous reviewer did...</p>
+                    <div class="actions">
+                        <span class="heart-icon" onclick="showSignIn()"> 0</span>
+                        <span class="message-icon" onclick="showSignIn()"> Reply</span>
+                    </div>
+                </div>
+                <div class="comment"><strong>Anonymous</strong> (5 years ago)
+                    <p>Just finished making this and nearly sliced my fingers trying to li<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Koeksisters Recipe | corner chef</title>
+    <!-- Add Material Symbols Outlined -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <link rel="stylesheet" href="CSS/recipe-styles.css">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Recipe Page Styles */
+        .recipe-top-link {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            margin: 10px auto 20px;
+            width: fit-content;
+            border-radius: 25px;
+        }
+
+        .recipe-top-link a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 18px;
+            padding: 0 20px;
+        }
+
+        .recipe-top-link a:hover {
+            text-decoration: underline;
+        }
+
+        .recipe-header {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .recipe-header img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .recipe-caption {
+            text-align: center;
+            font-style: italic;
+            margin-top: 10px;
+        }
+
+        .recipe-caption a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .recipe-caption a:hover {
+            text-decoration: underline;
+        }
+
+        .recipe-title {
+            text-align: center;
+            font-size: 36px;
+            margin: 20px 0;
+        }
+
+        .recipe-author {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .recipe-author a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .recipe-author a:hover {
+            text-decoration: underline;
+        }
+
+        .recipe-date {
+            text-align: center;
+            margin: 10px 0;
+        }
+
+        .recipe-content {
+            padding: 0 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .recipe-content p {
+            line-height: 1.6;
+        }
+
+        .recipe-info {
+            background-color: #f8f8f8;
+            padding: 10px;
+            margin: 20px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .recipe-info p {
+            margin: 5px 0;
+            flex: 1;
+            text-align: left;
+        }
+
+        .recipe-info p:first-child {
+            border-right: 1px solid #ddd;
+            padding-right: 10px;
+        }
+
+        .recipe-info p:last-child {
+            padding-left: 10px;
+        }
+
+        .recipe-info strong {
+            display: flex;
+            align-items: center;
+        }
+
+        .recipe-info .total-time::before {
+            content: "\f017";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 8px;
+        }
+
+        .recipe-info .yield::before {
+            content: "\f2e7";
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            margin-right: 8px;
+        }
+
+        .ingredients {
+            margin: 20px 0;
+        }
+
+        .ingredients ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .ingredients li {
+            margin: 10px 0;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .ingredients li:hover {
+            background-color: #f0f0f0;
+        }
+
+        .ingredients li.added-to-list {
+            background-color: #e8f5e9;
+            position: relative;
+        }
+
+        .ingredients li.added-to-list::after {
+            content: "✓";
+            color: #2e7d32;
+            margin-left: 10px;
+        }
+
+        .add-notification {
+            position: absolute;
+            right: 10px;
+            background: #4caf50;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 12px;
+            animation: fadeOut 2s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            100% { opacity: 0; display: none; }
+        }
+
+        .jump-to-recipe-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+
+        .jump-to-recipe {
+            display: inline-flex;
+            align-items: center;
+            padding: 10px 20px;
+            border: 2px solid #333;
+            border-radius: 25px;
+            position: relative;
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .jump-to-recipe::after {
+            content: "↓";
+            margin-left: 10px;
+        }
+
+        .bookmark-btn {
+            background: none;
+            border: none;
+            margin-right: 10px;
+            cursor: pointer;
+            color: #333;
+            display: flex;
+            align-items: center;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings:
+            'FILL' 0,
+            'wght' 400,
+            'GRAD' 0,
+            'opsz' 24
+        }
+
+        .preparation {
+            margin: 20px 0;
+        }
+
+        .preparation h3 {
+            font-size: 20px;
+            margin: 15px 0;
+        }
+
+        .preparation ol {
+            padding-left: 20px;
+            list-style-type: none;
+        }
+
+        .preparation li {
+            margin: 10px 0;
+        }
+
+        .tags {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .tags h3 {
+            margin-bottom: 15px;
+        }
+
+        .tags ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .tags li {
+            display: inline-block;
+            margin: 5px;
+            padding: 5px 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+        }
+
+        .tags a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .recipe-notes {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .recipe-notes a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        hr {
+            border: 0;
+            height: 1px;
+            background: #ddd;
+            margin: 20px 0;
+        }
+
+        .rating {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .rating span {
+            font-size: 24px;
+            color: #ffcc00;
+        }
+
+        /* Enhanced Comment Section */
+        .comment-section {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .comment-section h2 {
+            font-size: 22px;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .signin-prompt {
+            text-align: center;
+            background: #F8F8F8;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+            cursor: pointer;
+        }
+
+        .signin-prompt button {
+            background-color: #000;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .comment-box {
+            background: #fff;
+            border-top: 1px solid #ddd;
+        }
+
+        .comment {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+            color: #000;
+            text-align: left;
+        }
+
+        .comment strong {
+            font-size: 14px;
+        }
+
+        .comment p {
+            font-size: 14px;
+            margin-top: 5px;
+        }
+
+        .actions {
+            display: flex;
+            gap: 20px;
+            cursor: pointer;
+            color: #555;
+            font-size: 14px;
+            align-items: center;
+        }
+
+        .actions span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .actions span:hover {
+            text-decoration: underline;
+        }
+
+        .heart-icon::before {
+            content: '\2665';
+            color: #C4C4C4;
+            font-size: 16px;
+        }
+
+        .message-icon::before {
+            content: '\2709';
+            color: #C4C4C4;
+            font-size: 16px;
+        }
+
+        /* More From BA Section */
+        .more-from-ba {
+            margin: 40px 0;
+            padding: 0 20px;
+        }
+
+        .more-from-ba .section-title {
+            font-size: 24px;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .more-from-ba .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .more-from-ba .grid-item {
+            margin-bottom: 20px;
+        }
+
+        .more-from-ba .grid-item img {
+            width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin-bottom: 10px;
+        }
+
+        .more-from-ba .tag {
+            font-size: 12px;
+            color: #666;
+            text-transform: uppercase;
+            margin-bottom: 5px;
+        }
+
+        .more-from-ba .recipe-info {
+            margin-top: 5px;
+        }
+
+        .more-from-ba .recipe-name {
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .more-from-ba .recipe-name a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .more-from-ba .recipe-name a:hover {
+            text-decoration: underline;
+        }
+
+        .more-from-ba .recipe-author {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .more-from-ba .recipe-author a {
+            color: #666;
+            text-decoration: none;
+        }
+
+        .more-from-ba .recipe-author a:hover {
+            text-decoration: underline;
+        }
+
+        .gif-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .gif-section img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header will be loaded here -->
+    <div id="header-container"></div>
+
+    <!-- Black block above the image -->
+    <div class="recipe-top-link">
+        <a href="recipes.html">Recipes</a>
+    </div>
+
+    <!-- Recipe Header -->
+    <div class="recipe-header">
+        <img src="https://img.taste.com.au/5y-hRDhf/w720-h480-cfill-q80/taste/2022/07/koeksisters-south-african-plaited-doughnuts-in-syrup-180738-2.jpg" alt="Koeksisters">
+        <!-- Caption below the image -->
+        <div class="recipe-caption">
+            Photograph by <a href="melusi-le-roux.html">Melusi Le Roux</a>
         </div>
     </div>
 
-    <!-- Footer will be loaded here -->
-    <div id="footer-container"></div>
+    <!-- Recipe Title, Author, Date, and Rating -->
+    <div class="recipe-content">
+        <h1 class="recipe-title">Koeksisters</h1>
+        <div class="recipe-author">
+            BY <a href="charlene-pretorius.html">Charlene Pretorius</a>
+        </div>
+        <div class="rating">
+            <span>★★★★</span> (4)
+        </div>
+        <hr>
+        
+        <div class="jump-to-recipe-container">
+            <a href="#ingredients" class="jump-to-recipe">
+                <button class="bookmark-btn" id="bookmarkBtn">
+                    <span class="material-symbols-outlined" id="bookmarkIcon">bookmark_add</span>
+                </button>
+                JUMP TO RECIPE
+            </a>
+        </div>
+        
+        <p>For many South Africans, tea time is incomplete without a sweet indulgence, and koeksisters are a beloved favorite. Translating to "cake sister" in Afrikaans, this treat is more akin to a doughnut than a cake. Koeksisters are plaited dough braids, deep-fried to a golden crisp and then soaked in ice-cold syrup, creating a delightful contrast of textures—crunchy on the outside and syrupy-soft on the inside. These sticky, syrup-drenched delights are irresistible, though not for the faint of heart (or those on a diet). One bite, and you'll understand why they're a cherished part of South African culinary tradition.</p>
+        
+        <p>The origins of koeksisters are somewhat shrouded in history, but they are widely believed to have been inspired by recipes brought to the Cape by Dutch settlers in the 17th century. Over time, they evolved into a uniquely South African treat, deeply intertwined with Afrikaans culture and heritage.</p>
+        
+        <p>Koeksisters also hold a special place in South Africa's history as a symbol of reconciliation: in 1995, Nelson Mandela shared a plate of koeksisters with Mrs. Betsie Verwoerd, the widow of former Prime Minister Hendrik Verwoerd, during an afternoon tea in Orania. This gesture, coming from a man who had suffered under the apartheid policies implemented by Verwoerd, was a powerful act of forgiveness and unity. The humble koeksister, often made for community fundraisers and family gatherings, became a poignant reminder of the possibility of healing and connection.</p>
+        
+        <p><strong>Cook's note:</strong> Make the syrup a day before in order to get it sufficiently cold for serving.</p>
+        
+        <div class="recipe-info">
+            <p><strong class="yield">YIELD</strong> 4 servings</p>
+            <p><strong class="total-time">TOTAL TIME</strong> Prep Time: 45 minutes<br>Cooking Time: 20 minutes</p>
+        </div>
+        <hr>
+        
+        <div class="ingredients" id="ingredients">
+            <h3>Ingredients</h3>
+            <h4>For the syrup</h4>
+            <ul>
+                <li>1 kg granulated sugar</li>
+                <li>2 cups water</li>
+                <li>2 sticks cinnamon</li>
+                <li>1 2.5cm piece fresh ginger, peeled and sliced</li>
+                <li>1 lemon, juice and zest</li>
+            </ul>
+            
+            <h4>For the dough</h4>
+            <ul>
+                <li>280 g cake flour</li>
+                <li>1/2 t sea salt</li>
+                <li>2 T baking powder</li>
+                <li>4 T butter, softened</li>
+                <li>1 large free range egg, lightly beaten</li>
+                <li>7 T water</li>
+                <li>6 cups vegetable oil</li>
+            </ul>
+        </div>
+        <hr>
+        
+        <div class="preparation">
+            <h3>Method</h3>
+            
+            <h4>Make the syrup</h4>
+            <ol>
+                <li><strong>Step 1</strong><br>In a saucepan over low heat, dissolve the sugar in water, stirring frequently. Do not bring to a boil until all the sugar has dissolved.</li>
+                
+                <li><strong>Step 2</strong><br>Once dissolved, bring to a boil and cook for 1 minute. Add cinnamon, ginger, lemon juice, and zest.</li>
+                
+                <li><strong>Step 3</strong><br>Reduce heat and simmer for 5 minutes. Remove from heat and let cool completely. Transfer to an airtight container and refrigerate overnight.</li>
+            </ol>
+            
+            <h4>Make the dough</h4>
+            <ol start="4">
+                <li><strong>Step 4</strong><br>Sift together flour, salt, and baking powder in a large bowl. Rub in butter until the mixture resembles breadcrumbs.</li>
+                
+                <li><strong>Step 5</strong><br>Using a palette knife, mix in the egg. Gradually add water, a little at a time, until a dough forms. If too sticky, add a little more flour.</li>
+                
+                <li><strong>Step 6</strong><br>Knead the dough for 30 seconds to form a smooth ball. Cover with clingfilm and let rest at room temperature for at least 1 hour.</li>
+            </ol>
+            
+            <h4>Shape the koeksisters</h4>
+            <ol start="7">
+                <li><strong>Step 7</strong><br>On a lightly floured surface, roll out the dough to 1 cm thickness. Cut into rectangles, then slice into <strong>12 x 4 cm</strong> strips.</li>
+                
+                <li><strong>Step 8</strong><br>Make two incisions down each strip, leaving the top intact. Tightly braid the three strands and pinch the ends together. Fold the top slightly inward to match the bottom. Repeat with the remaining dough.</li>
+            </ol>
+            
+            <h4>Fry and soak</h4>
+            <ol start="9">
+                <li><strong>Step 9</strong><br>Heat oil in a deep saucepan over medium heat. When hot, fry three koeksisters at a time for about 3 minutes, turning occasionally.</li>
+                
+                <li><strong>Step 10</strong><br>Once golden brown, remove with a slotted spoon and drain briefly on paper towels. Immediately plunge into the ice-cold syrup, coating well. Soak for 1 minute before transferring to a wire rack.</li>
+                
+                <li><strong>Step 11</strong><br>Let cool slightly before serving.</li>
+            </ol>
+        </div>
+        <hr>
+        
+        <div class="tags">
+            <h3>Explore Bon Appétit</h3>
+            <ul>
+                <li><a href="#">Southern Africa</a></li>
+                <li><a href="#">Desserts</a></li>
+                <li><a href="#">Picnics</a></li>
+                <li><a href="#">Tea Time</a></li>
+                <li><a href="#">Celebrations</a></li>
+                <li><a href="#">Traditional</a></li>
+            </ul>
+        </div>
+        <hr>
+        
+        <div class="recipe-notes">
+            <p><a href="#">BACK TO TOP</a></p>
+        </div>
+        <hr>
+        
+        <!-- Enhanced Comment Section -->
+        <div class="comment-section">
+            <h2>Recipe Notes</h2>
+            <div class="signin-prompt" onclick="showSignIn()">
+                <p><strong>Join the home cook community</strong></p>
+                <button>Sign In or Create Account</button>
+            </div>
 
-    <script src="JS/scripts.js"></script>
-    <script src="JS/recipe-scripts.js"></script>
-</body>
-                                                                                                                                                                                             </html>
+            <div class="comment-box">
+                <div class="comment"><strong>Lisa Kristel</strong> (4 years ago)
+                    <p>I'm sure this will be delicious when I make it, but first, please make a correction: As much juice as you can!</p>
+                    <div class="actions">
+                        <span class="heart-icon" onclick="showSignIn()"> 0</span>
+                        <span class="message-icon" onclick="showSignIn()"> Reply</span>
+                    </div>
+                </div>
+                <div class="comment"><strong>Dreamer</strong> (4 years ago)
+                    <p>This would be good in so many ways....with raw veggies, on pasta, drizzled on chicken, YUMM</p>
+                    <div class="actions">
+                        <span class="heart-icon" onclick="showSignIn()"> 0</span>
+                        <span class="message-icon" onclick="showSignIn()"> Reply</span>
+                    </div>
+                </div>
+                <div class="comment"><strong>Casey</strong> (4 years ago)
+                    <p>I added garlic and red pepper flakes as previous reviewer did...</p>
+                    <div class="actions">
+                        <span class="heart-icon" onclick="showSignIn()"> 0</span>
+                        <span class="message-icon" onclick="showSignIn()"> Reply</span>
+                    </div>
+                </div>
+                <div class="comment"><strong>Anonymous</strong> (5 years ago)
+                    <p>Just finished making this and nearly sliced my fingers trying to li
