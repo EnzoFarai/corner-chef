@@ -1,132 +1,219 @@
-function initAuth() {
-    // Check if user is logged in
-    const user = localStorage.getItem('cornerChefUser');
-    const loginLink = document.getElementById('loginLink');
-    
-    // Update login link text if logged in
-    if (user && loginLink) {
-        const userData = JSON.parse(user);
-        loginLink.textContent = 'Log Out';
-        loginLink.href = '#';
-        loginLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            localStorage.removeItem('cornerChefUser');
-            window.location.reload();
-        });
-    }
+// Auth state management
+let currentUser = JSON.parse(localStorage.getItem('cornerChefUser'));
 
-    // Modal functionality
+function showAuthModal(tab = 'login') {
     const modal = document.getElementById('authModal');
-    if (!modal) return;
-
-    const closeBtn = modal.querySelector('.close-modal');
+    modal.style.display = 'flex';
     
-    // Show modal when login link clicked
-    if (loginLink && !user) {
-        loginLink.addEventListener('click', function(e) {
-            e.preventDefault();
-            modal.style.display = 'block';
-        });
+    // Set active tab
+    document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+    document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+    
+    document.getElementById(`${tab}Tab`).classList.add('active');
+    document.getElementById(`${tab}Form`).classList.add('active');
+}
+
+function closeAuthModal() {
+    document.getElementById('authModal').style.display = 'none';
+}
+
+function login(event) {
+    event.preventDefault();
+    const email = document.getElementById('loginEmail').value;
+    const password = document.getElementById('loginPassword').value;
+
+    // Hardcoded credentials
+    if (email === 'mypretendemail@gmail.com' && password === 'thisisfake') {
+        currentUser = {
+            email: email,
+            isLoggedIn: true,
+            lastLogin: new Date().toISOString()
+        };
+        localStorage.setItem('cornerChefUser', JSON.stringify(currentUser));
+        updateAuthUI();
+        closeAuthModal();
+        return;
     }
 
-    // Close modal
-    if (closeBtn) {
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
-        });
+    // Check if user exists in localStorage
+    const users = JSON.parse(localStorage.getItem('cornerChefUsers')) || [];
+    const user = users.find(u => u.email === email && u.password === password);
+    
+    if (user) {
+        currentUser = {
+            ...user,
+            isLoggedIn: true,
+            lastLogin: new Date().toISOString()
+        };
+        localStorage.setItem('cornerChefUser', JSON.stringify(currentUser));
+        updateAuthUI();
+        closeAuthModal();
+    } else {
+        alert('Invalid email or password');
     }
+}
 
-    // Close when clicking outside
-    window.addEventListener('click', function(e) {
-        if (e.target === modal) {
-            modal.style.display = 'none';
+function register(event) {
+    event.preventDefault();
+    const formData = new FormData(event.target);
+    const userData = Object.fromEntries(formData.entries());
+    
+    // Basic validation
+    if (!userData.name || !userData.email || !userData.password) {
+        alert('Please fill in all required fields');
+        return;
+    }
+    
+    // Save user
+    const users = JSON.parse(localStorage.getItem('cornerChefUsers')) || [];
+    if (users.some(u => u.email === userData.email)) {
+        alert('Email already registered');
+        return;
+    }
+    
+    users.push(userData);
+    localStorage.setItem('cornerChefUsers', JSON.stringify(users));
+    
+    // Auto-login
+    currentUser = {
+        ...userData,
+        isLoggedIn: true,
+        lastLogin: new Date().toISOString()
+    };
+    localStorage.setItem('cornerChefUser', JSON.stringify(currentUser));
+    updateAuthUI();
+    closeAuthModal();
+}
+
+function logout() {
+    currentUser = null;
+    localStorage.removeItem('cornerChefUser');
+    updateAuthUI();
+}
+
+function updateAuthUI() {
+    const authElements = document.querySelectorAll('.auth-element');
+    const userElements = document.querySelectorAll('.user-element');
+    
+    if (currentUser?.isLoggedIn) {
+        authElements.forEach(el => el.style.display = 'none');
+        userElements.forEach(el => el.style.display = 'block');
+        
+        // Update user display name if element exists
+        const userDisplay = document.getElementById('userDisplay');
+        if (userDisplay) {
+            userDisplay.textContent = currentUser.name || currentUser.email.split('@')[0];
         }
-    });
-
-    // Tab switching
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.auth-tab-content');
-    
-    tabBtns.forEach(btn => {
-        btn.addEventListener('click', function() {
-            const tabId = this.getAttribute('data-tab');
-            
-            // Update active tab button
-            tabBtns.forEach(b => b.classList.remove('active'));
-            this.classList.add('active');
-            
-            // Update active tab content
-            tabContents.forEach(content => {
-                content.classList.remove('active');
-                if (content.id === `${tabId}-tab`) {
-                    content.classList.add('active');
+    } else {
+        authElements.forEach(el => el.style.display = 'block');
+        userElements.forEach(el => el.style.display = 'none');
+        
+        // Show register prompt after 10 seconds if not shown before
+        if (!sessionStorage.getItem('registerPromptShown')) {
+            setTimeout(() => {
+                if (!currentUser?.isLoggedIn) {
+                    showAuthModal('register');
+                    sessionStorage.setItem('registerPromptShown', 'true');
                 }
+            }, 10000);
+        }
+    }
+}
+
+// Initialize auth system
+document.addEventListener('DOMContentLoaded', () => {
+    // Add auth modal to body if not exists
+    if (!document.getElementById('authModal')) {
+        const authModal = document.createElement('div');
+        authModal.id = 'authModal';
+        authModal.className = 'auth-modal';
+        authModal.innerHTML = `
+            <div class="auth-content">
+                <span class="close-auth">&times;</span>
+                <div class="auth-tabs">
+                    <div class="auth-tab active" id="loginTab">Log In</div>
+                    <div class="auth-tab" id="registerTab">Register</div>
+                </div>
+                
+                <form id="loginForm" class="auth-form active" onsubmit="login(event)">
+                    <div class="auth-form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" required>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" required>
+                    </div>
+                    <button type="submit" class="auth-submit">Log In</button>
+                    <div class="auth-switch">
+                        Don't have an account? <a onclick="showAuthModal('register')">Register</a>
+                    </div>
+                </form>
+                
+                <form id="registerForm" class="auth-form" onsubmit="register(event)">
+                    <div class="auth-form-group">
+                        <label for="regName">Full Name</label>
+                        <input type="text" id="regName" name="name" required>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="regEmail">Email</label>
+                        <input type="email" id="regEmail" name="email" required>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="regUsername">Username</label>
+                        <input type="text" id="regUsername" name="username" required>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="regPassword">Password</label>
+                        <input type="password" id="regPassword" name="password" required>
+                    </div>
+                    <div class="auth-form-group">
+                        <label>Gender</label>
+                        <div style="display: flex; gap: 1rem;">
+                            <label><input type="radio" name="gender" value="male" required> Male</label>
+                            <label><input type="radio" name="gender" value="female"> Female</label>
+                            <label><input type="radio" name="gender" value="other"> Other</label>
+                        </div>
+                    </div>
+                    <div class="auth-form-group">
+                        <label for="regDob">Date of Birth</label>
+                        <input type="date" id="regDob" name="dob" required>
+                    </div>
+                    <button type="submit" class="auth-submit">Register</button>
+                    <div class="auth-switch">
+                        Already have an account? <a onclick="showAuthModal('login')">Log In</a>
+                    </div>
+                </form>
+            </div>
+        `;
+        document.body.appendChild(authModal);
+        
+        // Add event listeners
+        document.querySelectorAll('.auth-tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                const tabId = tab.id.replace('Tab', '');
+                document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById(`${tabId}Form`).classList.add('active');
             });
         });
-    });
-
-    // Login form
-    const loginForm = document.getElementById('loginForm');
-    if (loginForm) {
-        loginForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const email = document.getElementById('loginEmail').value;
-            const password = document.getElementById('loginPassword').value;
-            
-            if (login(email, password)) {
-                modal.style.display = 'none';
-                window.location.reload();
-            }
-        });
+        
+        document.querySelector('.close-auth').addEventListener('click', closeAuthModal);
     }
-
-    // Register form
-    const registerForm = document.getElementById('registerForm');
-    if (registerForm) {
-        registerForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            const userData = {
-                name: document.getElementById('regName').value,
-                email: document.getElementById('regEmail').value,
-                username: document.getElementById('regUsername').value,
-                password: document.getElementById('regPassword').value,
-                gender: document.getElementById('regGender').value,
-                dob: document.getElementById('regDob').value
-            };
-            
-            if (register(userData)) {
-                modal.style.display = 'none';
-                window.location.reload();
-            }
-        });
+    
+    // Update UI based on auth state
+    updateAuthUI();
+    
+    // Add login/logout links
+    const userOptions = document.querySelector('.user-options');
+    if (userOptions) {
+        const loginLink = userOptions.querySelector('a[href="#"]');
+        if (loginLink) {
+            loginLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showAuthModal('login');
+            });
+        }
     }
-}
-
-function login(email, password) {
-    if (email === 'mypretendemail@gmail.com' && password === 'thisisfake') {
-        localStorage.setItem('cornerChefUser', JSON.stringify({
-            email: email,
-            username: 'demoUser',
-            loggedIn: true
-        }));
-        return true;
-    }
-    alert('Invalid credentials. Use:\nEmail: mypretendemail@gmail.com\nPassword: thisisfake');
-    return false;
-}
-
-function register(userData) {
-    localStorage.setItem('cornerChefUser', JSON.stringify({
-        ...userData,
-        loggedIn: true
-    }));
-    return true;
-}
-
-// Show modal after 10 seconds if not logged in
-setTimeout(() => {
-    if (!localStorage.getItem('cornerChefUser')) {
-        const modal = document.getElementById('authModal');
-        if (modal) modal.style.display = 'block';
-    }
-}, 10000);
+});
