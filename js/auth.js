@@ -1,8 +1,37 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const loginForm = document.getElementById('loginForm');
-    const registerForm = document.getElementById('registerForm');
+    // Show modal after 10 seconds only on homepage
+    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+        setTimeout(function() {
+            const user = localStorage.getItem('cornerChefUser');
+            if (!user) {
+                document.getElementById('loginModal').style.display = 'flex';
+                document.body.classList.add('no-scroll');
+            }
+        }, 10000); // 10 seconds
+    }
 
-    // Simple login function
+    // Close modal functionality
+    document.querySelectorAll('.close-modal').forEach(button => {
+        button.addEventListener('click', function() {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.classList.remove('no-scroll');
+        });
+    });
+
+    // Toggle between login and register
+    const showRegister = document.getElementById('showRegister');
+    if (showRegister) {
+        showRegister.addEventListener('click', function(e) {
+            e.preventDefault();
+            document.getElementById('loginModal').style.display = 'none';
+            document.getElementById('registerModal').style.display = 'flex';
+        });
+    }
+
+    // Login form submission
+    const loginForm = document.getElementById('loginForm');
     if (loginForm) {
         loginForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -14,7 +43,11 @@ document.addEventListener('DOMContentLoaded', function() {
                     email: email,
                     loggedIn: true
                 }));
-                alert('Login successful!');
+                this.reset();
+                document.querySelectorAll('.modal').forEach(modal => {
+                    modal.style.display = 'none';
+                });
+                document.body.classList.remove('no-scroll');
                 window.location.reload();
             } else {
                 alert('Invalid credentials. Try email: mypretendemail@gmail.com and password: thisisfake');
@@ -22,7 +55,8 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // Simple registration function
+    // Register form submission
+    const registerForm = document.getElementById('registerForm');
     if (registerForm) {
         registerForm.addEventListener('submit', function(e) {
             e.preventDefault();
@@ -36,26 +70,12 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             
             localStorage.setItem('cornerChefUser', JSON.stringify(userData));
-            alert('Registration successful!');
-            registerModal.classList.remove('active');
+            this.reset();
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.classList.remove('no-scroll');
             window.location.reload();
         });
     }
-
-    // Check if user is logged in
-    function checkAuth() {
-        return localStorage.getItem('cornerChefUser') !== null;
-    }
-
-    // Update UI based on auth status
-    function updateAuthUI() {
-        const user = JSON.parse(localStorage.getItem('cornerChefUser'));
-        const loginBtn = document.getElementById('login-btn');
-        
-        if (user && loginBtn) {
-            loginBtn.textContent = user.username || 'My Account';
-        }
-    }
-
-    updateAuthUI();
 });
