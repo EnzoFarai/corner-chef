@@ -1,22 +1,42 @@
 function initAuth() {
-    // Modal functionality
-    const modal = document.getElementById('authModal');
+    // Check if user is logged in
+    const user = localStorage.getItem('cornerChefUser');
     const loginLink = document.getElementById('loginLink');
     
-    if (loginLink) {
+    // Update login link text if logged in
+    if (user && loginLink) {
+        const userData = JSON.parse(user);
+        loginLink.textContent = 'Log Out';
+        loginLink.href = '#';
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            localStorage.removeItem('cornerChefUser');
+            window.location.reload();
+        });
+    }
+
+    // Modal functionality
+    const modal = document.getElementById('authModal');
+    if (!modal) return;
+
+    const closeBtn = modal.querySelector('.close-modal');
+    
+    // Show modal when login link clicked
+    if (loginLink && !user) {
         loginLink.addEventListener('click', function(e) {
             e.preventDefault();
             modal.style.display = 'block';
         });
     }
 
-    const closeBtn = document.querySelector('.close-modal');
+    // Close modal
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
             modal.style.display = 'none';
         });
     }
 
+    // Close when clicking outside
     window.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.style.display = 'none';
@@ -103,7 +123,10 @@ function register(userData) {
     return true;
 }
 
-function logout() {
-    localStorage.removeItem('cornerChefUser');
-    window.location.reload();
-}
+// Show modal after 10 seconds if not logged in
+setTimeout(() => {
+    if (!localStorage.getItem('cornerChefUser')) {
+        const modal = document.getElementById('authModal');
+        if (modal) modal.style.display = 'block';
+    }
+}, 10000);
