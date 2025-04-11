@@ -1,21 +1,71 @@
 <header class="site-header">
     <div class="header-container">
         <div class="logo-container">
-            <a href="index.html" class="logo-link">
-                <img src="images/logo.png" alt="Corner Chef" class="logo-image">
-            </a>
+            <h1 class="logo">corner chef</h1>
+            <p class="tagline">Where every meal tells a story</p>
         </div>
         <nav class="main-nav">
-            <ul class="nav-list">
-                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
-                <li class="nav-item"><a href="koeksisters.html" class="nav-link">Recipes</a></li>
-                <li class="nav-item"><a href="shopping-list.html" class="nav-link">Shopping List</a></li>
-                <li class="nav-item"><a href="saved-recipes.html" class="nav-link">Saved Recipes</a></li>
-                <li class="nav-item"><a href="video-gallery.html" class="nav-link">Videos</a></li>
-                <li class="nav-item auth-element" style="display:none;"><a href="#" class="nav-link" id="logout-btn">Logout</a></li>
-                <li class="nav-item auth-element" style="display:none;"><span class="nav-link" id="welcome-user"></span></li>
-                <li class="nav-item"><a href="#" class="nav-link" id="login-btn">Login/Register</a></li>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="koeksisters.html">Recipes</a></li>
+                <li><a href="shopping-list.html">Shopping List</a></li>
+                <li><a href="saved-recipes.html">Saved Recipes</a></li>
+                <li><a href="video-gallery.html">Video Gallery</a></li>
+                <li class="auth-element" style="display:none;"><a href="#" id="logout-btn">Logout</a></li>
+                <li class="auth-element" style="display:none;"><a href="#" id="profile-link">Profile</a></li>
+                <li class="no-auth-element"><a href="#" id="login-link">Login</a></li>
             </ul>
         </nav>
     </div>
 </header>
+
+<div id="loginModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <div class="auth-tabs">
+            <button class="tab-btn active" data-tab="login">Login</button>
+            <button class="tab-btn" data-tab="register">Register</button>
+        </div>
+        
+        <div id="login-tab" class="auth-tab-content active">
+            <form id="loginForm">
+                <div class="form-group">
+                    <input type="email" id="loginEmail" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="loginPassword" placeholder="Password" required>
+                </div>
+                <button type="submit" class="auth-btn">Login</button>
+            </form>
+        </div>
+        
+        <div id="register-tab" class="auth-tab-content">
+            <form id="registerForm">
+                <div class="form-group">
+                    <input type="text" id="regName" placeholder="Full Name" required>
+                </div>
+                <div class="form-group">
+                    <input type="email" id="regEmail" placeholder="Email" required>
+                </div>
+                <div class="form-group">
+                    <input type="text" id="regUsername" placeholder="Username" required>
+                </div>
+                <div class="form-group">
+                    <input type="password" id="regPassword" placeholder="Password" required>
+                </div>
+                <div class="form-group">
+                    <select id="regGender" required>
+                        <option value="" disabled selected>Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <input type="date" id="regDob" required>
+                </div>
+                <button type="submit" class="auth-btn">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
