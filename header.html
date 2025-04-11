@@ -1,78 +1,21 @@
 <header class="site-header">
-    <div class="logo">
-        <a href="index.html">Corner Chef</a>
+    <div class="header-container">
+        <div class="logo-container">
+            <a href="index.html" class="logo-link">
+                <img src="images/logo.png" alt="Corner Chef" class="logo-image">
+            </a>
+        </div>
+        <nav class="main-nav">
+            <ul class="nav-list">
+                <li class="nav-item"><a href="index.html" class="nav-link">Home</a></li>
+                <li class="nav-item"><a href="koeksisters.html" class="nav-link">Recipes</a></li>
+                <li class="nav-item"><a href="shopping-list.html" class="nav-link">Shopping List</a></li>
+                <li class="nav-item"><a href="saved-recipes.html" class="nav-link">Saved Recipes</a></li>
+                <li class="nav-item"><a href="video-gallery.html" class="nav-link">Videos</a></li>
+                <li class="nav-item auth-element" style="display:none;"><a href="#" class="nav-link" id="logout-btn">Logout</a></li>
+                <li class="nav-item auth-element" style="display:none;"><span class="nav-link" id="welcome-user"></span></li>
+                <li class="nav-item"><a href="#" class="nav-link" id="login-btn">Login/Register</a></li>
+            </ul>
+        </nav>
     </div>
-    <nav class="main-nav">
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="koeksisters.html">Recipes</a></li>
-            <li><a href="shopping-list.html">Shopping List</a></li>
-            <li><a href="saved-recipes.html">Saved Recipes</a></li>
-            <li><a href="video-gallery.html">Videos</a></li>
-            <li class="auth-element" style="display:none;"><a href="#" id="logout-btn">Logout</a></li>
-            <li class="auth-element" style="display:none;"><span id="welcome-user"></span></li>
-            <li class="no-auth-element"><a href="#" id="login-btn">Login</a></li>
-        </ul>
-    </nav>
 </header>
-
-<div id="loginModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Login</h2>
-        <form id="loginForm">
-            <div class="form-group">
-                <label for="loginEmail">Email</label>
-                <input type="email" id="loginEmail" required>
-            </div>
-            <div class="form-group">
-                <label for="loginPassword">Password</label>
-                <input type="password" id="loginPassword" required>
-            </div>
-            <button type="submit">Login</button>
-            <p>Don't have an account? <a href="#" id="showRegister">Register</a></p>
-        </form>
-    </div>
-</div>
-
-<div id="registerModal" class="modal">
-    <div class="modal-content">
-        <span class="close">&times;</span>
-        <h2>Register</h2>
-        <form id="registerForm">
-            <div class="form-group">
-                <label for="regName">Full Name</label>
-                <input type="text" id="regName" required>
-            </div>
-            <div class="form-group">
-                <label for="regEmail">Email</label>
-                <input type="email" id="regEmail" required>
-            </div>
-            <div class="form-group">
-                <label for="regUsername">Username</label>
-                <input type="text" id="regUsername" required>
-            </div>
-            <div class="form-group">
-                <label for="regPassword">Password</label>
-                <input type="password" id="regPassword" required>
-            </div>
-            <div class="form-group">
-                <label>Gender</label>
-                <div class="radio-group">
-                    <input type="radio" id="male" name="gender" value="male">
-                    <label for="male">Male</label>
-                    <input type="radio" id="female" name="gender" value="female">
-                    <label for="female">Female</label>
-                    <input type="radio" id="other" name="gender" value="other">
-                    <label for="other">Other</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="regDob">Date of Birth</label>
-                <input type="date" id="regDob" required>
-            </div>
-            <button type="submit">Register</button>
-        </form>
-    </div>
-</div>
-          </header>
