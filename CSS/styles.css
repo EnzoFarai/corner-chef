@@ -681,3 +681,382 @@ header {
         display: none;
     }
     }
+
+
+
+
+
+
+/* ==================== */
+/* ADD THESE NEW STYLES */
+/* ==================== */
+
+/* Homepage Hero Section (NEW) */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  background: url('../assets/images/hero-bg.jpg') no-repeat center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  color: var(--light);
+  margin-top: -80px; /* Adjust based on your header height */
+  z-index: -1;
+}
+
+.hero-label {
+  background: var(--primary);
+  font-family: 'Open Sans', sans-serif; /* Matching your typography */
+  padding: 10px 20px;
+  font-size: 1.25rem;
+  font-weight: 700; /* Matching your bold style */
+  position: absolute;
+  top: 30px;
+  border-radius: 5px;
+}
+
+.hero-title {
+  font-size: 3rem;
+  text-shadow: 2px 2px 6px rgba(0,0,0,0.5);
+  margin: 0;
+  max-width: 80%;
+  font-weight: 700; /* Matching your bold style */
+}
+
+/* Recipes Carousel (NEW) - Won't affect existing recipe grid */
+.homepage-recipes {
+  padding: 4rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.homepage-subtitle {
+  font-size: 1.125rem;
+  text-align: center;
+  margin-bottom: 2rem;
+  color: var(--gray);
+  font-style: italic;
+}
+
+.homepage-category-filters {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.homepage-category-filters button {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--border);
+  background: var(--light);
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.2s;
+  font-weight: 600; /* Matching your button style */
+}
+
+.homepage-category-filters button.active, 
+.homepage-category-filters button:hover {
+  background: var(--dark);
+  color: var(--light);
+  border-color: var(--dark);
+}
+
+.homepage-carousel-container {
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 3rem;
+}
+
+.homepage-recipe-carousel {
+  display: flex;
+  gap: 1.25rem;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding: 1rem 0;
+  scrollbar-width: none;
+}
+
+.homepage-recipe-carousel::-webkit-scrollbar { 
+  display: none; 
+}
+
+.homepage-recipe-card {
+  flex: 0 0 280px;
+  border-radius: 0.5rem;
+  background: var(--light);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: transform 0.3s;
+  border: 1px solid var(--border); /* Matching your border style */
+}
+
+.homepage-recipe-card:hover { 
+  transform: translateY(-0.5rem); 
+}
+
+.homepage-recipe-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.homepage-recipe-content { 
+  padding: 1rem; 
+}
+
+.homepage-category-tag {
+  display: inline-block;
+  background: var(--secondary);
+  color: var(--dark);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700; /* Matching your tag style */
+}
+
+.homepage-nav-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: var(--light);
+  border: none;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  z-index: 10;
+  border: 1px solid var(--border); /* Matching your border style */
+}
+
+.homepage-left-arrow { left: -1.25rem; }
+.homepage-right-arrow { right: -1.25rem; }
+
+/* Homepage Video Grid (NEW) - Won't affect existing video section */
+.homepage-video-grid-section {
+  background: var(--primary);
+  padding: 2.5rem 1.5rem;
+}
+
+.homepage-video-grid-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.homepage-video-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 1.5rem;
+}
+
+.homepage-main-video { grid-column: 1; }
+.homepage-side-videos {
+  grid-column: 2;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+  gap: 1.5rem;
+}
+
+.homepage-video-container {
+  position: relative;
+  background: var(--dark);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+}
+
+.homepage-video-poster {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+.homepage-video-container:hover .homepage-video-poster { 
+  transform: scale(1.03); 
+}
+
+.homepage-video-info { 
+  padding: 0.8rem 0; 
+}
+
+.homepage-video-title {
+  font-weight: 600;
+  color: var(--light);
+  margin: 0;
+}
+
+.homepage-play-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 4.5rem;
+  height: 4.5rem;
+  background: rgba(255,0,0,0.8);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.homepage-video-container:hover .homepage-play-overlay {
+  opacity: 1;
+  transform: translate(-50%, -50%) scale(1.05);
+}
+
+.homepage-play-overlay::after {
+  content: "";
+  border-top: 0.75rem solid transparent;
+  border-left: 1.25rem solid var(--light);
+  border-bottom: 0.75rem solid transparent;
+}
+
+.homepage-load-more {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.homepage-load-more-btn {
+  background: var(--dark);
+  color: var(--light);
+  border: none;
+  padding: 0.8rem 2rem;
+  border-radius: 2rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-weight: 600; /* Matching your button style */
+}
+
+.homepage-load-more-btn:hover {
+  background: #444;
+}
+
+/* Homepage Articles Section (NEW) */
+.homepage-articles-section {
+  padding: 4rem 1.5rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.homepage-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+
+.homepage-article-card {
+  background: var(--light);
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform 0.3s;
+  border: 1px solid var(--border); /* Matching your border style */
+}
+
+.homepage-article-card:hover {
+  transform: translateY(-0.5rem);
+}
+
+.homepage-article-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.homepage-article-content {
+  padding: 1rem;
+}
+
+.homepage-article-tag {
+  display: inline-block;
+  background: var(--dark);
+  color: var(--light);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-weight: 700; /* Matching your tag style */
+}
+
+/* Video Modal (NEW) */
+.homepage-video-modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+.homepage-video-modal-content {
+  width: 90%;
+  max-width: 1200px;
+  position: relative;
+}
+
+.homepage-video-wrapper {
+  position: relative;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+}
+
+.homepage-video-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.homepage-close-modal {
+  position: absolute;
+  top: -3rem;
+  right: 0;
+  color: var(--light);
+  font-size: 2rem;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+/* Responsive Adjustments (NEW) */
+@media (max-width: 900px) {
+  .homepage-video-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .homepage-side-videos {
+    grid-column: 1;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  
+  .hero-title {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .homepage-side-videos {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-title {
+    font-size: 2rem;
+  }
+}
