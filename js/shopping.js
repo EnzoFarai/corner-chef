@@ -1,44 +1,62 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Initialize shopping list
-    let shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
-    const listContainer = document.getElementById('shopping-items');
+function initShoppingList() {
+    const shoppingList = JSON.parse(localStorage.getItem('shoppingList')) || [];
+    const listContainer = document.getElementById('shopping-list-items');
+    const emptyMessage = document.getElementById('empty-message');
     
-    // Render shopping list
-    function renderShoppingList() {
+    function renderList() {
         listContainer.innerHTML = '';
-        shoppingList.forEach(item => {
+        
+        if (shoppingList.length === 0) {
+            emptyMessage.style.display = 'block';
+            return;
+        }
+        
+        emptyMessage.style.display = 'none';
+        
+        shoppingList.forEach((item, index) => {
             const li = document.createElement('li');
-            li.textContent = item;
+            li.className = 'shopping-item';
+            
+            li.innerHTML = `
+                <span>${item}</span>
+                <button class="remove-item" data-index="${index}">×</button>
+            `;
+            
             listContainer.appendChild(li);
+        });
+        
+        // Add event listeners to remove buttons
+        document.querySelectorAll('.remove-item').forEach(button => {
+            button.addEventListener('click', function() {
+                const index = parseInt(this.getAttribute('data-index'));
+                shoppingList.splice(index, 1);
+                localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+                renderList();
+            });
         });
     }
     
-    // Add to shopping list buttons
-    document.querySelectorAll('.add-to-list').forEach(button => {
-        button.addEventListener('click', function() {
-            const user = localStorage.getItem('cornerChefUser');
-            if (!user) {
-                document.getElementById('loginModal').style.display = 'block';
-                return;
-            }
-            
-            const ingredient = this.getAttribute('data-ingredient');
-            if (!shoppingList.includes(ingredient)) {
-                shoppingList.push(ingredient);
-                localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
-                renderShoppingList();
-                
-                // Visual feedback
-                this.textContent = '✓ Added';
-                this.disabled = true;
-                setTimeout(() => {
-                    this.textContent = 'Add to List';
-                    this.disabled = false;
-                }, 2000);
-            }
-        });
-    });
+    // Function to add items from recipe pages
+    window.addToShoppingList = function(ingredient) {
+        if (!checkAuth()) return false;
+        
+        if (!shoppingList.includes(ingredient)) {
+            shoppingList.push(ingredient);
+            localStorage.setItem('shoppingList', JSON.stringify(shoppingList));
+            renderList();
+            return true;
+        }
+        return false;
+    }
     
-    // Initial render
-    renderShoppingList();
-});
+    function checkAuth() {
+        const user = JSON.parse(localStorage.getItem('cornerChefUser'));
+        if (!user?.isLoggedIn) {
+            showAuthModal('login');
+            return false;
+        }
+        return true;
+    }
+    
+    renderList();
+}
