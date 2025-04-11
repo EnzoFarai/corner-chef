@@ -3,201 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corner Chef - Home</title>
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="css/auth.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Corner Chef - Delicious Recipes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="header-container"></div>
-    
+    <header>
+        <div class="nav-icon" id="menuToggle">☰</div>
+        <div class="logo">corner chef</div>
+        <div class="nav-overlay" id="navOverlay"></div>
+        <nav class="nav-menu" id="navMenu">
+            <div class="search-bar">
+                <i class="fas fa-search search-icon"></i>
+                <input type="text" placeholder="Looking for something to eat..?">
+            </div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#">Recipes</a></li>
+                <!-- Keep your exact navigation structure here -->
+            </ul>
+            <div class="separator"></div>
+            <div class="user-options">
+                <a href="404.html">Submit Recipe</a>
+                <a href="shopping-list.html">Shopping List</a>
+                <a href="#">Log In</a>
+            </div>
+        </nav>
+    </header>
+
     <main>
-        <!-- Recipe of the Day -->
-        <section class="recipe-day-section">
-            <div class="recipe-day-tag">Recipe of the Day</div>
-            <div class="featured-card recipe-card">
-                <img src="https://via.placeholder.com/800x500" alt="Featured Recipe">
-                <div class="card-content">
-                    <span class="tag highlight">Featured</span>
-                    <h3 class="card-title">Perfect Koeksisters</h3>
-                    <p class="card-desc">Crispy on the outside, syrupy on the inside - the ultimate South African treat</p>
-                    <a href="koeksisters.html" class="btn">View Recipe</a>
-                </div>
-            </div>
+        <!-- Your exact homepage sections here -->
+        <section class="recipe-grid-section">
+            <!-- Recipe grid content -->
         </section>
         
-        <!-- What to Cook Tonight -->
         <section class="what-to-cook-section">
-            <div class="section-header">
-                <h2>What to Cook Tonight</h2>
-                <p>Quick and delicious dinner ideas for any night of the week</p>
-            </div>
-            
-            <div class="filters">
-                <button class="filter-btn active">All</button>
-                <button class="filter-btn">Quick</button>
-                <button class="filter-btn">Vegetarian</button>
-                <button class="filter-btn">Family</button>
-                <button class="filter-btn">Comfort</button>
-            </div>
-            
-            <div class="carousel-container">
-                <div class="carousel">
-                    <!-- Recipe cards will be added by JavaScript -->
-                </div>
-            </div>
+            <!-- Carousel content -->
         </section>
         
-        <!-- Video Gallery -->
         <section class="video-section">
-            <div class="section-header">
-                <h2>Video Gallery</h2>
-                <p>Watch and learn from our cooking tutorials</p>
-            </div>
-            
-            <div class="video-grid">
-                <div class="main-video">
-                    <div class="video-container">
-                        <img src="https://via.placeholder.com/800x450" alt="Main Video">
-                        <div class="play-overlay"></div>
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">How to Make Perfect Koeksisters</h3>
-                        <p class="card-desc">15 min | Intermediate</p>
-                    </div>
-                </div>
-                
-                <div class="side-videos">
-                    <div class="video-container">
-                        <img src="https://via.placeholder.com/400x225" alt="Side Video 1">
-                        <div class="play-overlay"></div>
-                    </div>
-                    <div class="video-container">
-                        <img src="https://via.placeholder.com/400x225" alt="Side Video 2">
-                        <div class="play-overlay"></div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="watch-more">
-                <a href="video-gallery.html" class="watch-more-btn">View All Videos</a>
-            </div>
+            <!-- Video content -->
         </section>
         
-        <!-- What to Read -->
         <section class="what-to-read-section">
-            <div class="section-header">
-                <h2>What to Read</h2>
-                <p>Articles, tips and culinary stories</p>
-            </div>
-            
-            <div class="what-to-read-grid">
-                <div class="card">
-                    <img src="https://via.placeholder.com/600x400" alt="Article 1">
-                    <div class="card-content">
-                        <span class="tag">Article</span>
-                        <h3 class="card-title">The History of Koeksisters</h3>
-                        <p class="card-desc">Exploring this sweet treat's journey through South African culture</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <img src="https://via.placeholder.com/600x400" alt="Article 2">
-                    <div class="card-content">
-                        <span class="tag">Tips</span>
-                        <h3 class="card-title">5 Secrets to Perfect Frying</h3>
-                        <p class="card-desc">Get crispy results every time with these professional techniques</p>
-                    </div>
-                </div>
-            </div>
+            <!-- Articles content -->
         </section>
         
-        <!-- Editors' Picks -->
         <section class="editors-picks-section">
-            <div class="section-header">
-                <h2>Editors' Picks</h2>
-                <p>Our team's favorite recipes this month</p>
-            </div>
-            
-            <div class="editors-picks-grid">
-                <!-- Cards will be added by JavaScript -->
-            </div>
+            <!-- Editors picks -->
         </section>
     </main>
-    
-    <div id="footer-container"></div>
-    
-    <script src="js/main.js"></script>
-    <script src="js/navigation.js"></script>
-    <script src="js/auth.js"></script>
-    <script>
-        // Load components
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load header and footer
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header-container').innerHTML = data;
-                    // Initialize navigation
-                    if (typeof initNavigation === 'function') initNavigation();
-                });
-            
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer-container').innerHTML = data;
-                });
-            
-            // Initialize auth
-            if (typeof updateAuthUI === 'function') updateAuthUI();
-            
-            // Load dynamic content
-            loadHomepageContent();
-        });
-        
-        function loadHomepageContent() {
-            // What to Cook Tonight carousel
-            const recipes = [
-                {title: "30-Minute Chicken Curry", time: "30 min", tags: ["quick", "dinner"]},
-                {title: "Vegetable Stir Fry", time: "20 min", tags: ["vegetarian", "quick"]},
-                {title: "Beef Lasagna", time: "1 hr", tags: ["family", "comfort"]},
-                {title: "Mushroom Risotto", time: "45 min", tags: ["vegetarian", "comfort"]},
-                {title: "Fish Tacos", time: "35 min", tags: ["quick", "dinner"]}
-            ];
-            
-            const carousel = document.querySelector('.carousel');
-            recipes.forEach(recipe => {
-                carousel.innerHTML += `
-                    <div class="card">
-                        <img src="https://via.placeholder.com/280x180" alt="${recipe.title}">
-                        <div class="card-content">
-                            <h4>${recipe.title}</h4>
-                            <p>${recipe.time}</p>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            // Editors' Picks
-            const picks = [
-                {title: "Bobotie", desc: "South African spiced mince bake"},
-                {title: "Chakalaka", desc: "Spicy vegetable relish"},
-                {title: "Malva Pudding", desc: "Sticky caramelized dessert"}
-            ];
-            
-            const picksGrid = document.querySelector('.editors-picks-grid');
-            picks.forEach(pick => {
-                picksGrid.innerHTML += `
-                    <div class="card">
-                        <img src="https://via.placeholder.com/350x200" alt="${pick.title}">
-                        <div class="card-content">
-                            <h3>${pick.title}</h3>
-                            <p>${pick.desc}</p>
-                        </div>
-                    </div>
-                `;
-            });
-        }
-    </script>
+
+    <footer class="footer">
+        <h2>corner chef</h2>
+        <p>Recipes you want to make. Cooking advice that works. Restaurant recommendations you trust.</p>
+        <div class="social-media">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-threads"></i></a>
+            <a href="#"><i class="fab fa-pinterest"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        <div class="links">
+            <a href="#">About Us</a>
+            <a href="#">Contact</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Use</a>
+        </div>
+        <div class="legal">
+            <p>&copy; 2025 corner chef. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
