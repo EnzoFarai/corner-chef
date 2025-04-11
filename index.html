@@ -1,239 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>corner chef: Recipes, Cooking, Entertaining, Restaurants</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="CSS/styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>corner chef | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Cooper+Black&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="CSS/styles.css">
 </head>
 <body>
-    <!-- Header will be loaded here -->
-    <div id="header-container"></div>
-    
-    <!-- Main Content -->
-    <!-- Section 1: Recipe Grid -->
-<section class="recipe-grid-section">
+  <!-- Header will be loaded here -->
+  <div id="header-container"></div>
+
+  <!-- Hero Section -->
+  <section class="hero-section">
+    <div class="hero-label">Recipe of the Day</div>
+    <h1 class="hero-title"><a href="recipes/koeksisters.html">Koeksisters</a></h1>
+  </section>
+
+  <!-- Recipes Carousel -->
+  <section class="recipes-section">
+    <h2>WHAT TO COOK TONIGHT</h2>
+    <p class="subtitle">Fast, fresh, and foolproof.</p>
+
+    <div class="category-filters">
+      <button class="active">All</button>
+      <button>Chicken</button>
+      <button>Vegetarian</button>
+      <button>Quick</button>
+    </div>
+
+    <div class="carousel-container">
+      <button class="nav-arrow left-arrow" onclick="scrollCarousel(-1)">←</button>
+      <div class="recipe-carousel" id="carousel">
+        <div class="recipe-card">
+          <img src="https://source.unsplash.com/random/280x180/?chicken" alt="Kuku Paka" loading="lazy">
+          <div class="recipe-card-content">
+            <span class="category-tag">Chicken</span>
+            <h3><a href="recipes/kuku-paka.html">Kuku Paka</a></h3>
+          </div>
+        </div>
+        <!-- More recipe cards... -->
+      </div>
+      <button class="nav-arrow right-arrow" onclick="scrollCarousel(1)">→</button>
+    </div>
+  </section>
+
+  <!-- Video Grid -->
+  <section class="video-grid-section">
+    <div class="video-grid-container">
+      <div class="video-grid">
+        <div class="main-video video-card">
+          <div class="video-container">
+            <img src="https://source.unsplash.com/random/800x450/?mayo,cooking" 
+                 alt="Homemade Mayo" 
+                 class="video-poster" loading="lazy">
+            <div class="play-overlay" data-video-id="mayo"></div>
+          </div>
+          <div class="video-info">
+            <h3 class="video-title">
+              <a href="#">The Best Mayo is Always Homemade</a>
+            </h3>
+          </div>
+        </div>
+        <!-- Side videos... -->
+      </div>
+    </div>
+  </section>
+
+  <!-- What To Read Section -->
+  <section class="articles-section">
     <div class="section-header">
-        <h2>FEATURED RECIPES</h2>
-        <p>Discover our most popular and trending recipes</p>
+      <h2>WHAT TO READ</h2>
+      <p>Stay on top of the latest in food culture and techniques</p>
     </div>
-    
-    <div class="recipe-parent-grid">
-        <article class="recipe-card card-1">
-            <img src="https://images.unsplash.com/photo-1609358905581-0a7b0d6e6b8d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Carrot Cake">
-            <div class="card-content">
-                <span class="tag highlight">Trending</span>
-                <h3 class="card-title">Best Carrot Cake Ever</h3>
-            </div>
-        </article>
-        
-        <article class="recipe-card card-2">
-            <img src="https://images.unsplash.com/photo-1545253089-9348c8cc63f0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Food History">
-            <div class="card-content">
-                <span class="tag">Cookways</span>
-                <h3 class="card-title">The History of Carrot Cake</h3>
-            </div>
-        </article>
-        
-        <article class="recipe-card featured-card card-3">
-            <span class="recipe-day-tag">Recipe of the Day</span>
-            <img src="https://images.unsplash.com/photo-1571115177098-24ec42ed204d?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Featured Recipe">
-            <div class="card-content">
-                <h3 class="card-title">Ultimate Carrot Cake with Cream Cheese Frosting</h3>
-            </div>
-        </article>
-        
-        <article class="recipe-card card-4">
-            <img src="https://images.unsplash.com/photo-1563729784474-d77dbb933a9e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cooking Guide">
-            <div class="card-content">
-                <span class="tag">Tips</span>
-                <h3 class="card-title">Perfect Carrot Cake Guide</h3>
-            </div>
-        </article>
-        
-        <article class="recipe-card card-5">
-            <img src="https://images.unsplash.com/photo-1606890737304-57a1ca8a5b62?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Global Cuisine">
-            <div class="card-content">
-                <span class="tag">Cookways</span>
-                <h3 class="card-title">Global Carrot Cake Variations</h3>
-            </div>
-        </article>
+    <div class="articles-grid">
+      <article class="article-card">
+        <img src="https://source.unsplash.com/random/600x400/?restaurant,london" alt="London Restaurants" loading="lazy">
+        <div class="article-content">
+          <span class="article-tag">Cookways</span>
+          <h3 class="article-title"><a href="#">The 11 Best Restaurants in London</a></h3>
+        </div>
+      </article>
+      <!-- More articles... -->
     </div>
-</section>
-    
-    <!-- Section 2: What to Cook Tonight -->
-    <section>
-        <div class="section-header">
-            <h2>WHAT TO COOK TONIGHT</h2>
-            <p>Fast, fresh, and foolproof recipes for your evening meal</p>
-        </div>
-        
-        <div class="filters">
-            <button class="filter-btn active">All</button>
-            <button class="filter-btn">Pasta</button>
-            <button class="filter-btn">Vegetarian</button>
-            <button class="filter-btn">Weeknight</button>
-        </div>
-        
-        <div class="carousel-container">
-            <button class="carousel-nav left" onclick="scrollCarousel(-1)">‹</button>
-            
-            <div class="carousel" id="recipeCarousel">
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Vegan Dish">
-                    <div class="card-content">
-                        <span class="tag yellow">Vegan</span>
-                        <h3 class="card-title">Vegan Deviled "Eggs"</h3>
-                        <p class="card-desc">A plant-based twist on the classic appetizer</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Black Beans">
-                    <div class="card-content">
-                        <span class="tag yellow">Vegan</span>
-                        <h3 class="card-title">Cuban-Style Black Beans</h3>
-                        <p class="card-desc">Flavorful and protein-packed</p>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <img src="https://images.unsplash.com/photo-1510626176961-4b57d4fbad03?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Gnocchi">
-                    <div class="card-content">
-                        <span class="tag yellow">Quick</span>
-                        <h3 class="card-title">Skillet Gnocchi With Leeks and Bacon</h3>
-                        <p class="card-desc">Ready in just 30 minutes</p>
-                    </div>
-                </div>
-            </div>
-            
-            <button class="carousel-nav right" onclick="scrollCarousel(1)">›</button>
-        </div>
-    </section>
-    
-    <!-- Section 3: Video Grid -->
-    <section class="video-section">
-        <div class="section-header">
-            <h2>VIDEO RECIPES</h2>
-            <p>Watch and learn from our professional chefs</p>
-        </div>
-        
-        <div class="video-grid">
-            <!-- Main video -->
-            <div class="main-video">
-                <div class="video-container">
-                    <img src="https://images.unsplash.com/photo-1547592180-85f173990554?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Main Video">
-                    <div class="play-overlay"></div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Mastering the Perfect Risotto</h3>
-                    <p class="card-desc">Chef Marco shows you his secrets for creamy, al dente risotto every time</p>
-                </div>
-            </div>
+  </section>
 
-            <!-- Side videos -->
-            <div class="side-videos">
-                <div class="video-container">
-                    <img src="https://images.unsplash.com/photo-1563805042-7684c019e1cb?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Video 1">
-                    <div class="play-overlay"></div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Knife Skills 101</h3>
-                    <p class="card-desc">Essential techniques every home cook should master</p>
-                </div>
+  <!-- Editors' Picks Section -->
+  <section class="articles-section">
+    <div class="section-header">
+      <h2>EDITORS' PICKS</h2>
+      <p>Inspiration for your next meal from our culinary experts</p>
+    </div>
+    <div class="articles-grid">
+      <article class="article-card">
+        <img src="https://source.unsplash.com/random/600x400/?chicken,thighs" alt="Chicken Thighs" loading="lazy">
+        <div class="article-content">
+          <h3 class="article-title"><a href="#">47 Best Chicken Thigh Recipes</a></h3>
+        </div>
+      </article>
+      <!-- More picks... -->
+    </div>
+  </section>
 
-                <div class="video-container">
-                    <img src="https://images.unsplash.com/photo-1481931098730-318b6f776db0?ixlib=rb-1.2.1&auto=format&fit=crop&w=400&q=80" alt="Video 2">
-                    <div class="play-overlay"></div>
-                </div>
-                <div class="card-content">
-                    <h3 class="card-title">Artisan Bread at Home</h3>
-                    <p class="card-desc">No fancy equipment needed for perfect crusty bread</p>
-                </div>
-            </div>
-        </div>
-        
-        <div class="watch-more">
-            <button class="watch-more-btn">Watch More Videos</button>
-        </div>
-    </section>
-    
-    <!-- Section 4: What to Read -->
-    <section>
-        <div class="section-header">
-            <h2>WHAT TO READ</h2>
-            <p>Stay on top of the latest in food culture and techniques</p>
-        </div>
-        
-        <div class="standard-card-grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="London Restaurants">
-                <div class="card-content">
-                    <span class="tag">Cookways</span>
-                    <h3 class="card-title">The 11 Best Restaurants in London</h3>
-                    <p class="card-desc">England's capital city is a dining destination like no other</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1555396273-367ea4eb4db5?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Table Reservations">
-                <div class="card-content">
-                    <span class="tag">Cookways</span>
-                    <h3 class="card-title">Restaurants Save the Best Tables</h3>
-                    <p class="card-desc">How restaurants choose tables for walk-ins</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1464037866556-6812c9d1c72e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Himalayan Dining">
-                <div class="card-content">
-                    <span class="tag">Cookways</span>
-                    <h3 class="card-title">Fine-Dining in the Himalayas</h3>
-                    <p class="card-desc">Sarah Khan's travel diary on reaching a remote tasting menu</p>
-                </div>
-            </div>
-        </div>
-    </section>
-    
-    <!-- Section 5: Editors' Picks -->
-    <section>
-        <div class="section-header">
-            <h2>EDITORS' PICKS</h2>
-            <p>Inspiration for your next meal from our culinary experts</p>
-        </div>
-        
-        <div class="standard-card-grid">
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Chicken Thighs">
-                <div class="card-content">
-                    <h3 class="card-title">47 Best Chicken Thigh Recipes</h3>
-                    <p class="card-desc">Quick, hassle-free recipes for weeknight self-care</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1518977676601-b53f82aba655?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Cabbage Recipes">
-                <div class="card-content">
-                    <h3 class="card-title">59 Best Cabbage Recipes</h3>
-                    <p class="card-desc">Weeknight go-tos to convert any brassica hater</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <img src="https://images.unsplash.com/photo-1562440499-64c9a111f713?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" alt="Pie Recipes">
-                <div class="card-content">
-                    <h3 class="card-title">23 No-Roll Pie Recipes</h3>
-                    <p class="card-desc">From press-in crusts to store-bought shortcuts</p>
-                </div>
-            </div>
-        </div>
-    </section>
+  <!-- Footer will be loaded here -->
+  <div id="footer-container"></div>
 
-    <!-- Footer will be loaded here -->
-    <div id="footer-container"></div>
+  <!-- Video Modal -->
+  <div class="video-modal" id="videoModal">
+    <div class="video-modal-content">
+      <button class="close-modal">&times;</button>
+      <div class="video-wrapper">
+        <!-- YouTube iframe will be injected here -->
+      </div>
+    </div>
+  </div>
 
-    <script src="JS/scripts.js"></script>
+  <script src="JS/scripts.js"></script>
+  <script src="JS/homepage.js"></script>
 </body>
     </html>
