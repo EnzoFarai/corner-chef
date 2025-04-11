@@ -3,79 +3,140 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corner Chef - Delicious Recipes</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+    <title>Corner Chef - African and Global Recipes</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/js/navigation.js" defer></script>
 </head>
 <body>
-    <header>
-        <div class="nav-icon" id="menuToggle">☰</div>
-        <div class="logo">corner chef</div>
-        <div class="nav-overlay" id="navOverlay"></div>
-        <nav class="nav-menu" id="navMenu">
-            <div class="search-bar">
-                <i class="fas fa-search search-icon"></i>
-                <input type="text" placeholder="Looking for something to eat..?">
-            </div>
-            <ul>
-                <li><a href="index.html">Home</a></li>
-                <li><a href="#">Recipes</a></li>
-                <!-- Keep your exact navigation structure here -->
-            </ul>
-            <div class="separator"></div>
-            <div class="user-options">
-                <a href="404.html">Submit Recipe</a>
-                <a href="shopping-list.html">Shopping List</a>
-                <a href="#">Log In</a>
-            </div>
-        </nav>
-    </header>
+    <!-- Header will be inserted here -->
+    <div id="header"></div>
 
-    <main>
-        <!-- Your exact homepage sections here -->
-        <section class="recipe-grid-section">
-            <!-- Recipe grid content -->
+    <main class="main-content">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <h1>Discover Authentic African & Global Recipes</h1>
+                <p>From traditional Koeksisters to modern fusion dishes</p>
+                <div class="hero-buttons">
+                    <a href="/koeksisters.html" class="btn btn-primary">Explore Recipes</a>
+                    <a href="/submit-recipe.html" class="btn btn-secondary">Submit Your Recipe</a>
+                </div>
+            </div>
         </section>
-        
-        <section class="what-to-cook-section">
-            <!-- Carousel content -->
+
+        <!-- Featured Recipe -->
+        <section class="featured-recipe">
+            <div class="container">
+                <h2 class="section-title">Recipe of the Day</h2>
+                <div class="recipe-card featured">
+                    <img src="/images/koeksisters.jpg" alt="Koeksisters">
+                    <div class="recipe-info">
+                        <h3>Koeksisters</h3>
+                        <p class="recipe-description">Sweet, syrupy South African donuts with a twisted shape</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 45 mins</span>
+                            <span><i class="fas fa-utensils"></i> Intermediate</span>
+                        </div>
+                        <a href="/koeksisters.html" class="btn btn-primary">View Recipe</a>
+                    </div>
+                </div>
+            </div>
         </section>
-        
-        <section class="video-section">
-            <!-- Video content -->
+
+        <!-- Recipe Categories -->
+        <section class="recipe-categories">
+            <div class="container">
+                <h2 class="section-title">Browse by Category</h2>
+                <div class="category-grid">
+                    <a href="#" class="category-card">
+                        <img src="/images/african-cuisine.jpg" alt="African Cuisine">
+                        <h3>African Cuisine</h3>
+                    </a>
+                    <a href="#" class="category-card">
+                        <img src="/images/global-recipes.jpg" alt="Global Recipes">
+                        <h3>Global Recipes</h3>
+                    </a>
+                    <a href="#" class="category-card">
+                        <img src="/images/holiday-specials.jpg" alt="Holiday Specials">
+                        <h3>Holiday Specials</h3>
+                    </a>
+                    <a href="#" class="category-card">
+                        <img src="/images/quick-meals.jpg" alt="Quick Meals">
+                        <h3>Quick Meals</h3>
+                    </a>
+                </div>
+            </div>
         </section>
-        
-        <section class="what-to-read-section">
-            <!-- Articles content -->
+
+        <!-- What to Cook Tonight Carousel -->
+        <section class="carousel-section">
+            <div class="container">
+                <h2 class="section-title">What to Cook Tonight</h2>
+                <div class="carousel">
+                    <button class="carousel-btn prev" aria-label="Previous"><i class="fas fa-chevron-left"></i></button>
+                    <div class="carousel-track">
+                        <!-- Recipe cards will be inserted here by JavaScript -->
+                    </div>
+                    <button class="carousel-btn next" aria-label="Next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </div>
         </section>
-        
-        <section class="editors-picks-section">
-            <!-- Editors picks -->
+
+        <!-- Video Gallery -->
+        <section class="video-gallery">
+            <div class="container">
+                <h2 class="section-title">Video Tutorials</h2>
+                <div class="video-grid">
+                    <div class="main-video">
+                        <div class="video-thumbnail">
+                            <img src="/images/video-main.jpg" alt="How to make perfect Koeksisters">
+                            <button class="play-btn"><i class="fas fa-play"></i></button>
+                        </div>
+                        <h3>How to make perfect Koeksisters</h3>
+                    </div>
+                    <div class="side-videos">
+                        <div class="video-item">
+                            <div class="video-thumbnail">
+                                <img src="/images/video-side1.jpg" alt="South African Bobotie">
+                                <button class="play-btn"><i class="fas fa-play"></i></button>
+                            </div>
+                            <h4>South African Bobotie</h4>
+                        </div>
+                        <div class="video-item">
+                            <div class="video-thumbnail">
+                                <img src="/images/video-side2.jpg" alt="Nigerian Jollof Rice">
+                                <button class="play-btn"><i class="fas fa-play"></i></button>
+                            </div>
+                            <h4>Nigerian Jollof Rice</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
     </main>
 
-    <footer class="footer">
-        <h2>corner chef</h2>
-        <p>Recipes you want to make. Cooking advice that works. Restaurant recommendations you trust.</p>
-        <div class="social-media">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-threads"></i></a>
-            <a href="#"><i class="fab fa-pinterest"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-        </div>
-        <div class="links">
-            <a href="#">About Us</a>
-            <a href="#">Contact</a>
-            <a href="#">Privacy Policy</a>
-            <a href="#">Terms of Use</a>
-        </div>
-        <div class="legal">
-            <p>&copy; 2025 corner chef. All rights reserved.</p>
-        </div>
-    </footer>
+    <!-- Footer will be inserted here -->
+    <div id="footer"></div>
 
-    <script src="script.js"></script>
+    <!-- Include the header and footer -->
+    <script>
+        // Load header
+        fetch('/header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                // Initialize any scripts that depend on the header
+                if (typeof initNavigation === 'function') {
+                    initNavigation();
+                }
+            });
+        
+        // Load footer
+        fetch('/footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+    </script>
 </body>
 </html>
