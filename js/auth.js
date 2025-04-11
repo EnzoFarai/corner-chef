@@ -1,26 +1,32 @@
 function initAuth() {
-    // Check if user is logged in
-    updateAuthUI();
-    
     // Modal functionality
-    const modal = document.getElementById('loginModal');
-    const closeBtn = document.querySelector('.close-modal');
-    const tabBtns = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.auth-tab-content');
+    const modal = document.getElementById('authModal');
+    const loginLink = document.getElementById('loginLink');
     
+    if (loginLink) {
+        loginLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modal.style.display = 'block';
+        });
+    }
+
+    const closeBtn = document.querySelector('.close-modal');
     if (closeBtn) {
         closeBtn.addEventListener('click', function() {
             modal.style.display = 'none';
         });
     }
-    
+
     window.addEventListener('click', function(e) {
         if (e.target === modal) {
             modal.style.display = 'none';
         }
     });
-    
+
     // Tab switching
+    const tabBtns = document.querySelectorAll('.tab-btn');
+    const tabContents = document.querySelectorAll('.auth-tab-content');
+    
     tabBtns.forEach(btn => {
         btn.addEventListener('click', function() {
             const tabId = this.getAttribute('data-tab');
@@ -38,7 +44,7 @@ function initAuth() {
             });
         });
     });
-    
+
     // Login form
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
@@ -49,12 +55,11 @@ function initAuth() {
             
             if (login(email, password)) {
                 modal.style.display = 'none';
-                updateAuthUI();
                 window.location.reload();
             }
         });
     }
-    
+
     // Register form
     const registerForm = document.getElementById('registerForm');
     if (registerForm) {
@@ -71,20 +76,8 @@ function initAuth() {
             
             if (register(userData)) {
                 modal.style.display = 'none';
-                updateAuthUI();
                 window.location.reload();
             }
-        });
-    }
-    
-    // Logout button
-    const logoutBtn = document.getElementById('logout-btn');
-    if (logoutBtn) {
-        logoutBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            logout();
-            updateAuthUI();
-            window.location.reload();
         });
     }
 }
@@ -112,4 +105,5 @@ function register(userData) {
 
 function logout() {
     localStorage.removeItem('cornerChefUser');
+    window.location.reload();
 }
