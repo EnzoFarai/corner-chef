@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corner Chef - African and Global Recipes</title>
-    <link rel="stylesheet" href="/css/style.css">
-    <script src="/js/navigation.js" defer></script>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="js/navigation.js" defer></script>
 </head>
 <body>
     <!-- Header will be inserted here -->
@@ -18,8 +18,8 @@
                 <h1>Discover Authentic African & Global Recipes</h1>
                 <p>From traditional Koeksisters to modern fusion dishes</p>
                 <div class="hero-buttons">
-                    <a href="/koeksisters.html" class="btn btn-primary">Explore Recipes</a>
-                    <a href="/submit-recipe.html" class="btn btn-secondary">Submit Your Recipe</a>
+                    <a href="koeksisters.html" class="btn btn-primary">Explore Recipes</a>
+                    <a href="submit-recipe.html" class="btn btn-secondary">Submit Your Recipe</a>
                 </div>
             </div>
         </section>
@@ -29,7 +29,7 @@
             <div class="container">
                 <h2 class="section-title">Recipe of the Day</h2>
                 <div class="recipe-card featured">
-                    <img src="/images/koeksisters.jpg" alt="Koeksisters">
+                    <img src="assets/images/koeksisters.jpg" alt="Koeksisters">
                     <div class="recipe-info">
                         <h3>Koeksisters</h3>
                         <p class="recipe-description">Sweet, syrupy South African donuts with a twisted shape</p>
@@ -37,7 +37,7 @@
                             <span><i class="fas fa-clock"></i> 45 mins</span>
                             <span><i class="fas fa-utensils"></i> Intermediate</span>
                         </div>
-                        <a href="/koeksisters.html" class="btn btn-primary">View Recipe</a>
+                        <a href="koeksisters.html" class="btn btn-primary">View Recipe</a>
                     </div>
                 </div>
             </div>
@@ -49,19 +49,19 @@
                 <h2 class="section-title">Browse by Category</h2>
                 <div class="category-grid">
                     <a href="#" class="category-card">
-                        <img src="/images/african-cuisine.jpg" alt="African Cuisine">
+                        <img src="images/african-cuisine.jpg" alt="African Cuisine">
                         <h3>African Cuisine</h3>
                     </a>
                     <a href="#" class="category-card">
-                        <img src="/images/global-recipes.jpg" alt="Global Recipes">
+                        <img src="images/global-recipes.jpg" alt="Global Recipes">
                         <h3>Global Recipes</h3>
                     </a>
                     <a href="#" class="category-card">
-                        <img src="/images/holiday-specials.jpg" alt="Holiday Specials">
+                        <img src="images/holiday-specials.jpg" alt="Holiday Specials">
                         <h3>Holiday Specials</h3>
                     </a>
                     <a href="#" class="category-card">
-                        <img src="/images/quick-meals.jpg" alt="Quick Meals">
+                        <img src="images/quick-meals.jpg" alt="Quick Meals">
                         <h3>Quick Meals</h3>
                     </a>
                 </div>
@@ -89,7 +89,7 @@
                 <div class="video-grid">
                     <div class="main-video">
                         <div class="video-thumbnail">
-                            <img src="/images/video-main.jpg" alt="How to make perfect Koeksisters">
+                            <img src="images/video-main.jpg" alt="How to make perfect Koeksisters">
                             <button class="play-btn"><i class="fas fa-play"></i></button>
                         </div>
                         <h3>How to make perfect Koeksisters</h3>
@@ -97,14 +97,14 @@
                     <div class="side-videos">
                         <div class="video-item">
                             <div class="video-thumbnail">
-                                <img src="/images/video-side1.jpg" alt="South African Bobotie">
+                                <img src="images/video-side1.jpg" alt="South African Bobotie">
                                 <button class="play-btn"><i class="fas fa-play"></i></button>
                             </div>
                             <h4>South African Bobotie</h4>
                         </div>
                         <div class="video-item">
                             <div class="video-thumbnail">
-                                <img src="/images/video-side2.jpg" alt="Nigerian Jollof Rice">
+                                <img src="images/video-side2.jpg" alt="Nigerian Jollof Rice">
                                 <button class="play-btn"><i class="fas fa-play"></i></button>
                             </div>
                             <h4>Nigerian Jollof Rice</h4>
@@ -121,7 +121,7 @@
     <!-- Include the header and footer -->
     <script>
         // Load header
-        fetch('/header.html')
+        fetch('header.html')
             .then(response => response.text())
             .then(data => {
                 document.getElementById('header').innerHTML = data;
