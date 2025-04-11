@@ -655,12 +655,13 @@
     <script>
     // Load header and footer
     document.addEventListener('DOMContentLoaded', function() {
+        // Determine the correct path to header/footer
+        const basePath = window.location.pathname.includes('recipes') ? '../' : './';
+        
         // Load header
-        fetch('/header.html')
+        fetch(`${basePath}header.html`)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Header not found');
-                }
+                if (!response.ok) throw new Error('Header not found');
                 return response.text();
             })
             .then(data => {
@@ -671,11 +672,9 @@
             });
         
         // Load footer
-        fetch('/footer.html')
+        fetch(`${basePath}footer.html`)
             .then(response => {
-                if (!response.ok) {
-                    throw new Error('Footer not found');
-                }
+                if (!response.ok) throw new Error('Footer not found');
                 return response.text();
             })
             .then(data => {
