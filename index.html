@@ -9,69 +9,146 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div id="header"></div>
+    <div id="header-container"></div>
     
-    <main class="homepage">
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Discover the Joy of Home Cooking</h2>
-                <p>Simple recipes for extraordinary meals</p>
-                <a href="koeksisters.html" class="btn-primary">Explore Recipes</a>
+    <main>
+        <!-- Recipe of the Day -->
+        <section class="recipe-of-the-day">
+            <div class="container">
+                <div class="section-header">
+                    <span class="section-subtitle">Featured</span>
+                    <h2>Recipe of the Day</h2>
+                </div>
+                <div class="featured-recipe">
+                    <div class="recipe-image">
+                        <img src="images/koeksisters-featured.jpg" alt="Koeksisters">
+                        <div class="recipe-tag">South African</div>
+                    </div>
+                    <div class="recipe-content">
+                        <h3>Traditional Koeksisters</h3>
+                        <p class="recipe-desc">Sweet, syrupy twisted pastries with a crisp exterior and soft interior - a beloved South African treat.</p>
+                        <div class="recipe-meta">
+                            <span><i class="fas fa-clock"></i> 2 hrs 30 mins</span>
+                            <span><i class="fas fa-utensils"></i> Medium</span>
+                        </div>
+                        <a href="koeksisters.html" class="btn-primary">View Recipe</a>
+                    </div>
+                </div>
             </div>
         </section>
-        
-        <section class="featured-recipes">
-            <h2 class="section-title">Featured Recipes</h2>
-            <div class="recipe-grid">
-                <div class="recipe-card">
-                    <div class="recipe-img" style="background-image: url('images/koeksisters-thumb.jpg');"></div>
-                    <h3>Koeksisters</h3>
-                    <p>Sweet, syrupy South African treats</p>
-                    <a href="koeksisters.html" class="btn-secondary">View Recipe</a>
+
+        <!-- What to Eat Tonight -->
+        <section class="what-to-eat">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What to Eat Tonight</h2>
+                    <p>Quick and delicious meal ideas for tonight's dinner</p>
                 </div>
-                <div class="recipe-card">
-                    <div class="recipe-img" style="background-image: url('images/placeholder-thumb.jpg');"></div>
-                    <h3>Coming Soon</h3>
-                    <p>More delicious recipes on the way</p>
-                    <button class="btn-secondary" disabled>Coming Soon</button>
+                <div class="carousel-container">
+                    <div class="carousel">
+                        <div class="recipe-card">
+                            <img src="images/recipe1.jpg" alt="Recipe">
+                            <div class="card-content">
+                                <span class="tag">30 mins</span>
+                                <h4>Spicy Chicken Curry</h4>
+                                <div class="rating">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star-half-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Add more carousel items -->
+                    </div>
+                    <button class="carousel-nav left"><i class="fas fa-chevron-left"></i></button>
+                    <button class="carousel-nav right"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
         </section>
-        
-        <section class="why-choose-us">
-            <h2 class="section-title">Why Choose Corner Chef</h2>
-            <div class="features-grid">
-                <div class="feature">
-                    <i class="fas fa-utensils"></i>
-                    <h3>Simple Recipes</h3>
-                    <p>Easy-to-follow instructions for all skill levels</p>
+
+        <!-- Video Gallery -->
+        <section class="video-gallery">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Video Recipes</h2>
+                    <p>Watch our chefs prepare delicious meals step-by-step</p>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-shopping-basket"></i>
-                    <h3>Smart Shopping</h3>
-                    <p>Build your shopping list with one click</p>
+                <div class="video-grid">
+                    <div class="main-video">
+                        <div class="video-container">
+                            <img src="images/main-video.jpg" alt="Main Video">
+                            <div class="play-overlay">
+                                <i class="fas fa-play"></i>
+                            </div>
+                            <div class="video-info">
+                                <h4>How to Make Perfect Koeksisters</h4>
+                                <span>15:32</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="side-videos">
+                        <!-- Side video items -->
+                    </div>
                 </div>
-                <div class="feature">
-                    <i class="fas fa-heart"></i>
-                    <h3>Save Favorites</h3>
-                    <p>Keep your go-to recipes in one place</p>
+            </div>
+        </section>
+
+        <!-- What to Read -->
+        <section class="what-to-read">
+            <div class="container">
+                <div class="section-header">
+                    <h2>What to Read</h2>
+                    <p>Articles, tips and cooking guides</p>
+                </div>
+                <div class="articles-grid">
+                    <!-- Article cards -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Editors' Picks -->
+        <section class="editors-picks">
+            <div class="container">
+                <div class="section-header">
+                    <h2>Editors' Picks</h2>
+                    <p>Our favorite recipes this season</p>
+                </div>
+                <div class="picks-grid">
+                    <!-- Editor pick cards -->
                 </div>
             </div>
         </section>
     </main>
-    
-    <div id="footer"></div>
-    
-    <script src="js/utils.js"></script>
+
+    <div id="footer-container"></div>
+
     <script src="js/auth.js"></script>
+    <script src="js/navigation.js"></script>
     <script>
+        // Load header and footer
         document.addEventListener('DOMContentLoaded', function() {
-            // Load header and footer
-            includeHeader();
-            includeFooter();
-            
-            // Initialize auth
-            initAuth();
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header-container').innerHTML = data;
+                    initNavigation();
+                    initAuth();
+                });
+
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer-container').innerHTML = data;
+                });
+
+            // Show auth modal after 10 seconds if not logged in
+            setTimeout(() => {
+                if (!localStorage.getItem('cornerChefUser')) {
+                    document.getElementById('authModal').style.display = 'block';
+                }
+            }, 10000);
         });
     </script>
 </body>
