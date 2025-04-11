@@ -1,84 +1,95 @@
-<header>
-    <div class="nav-icon" id="menuToggle">☰</div>
-    <div class="logo">corner chef</div>
-    <div class="nav-overlay" id="navOverlay"></div>
-    <nav class="nav-menu" id="navMenu">
-        <div class="search-bar">
-            <i class="fas fa-search search-icon"></i>
-            <input type="text" placeholder="Looking for something to eat..?">
-        </div>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="#">Recipes</a></li>
-            <li class="has-submenu">
-                <a href="#">Ingredients</a>
-                <ul class="submenu">
-                    <li><a href="#">Meat and Poultry</a></li>
-                    <li><a href="#">Fish and Seafood</a></li>
-                    <li><a href="#">Vegetables and Fruits</a></li>
-                </ul>
-            </li>
-            <!-- Rest of your original navigation -->
-        </ul>
-        
-        <div class="separator"></div>
-        
-        <div class="user-options">
-            <a href="404.html">Submit Recipe</a>
-            <a href="shopping-list.html">Shopping List</a>
-            <a href="#" id="loginLink">Log In</a>
-        </div>
-    </nav>
-</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Corner Chef</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <header class="site-header">
+        <div class="container">
+            <!-- Mobile Menu Toggle -->
+            <button class="menu-toggle" aria-label="Toggle menu">
+                <i class="fas fa-bars"></i>
+            </button>
 
-<!-- Login Modal (added this) -->
-<div id="authModal" class="modal">
-    <div class="modal-content">
-        <span class="close-modal">&times;</span>
-        <div class="auth-tabs">
-            <button class="tab-btn active" data-tab="login">Login</button>
-            <button class="tab-btn" data-tab="register">Register</button>
+            <!-- Logo -->
+            <div class="logo">
+                <a href="/">Corner Chef</a>
+            </div>
+
+            <!-- Desktop Navigation -->
+            <nav class="desktop-nav">
+                <ul class="main-menu">
+                    <li><a href="/">Home</a></li>
+                    <li class="has-submenu">
+                        <a href="#">Recipes <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="/koeksisters.html">Koeksisters</a></li>
+                            <!-- Add more recipe links -->
+                        </ul>
+                    </li>
+                    <li class="has-submenu">
+                        <a href="#">Ingredients <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#">Meat and Poultry</a></li>
+                            <li><a href="#">Fish and Seafood</a></li>
+                            <li><a href="#">Vegetables and Fruits</a></li>
+                        </ul>
+                    </li>
+                    <!-- Add all your main categories here -->
+                </ul>
+            </nav>
+
+            <!-- User Actions -->
+            <div class="user-actions">
+                <button class="search-toggle" aria-label="Search">
+                    <i class="fas fa-search"></i>
+                </button>
+                <a href="/shopping-list.html" class="shopping-list-btn">
+                    <i class="fas fa-list"></i>
+                </a>
+                <div class="auth-buttons">
+                    <button id="loginBtn">Log In</button>
+                    <button id="registerBtn">Sign Up</button>
+                </div>
+            </div>
         </div>
-        
-        <div id="login-tab" class="auth-tab-content active">
-            <form id="loginForm">
-                <div class="form-group">
-                    <input type="email" id="loginEmail" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="loginPassword" placeholder="Password" required>
-                </div>
-                <button type="submit" class="auth-btn">Login</button>
+
+        <!-- Mobile Navigation Overlay -->
+        <div class="mobile-nav-overlay"></div>
+
+        <!-- Mobile Navigation -->
+        <nav class="mobile-nav">
+            <div class="mobile-nav-header">
+                <button class="close-menu" aria-label="Close menu">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <ul class="mobile-main-menu">
+                <!-- Same structure as desktop but optimized for mobile -->
+                <li class="has-submenu">
+                    <a href="#">Recipes <i class="fas fa-chevron-down"></i></a>
+                    <ul class="mobile-submenu">
+                        <li><a href="/koeksisters.html">Koeksisters</a></li>
+                    </ul>
+                </li>
+                <!-- Add all menu items -->
+            </ul>
+            <div class="mobile-user-actions">
+                <button id="mobileLoginBtn">Log In</button>
+                <button id="mobileRegisterBtn">Sign Up</button>
+            </div>
+        </nav>
+
+        <!-- Search Bar -->
+        <div class="search-bar">
+            <form action="/search" method="GET">
+                <input type="text" placeholder="Search recipes..." name="q">
+                <button type="submit"><i class="fas fa-search"></i></button>
             </form>
         </div>
-        
-        <div id="register-tab" class="auth-tab-content">
-            <form id="registerForm">
-                <div class="form-group">
-                    <input type="text" id="regName" placeholder="Full Name" required>
-                </div>
-                <div class="form-group">
-                    <input type="email" id="regEmail" placeholder="Email" required>
-                </div>
-                <div class="form-group">
-                    <input type="text" id="regUsername" placeholder="Username" required>
-                </div>
-                <div class="form-group">
-                    <input type="password" id="regPassword" placeholder="Password" required>
-                </div>
-                <div class="form-group">
-                    <select id="regGender" required>
-                        <option value="" disabled selected>Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <input type="date" id="regDob" required>
-                </div>
-                <button type="submit" class="auth-btn">Register</button>
-            </form>
-        </div>
-    </div>
-</div>
+    </header>
