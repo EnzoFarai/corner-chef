@@ -143,6 +143,20 @@
             }
         }
     </style>
+
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load navigation
+    const navScript = document.createElement('script');
+    navScript.src = 'js/navigation.js';
+    document.body.appendChild(navScript);
+
+    // Load auth
+    const authScript = document.createElement('script');
+    authScript.src = 'js/auth.js';
+    document.body.appendChild(authScript);
+});
+</script>
 </head>
 <body class="error-page">
     <!-- Header will be loaded here -->
