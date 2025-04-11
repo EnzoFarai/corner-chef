@@ -4,92 +4,139 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Corner Chef</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="/css/style.css">
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <!-- Main CSS -->
+    <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
     <header class="site-header">
-        <div class="container">
+        <div class="header-container">
+            <!-- Logo -->
+            <div class="logo">
+                <h1><span class="small-caps">corner chef</span></h1>
+            </div>
+
             <!-- Mobile Menu Toggle -->
             <button class="menu-toggle" aria-label="Toggle menu">
                 <i class="fas fa-bars"></i>
             </button>
 
-            <!-- Logo -->
-            <div class="logo">
-                <a href="/">Corner Chef</a>
-            </div>
-
-            <!-- Desktop Navigation -->
-            <nav class="desktop-nav">
-                <ul class="main-menu">
-                    <li><a href="/">Home</a></li>
+            <!-- Main Navigation -->
+            <nav class="main-nav">
+                <ul class="nav-list">
+                    <li><a href="index.html">Home</a></li>
+                    
+                    <!-- Recipes Dropdown -->
                     <li class="has-submenu">
                         <a href="#">Recipes <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
-                            <li><a href="/koeksisters.html">Koeksisters</a></li>
-                            <!-- Add more recipe links -->
+                            <li><a href="koeksisters.html">Koeksisters</a></li>
+                            <!-- Add more recipe pages as needed -->
                         </ul>
                     </li>
+                    
+                    <!-- Ingredients Dropdown -->
                     <li class="has-submenu">
                         <a href="#">Ingredients <i class="fas fa-chevron-down"></i></a>
                         <ul class="submenu">
-                            <li><a href="#">Meat and Poultry</a></li>
-                            <li><a href="#">Fish and Seafood</a></li>
-                            <li><a href="#">Vegetables and Fruits</a></li>
+                            <li><a href="#">Meat & Poultry</a></li>
+                            <li><a href="#">Fish & Seafood</a></li>
+                            <li><a href="#">Vegetables & Fruits</a></li>
                         </ul>
                     </li>
-                    <!-- Add all your main categories here -->
+                    
+                    <!-- Cuisine Dropdown -->
+                    <li class="has-submenu">
+                        <a href="#">Cuisine <i class="fas fa-chevron-down"></i></a>
+                        <ul class="submenu">
+                            <li><a href="#">Southern Africa</a></li>
+                            <li><a href="#">East Africa</a></li>
+                            <li><a href="#">North Africa</a></li>
+                            <li><a href="#">West Africa</a></li>
+                            <li><a href="#">Global</a></li>
+                        </ul>
+                    </li>
+                    
+                    <!-- User Actions -->
+                    <li class="user-actions">
+                        <a href="#" class="btn btn-primary" id="submit-recipe">Submit Recipe</a>
+                        <a href="shopping-list.html" class="btn btn-outline"><i class="fas fa-shopping-basket"></i></a>
+                        <a href="#" class="btn btn-outline" id="login-btn">Log In</a>
+                    </li>
                 </ul>
             </nav>
-
-            <!-- User Actions -->
-            <div class="user-actions">
-                <button class="search-toggle" aria-label="Search">
-                    <i class="fas fa-search"></i>
-                </button>
-                <a href="/shopping-list.html" class="shopping-list-btn">
-                    <i class="fas fa-list"></i>
-                </a>
-                <div class="auth-buttons">
-                    <button id="loginBtn">Log In</button>
-                    <button id="registerBtn">Sign Up</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Navigation Overlay -->
-        <div class="mobile-nav-overlay"></div>
-
-        <!-- Mobile Navigation -->
-        <nav class="mobile-nav">
-            <div class="mobile-nav-header">
-                <button class="close-menu" aria-label="Close menu">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <ul class="mobile-main-menu">
-                <!-- Same structure as desktop but optimized for mobile -->
-                <li class="has-submenu">
-                    <a href="#">Recipes <i class="fas fa-chevron-down"></i></a>
-                    <ul class="mobile-submenu">
-                        <li><a href="/koeksisters.html">Koeksisters</a></li>
-                    </ul>
-                </li>
-                <!-- Add all menu items -->
-            </ul>
-            <div class="mobile-user-actions">
-                <button id="mobileLoginBtn">Log In</button>
-                <button id="mobileRegisterBtn">Sign Up</button>
-            </div>
-        </nav>
-
-        <!-- Search Bar -->
-        <div class="search-bar">
-            <form action="/search" method="GET">
-                <input type="text" placeholder="Search recipes..." name="q">
-                <button type="submit"><i class="fas fa-search"></i></button>
-            </form>
         </div>
     </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div class="nav-overlay"></div>
+
+    <!-- Login Modal (will be shown via JavaScript) -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Login to Corner Chef</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email</label>
+                    <input type="email" id="loginEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <p>Don't have an account? <a href="#" id="show-register">Register</a></p>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <h2>Register for Corner Chef</h2>
+            <form id="registerForm">
+                <div class="form-group">
+                    <label for="registerName">Full Name</label>
+                    <input type="text" id="registerName" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerEmail">Email</label>
+                    <input type="email" id="registerEmail" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerUsername">Username</label>
+                    <input type="text" id="registerUsername" required>
+                </div>
+                <div class="form-group">
+                    <label for="registerPassword">Password</label>
+                    <input type="password" id="registerPassword" required>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <div class="radio-group">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other">Other</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="registerDob">Date of Birth</label>
+                    <input type="date" id="registerDob" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Register</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="js/navigation.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>
