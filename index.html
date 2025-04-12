@@ -1,23 +1,830 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>corner chef</title>
-    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="css/style.css" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>corner chef | Home</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <style>
+    :root {
+      --clr-orange: #FF6600;
+      --clr-orange-light: #FFA500;
+      --clr-orange-dark: #cc4b2c;
+      --clr-white: #ffffff;
+      --clr-gray-light: #f5f5f5;
+      --clr-gray-med: #616b74;
+      --clr-gray-dark: #414b56;
+      --clr-black: #111111;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+      background-color: var(--clr-white);
+      color: var(--clr-gray-dark);
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Common Section Styles */
+    .section-title {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 0.5rem;
+      color: var(--clr-black);
+      text-align: center;
+    }
+
+    .section-subtitle {
+      font-size: 1rem;
+      color: var(--clr-gray-med);
+      margin-bottom: 2rem;
+      font-style: italic;
+      text-align: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: var(--clr-orange);
+      color: var(--clr-white);
+    }
+
+    .btn-primary:hover {
+      background-color: var(--clr-orange-dark);
+    }
+
+    .btn-secondary {
+      background-color: var(--clr-white);
+      color: var(--clr-orange);
+      border: 1px solid var(--clr-orange);
+    }
+
+    .btn-secondary:hover {
+      background-color: var(--clr-orange-light);
+      color: var(--clr-white);
+    }
+
+    /* Recipe of the Day Section */
+    .recipe-of-the-day {
+      margin: 40px 20px 60px;
+    }
+
+    .recipe-of-the-day-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      align-items: center;
+    }
+
+    .recipe-of-the-day img {
+      width: 100%;
+      max-width: 500px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .recipe-of-the-day-info {
+      flex: 1;
+      min-width: 280px;
+    }
+
+    .recipe-of-the-day-info span {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--clr-orange-dark);
+      text-transform: uppercase;
+    }
+
+    .recipe-of-the-day-info h3 {
+      font-size: 26px;
+      font-weight: 700;
+      margin: 10px 0;
+      color: var(--clr-black);
+    }
+
+    .recipe-of-the-day-info p {
+      font-size: 16px;
+      line-height: 1.5;
+      color: var(--clr-gray-dark);
+      margin-bottom: 20px;
+    }
+
+    /* Recipes Section - Carousel */
+    .recipes-section {
+      padding: 40px 20px;
+      text-align: center;
+      position: relative;
+    }
+
+    .category-filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      margin-bottom: 32px;
+    }
+
+    .category-filters button {
+      padding: 8px 16px;
+      border: 1px solid var(--clr-orange-light);
+      background: var(--clr-white);
+      color: var(--clr-orange-light);
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 14px;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .category-filters button.active,
+    .category-filters button:hover {
+      background: var(--clr-orange-light);
+      color: var(--clr-white);
+    }
+
+    .carousel-container {
+      position: relative;
+      margin: 0 auto;
+      max-width: 1000px;
+      overflow: hidden;
+    }
+
+    .recipe-carousel {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 20px;
+      padding: 20px 0;
+    }
+
+    .recipe-card {
+      flex: 0 0 280px;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      background: var(--clr-white);
+      margin: 0 10px;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(255, 102, 0, 0.2);
+    }
+
+    .recipe-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .recipe-card-content {
+      padding: 16px;
+      text-align: center;
+    }
+
+    .category-tag {
+      display: inline-block;
+      background: var(--clr-orange-light);
+      color: var(--clr-white);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+
+    .recipe-card h3 {
+      font-size: 18px;
+      margin: 8px 0;
+      color: var(--clr-black);
+    }
+
+    .rating {
+      color: var(--clr-orange-light);
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      margin-top: 6px;
+    }
+
+    .rating span {
+      color: var(--clr-gray-med);
+      font-size: 13px;
+    }
+
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      transform: translateY(-50%);
+      pointer-events: none;
+    }
+
+    .carousel-nav button {
+      background-color: var(--clr-orange);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      font-size: 18px;
+      cursor: pointer;
+      pointer-events: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+      transition: all 0.3s;
+    }
+
+    .carousel-nav button:hover {
+      background-color: var(--clr-orange-dark);
+    }
+
+    .carousel-nav button:first-child {
+      margin-left: -20px;
+    }
+
+    .carousel-nav button:last-child {
+      margin-right: -20px;
+    }
+
+    /* What to Watch Section */
+    .watch-section {
+      background-color: var(--clr-orange);
+      color: var(--clr-white);
+      padding: 40px 20px;
+    }
+
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(5, auto);
+      gap: 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .video-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-top: 15px;
+    }
+
+    .video-box {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    .video-box video {
+      width: 100%;
+      height: auto;
+      display: none;
+    }
+
+    .video-box .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: rgba(0, 0, 0, 0.6);
+      color: white;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.3s ease;
+    }
+
+    .video-box .play-button:hover {
+      background-color: rgba(0, 0, 0, 0.8);
+    }
+
+    .video-wrapper {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .grid-title {
+      grid-column: span 5;
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      padding-bottom: 10px;
+    }
+
+    .featured-video {
+      grid-column: span 3;
+      grid-row: span 2;
+      grid-row-start: 2;
+    }
+
+    .secondary-video {
+      grid-column-start: 4;
+    }
+
+    .watch-more {
+      grid-column: span 5;
+      grid-row-start: 4;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* What to Read Section - Compact Grid */
+    .read-section {
+      padding: 60px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .article-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .article-card {
+      background: white;
+      border-radius: 0.5rem;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+      filter: drop-shadow(0 10px 15px rgba(255, 102, 0, 0.4));
+    }
+
+    .article-banner {
+      position: relative;
+    }
+
+    .article-category {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      background: var(--clr-black);
+      padding: 0.3rem 1rem;
+      text-transform: uppercase;
+      position: absolute;
+      top: 0.75rem;
+      left: 0;
+      border-radius: 0 1.5rem 1.5rem 0;
+      z-index: 1;
+    }
+
+    .banner-img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .article-body {
+      padding: 1rem;
+    }
+
+    .article-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      line-height: 1.3;
+      color: var(--clr-black);
+    }
+
+    .article-description {
+      font-size: 0.85rem;
+      color: var(--clr-gray-med);
+      line-height: 1.4;
+    }
+
+    /* Editors Picks Section - Proper Side-by-Side */
+    .picks-section {
+      padding: 40px 20px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .picks-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .pick-card {
+      background: white;
+      border-radius: 0.5rem;
+      box-shadow: 0px 2px 20px rgba(215, 223, 226, 0.5);
+      overflow: hidden;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .pick-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .pick-category {
+      font-size: 0.75rem;
+      font-weight: bold;
+      color: white;
+      background: var(--clr-orange);
+      padding: 0.3rem 1rem 0.3rem 0.8rem;
+      text-transform: uppercase;
+      position: absolute;
+      top: 0.75rem;
+      left: 0;
+      border-radius: 0 1.5rem 1.5rem 0;
+      z-index: 1;
+    }
+
+    .pick-title {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0.8rem 0 0.4rem;
+      color: var(--clr-black);
+    }
+
+    .pick-description {
+      font-size: 0.85rem;
+      color: var(--clr-gray-med);
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 900px) {
+      .article-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .picks-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .video-grid {
+        display: block;
+      }
+
+      .video-wrapper {
+        margin-bottom: 30px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .recipe-of-the-day-wrapper {
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .recipe-of-the-day-info .btn {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .category-filters {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        justify-content: flex-start;
+        padding-bottom: 10px;
+      }
+
+      .picks-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .featured-video {
+        grid-column: span 5;
+      }
+
+      .secondary-video {
+        grid-column: span 5;
+      }
+
+      .carousel-nav button {
+        width: 30px;
+        height: 30px;
+        font-size: 14px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <div id="header"></div>
-    
-    <main>
-        <h1>Welcome to corner chef</h1>
-        <p>Your main content goes here</p>
-    </main>
-    
+  <div id="header"></div>
+
+  <!-- Recipe of the Day - Koeksisters -->
+  <div class="recipe-of-the-day">
+    <div class="recipe-of-the-day-wrapper">
+      <img src="https://www.rainbownation.com/wp-content/uploads/2019/04/Koe-1.jpg" alt="Koeksisters">
+      <div class="recipe-of-the-day-info">
+        <span>Recipe of The Day</span>
+        <h3>Traditional South African Koeksisters</h3>
+        <p>
+          These sweet, syrupy plaited doughnuts are a beloved South African treat. Crispy on the outside, soaked in syrup, and flavored with cinnamon and ginger - perfect with coffee or tea.
+        </p>
+        <a href="koeksisters.html" class="btn btn-primary">View Recipe</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- What to Cook Tonight Section -->
+  <section class="recipes-section">
+    <h2 class="section-title">WHAT TO COOK TONIGHT</h2>
+    <p class="section-subtitle">Fast, fresh, and foolproof</p>
+
+    <div class="category-filters">
+      <button class="active" onclick="filterRecipes('all')">All</button>
+      <button onclick="filterRecipes('african')">African</button>
+      <button onclick="filterRecipes('dessert')">Dessert</button>
+      <button onclick="filterRecipes('quick')">Quick</button>
+    </div>
+
+    <div class="carousel-container">
+      <div class="carousel-nav">
+        <button onclick="moveCarousel(-1)">&#10094;</button>
+        <button onclick="moveCarousel(1)">&#10095;</button>
+      </div>
+      <div class="recipe-carousel" id="recipeCarousel">
+        <div class="recipe-card" data-category="african">
+          <img src="https://www.mykenyanpalate.com/wp-content/uploads/2021/05/Nyama-Choma-1.jpg" alt="Nyama Choma">
+          <div class="recipe-card-content">
+            <span class="category-tag">African</span>
+            <h3>Nyama Choma</h3>
+            <div class="rating">★★★★☆ <span>(42 reviews)</span></div>
+          </div>
+        </div>
+
+        <div class="recipe-card" data-category="african">
+          <img src="https://www.chefspencil.com/wp-content/uploads/Jollof-Rice-2.jpg" alt="Jollof Rice">
+          <div class="recipe-card-content">
+            <span class="category-tag">African</span>
+            <h3>Jollof Rice</h3>
+            <div class="rating">★★★★★ <span>(67 reviews)</span></div>
+          </div>
+        </div>
+
+        <div class="recipe-card" data-category="quick">
+          <img src="https://www.chefspencil.com/wp-content/uploads/Shakshuka-1.jpg.webp" alt="Shakshuka">
+          <div class="recipe-card-content">
+            <span class="category-tag">Quick</span>
+            <h3>Shakshuka</h3>
+            <div class="rating">★★★★☆ <span>(38 reviews)</span></div>
+          </div>
+        </div>
+
+        <div class="recipe-card" data-category="dessert">
+          <img src="https://www.rainbownation.com/wp-content/uploads/2019/04/Koe-1.jpg" alt="Koeksisters">
+          <div class="recipe-card-content">
+            <span class="category-tag">Dessert</span>
+            <h3>Koeksisters</h3>
+            <div class="rating">★★★★★ <span>(51 reviews)</span></div>
+          </div>
+        </div>
+
+        <div class="recipe-card" data-category="quick">
+          <img src="https://www.chefspencil.com/wp-content/uploads/Bobotie-1.jpg.webp" alt="Bobotie">
+          <div class="recipe-card-content">
+            <span class="category-tag">Quick</span>
+            <h3>Bobotie</h3>
+            <div class="rating">★★★★☆ <span>(29 reviews)</span></div>
+          </div>
+        </div>
+
+        <div class="recipe-card" data-category="dessert">
+          <img src="https://www.rainbownation.com/wp-content/uploads/2019/04/Malva-Pudding-1.jpg" alt="Malva Pudding">
+          <div class="recipe-card-content">
+            <span class="category-tag">Dessert</span>
+            <h3>Malva Pudding</h3>
+            <div class="rating">★★★★★ <span>(48 reviews)</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Watch Section -->
+  <section class="watch-section">
+    <div class="video-grid">
+      <div class="grid-title">WHAT TO WATCH</div>
+
+      <!-- Featured Video -->
+      <div class="video-wrapper featured-video">
+        <div class="video-box">
+          <video id="video1" poster="https://i.ytimg.com/vi/9gTw2EDkaDQ/maxresdefault.jpg">
+            <source src="videos/koeksisters.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="play-button" onclick="playVideo('video1', this)">▶</div>
+        </div>
+        <div class="video-title">How to Make Perfect Koeksisters Every Time</div>
+      </div>
+
+      <!-- Secondary Video 1 -->
+      <div class="video-wrapper secondary-video">
+        <div class="video-box">
+          <video id="video2" poster="https://i.ytimg.com/vi/9gTw2EDkaDQ/maxresdefault.jpg">
+            <source src="videos/bobotie.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="play-button" onclick="playVideo('video2', this)">▶</div>
+        </div>
+        <div class="video-title">The Secret to Authentic Bobotie</div>
+      </div>
+
+      <!-- Secondary Video 2 -->
+      <div class="video-wrapper secondary-video">
+        <div class="video-box">
+          <video id="video3" poster="https://i.ytimg.com/vi/9gTw2EDkaDQ/maxresdefault.jpg">
+            <source src="videos/jollof.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+          <div class="play-button" onclick="playVideo('video3', this)">▶</div>
+        </div>
+        <div class="video-title">Jollof Rice: The Ultimate Guide</div>
+      </div>
+
+      <!-- Watch More -->
+      <div class="watch-more">
+        <a href="video-gallery.html" class="btn btn-secondary">Watch More</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- What to Read Section -->
+  <section class="read-section">
+    <h2 class="section-title">WHAT TO READ</h2>
+    <p class="section-subtitle">Stay on top of the latest in restaurants and food culture</p>
+
+    <div class="article-grid">
+      <div class="article-card">
+        <div class="article-banner">
+          <p class="article-category">Foodways</p>
+          <img class="banner-img" src="https://www.rainbownation.com/wp-content/uploads/2019/04/Malva-Pudding-1.jpg" alt="Desserts">
+        </div>
+        <div class="article-body">
+          <h3 class="article-title">The History of South African Desserts</h3>
+          <p class="article-description">From koeksisters to malva pudding, explore the sweet traditions of South Africa's diverse culinary heritage.</p>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-banner">
+          <p class="article-category">Foodways</p>
+          <img class="banner-img" src="https://www.rainbownation.com/wp-content/uploads/2019/04/Koe-1.jpg" alt="Koeksisters">
+        </div>
+        <div class="article-body">
+          <h3 class="article-title">Koeksisters: A Sweet Symbol of Unity</h3>
+          <p class="article-description">How this syrup-soaked treat became a beloved dessert across South Africa's cultural divides.</p>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-banner">
+          <p class="article-category">Foodways</p>
+          <img class="banner-img" src="https://www.chefspencil.com/wp-content/uploads/Bobotie-1.jpg.webp" alt="Cape Malay">
+        </div>
+        <div class="article-body">
+          <h3 class="article-title">Cape Malay Cuisine: A Flavorful Fusion</h3>
+          <p class="article-description">The rich culinary traditions of South Africa's Cape Malay community and their global influences.</p>
+        </div>
+      </div>
+
+      <div class="article-card">
+        <div class="article-banner">
+          <p class="article-category">Foodways</p>
+          <img class="banner-img" src="https://www.chefspencil.com/wp-content/uploads/Jollof-Rice-2.jpg" alt="West Africa">
+        </div>
+        <div class="article-body">
+          <h3 class="article-title">The Great Jollof Rice Debate</h3>
+          <p class="article-description">Which country makes the best version of West Africa's most famous dish? We investigate.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Editors Picks Section -->
+  <section class="picks-section">
+    <h2 class="section-title">EDITORS' PICKS</h2>
+    <p class="section-subtitle">Inspiration for your next meal</p>
+
+    <div class="picks-grid">
+      <div class="pick-card">
+        <div class="article-banner">
+          <p class="pick-category">Lists</p>
+          <img class="banner-img" src="https://www.rainbownation.com/wp-content/uploads/2019/04/Koe-1.jpg" alt="Desserts">
+        </div>
+        <div class="article-body">
+          <h3 class="pick-title">17 Best South African Desserts</h3>
+          <p class="pick-description">From koeksisters to melktert, satisfy your sweet tooth with these traditional treats.</p>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="article-banner">
+          <p class="pick-category">Lists</p>
+          <img class="banner-img" src="https://www.chefspencil.com/wp-content/uploads/Jollof-Rice-2.jpg" alt="Rice Dishes">
+        </div>
+        <div class="article-body">
+          <h3 class="pick-title">23 Essential African Rice Recipes</h3>
+          <p class="article-description">From jollof to coconut rice, discover Africa's diverse rice traditions.</p>
+        </div>
+      </div>
+
+      <div class="pick-card">
+        <div class="article-banner">
+          <p class="pick-category">Lists</p>
+          <img class="banner-img" src="https://www.chefspencil.com/wp-content/uploads/Bobotie-1.jpg.webp" alt="Comfort Food">
+        </div>
+        <div class="article-body">
+          <h3 class="pick-title">15 African Comfort Food Classics</h3>
+          <p class="pick-description">Hearty, flavorful dishes that warm the soul from across the continent.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
     <div id="footer"></div>
+
+  <script src="js/main.js"></script>
+  <script>
+    // Carousel functionality
+    let currentSlide = 0;
+    const carousel = document.querySelector('.recipe-carousel');
+    const cards = document.querySelectorAll('.recipe-card');
+    const cardWidth = cards[0].offsetWidth + 20; // width + margin
     
-    <script src="js/main.js"></script>
+    function moveCarousel(direction) {
+      const totalSlides = cards.length;
+      const visibleSlides = Math.floor(document.querySelector('.carousel-container').offsetWidth / cardWidth);
+      
+      currentSlide += direction;
+      
+      // Boundary checks
+      if (currentSlide < 0) {
+        currentSlide = 0;
+      } else if (currentSlide > totalSlides - visibleSlides) {
+        currentSlide = totalSlides - visibleSlides;
+      }
+      
+      carousel.style.transform = `translateX(-${currentSlide * cardWidth}px)`;
+    }
+    
+    // Filter functionality
+    function filterRecipes(category) {
+      const cards = document.querySelectorAll('.recipe-card');
+      const buttons = document.querySelectorAll('.category-filters button');
+
+      buttons.forEach(btn => btn.classList.remove('active'));
+      document.querySelector(`.category-filters button[onclick*="${category}"]`).classList.add('active');
+
+      cards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+        if (category === 'all' || cardCategory === category) {
+          card.style.display = 'block';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+      
+      // Reset carousel position when filtering
+      currentSlide = 0;
+      carousel.style.transform = 'translateX(0)';
+    }
+
+    function playVideo(videoId, button) {
+      const video = document.getElementById(videoId);
+      video.style.display = 'block';
+      button.style.display = 'none';
+      video.play();
+    }
+  </script>
 </body>
 </html>
+
+    
