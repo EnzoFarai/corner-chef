@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Saved Recipes | corner chef</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <style>
+        .saved-recipes-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .page-title {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--clr-black);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .recipes-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .recipe-card {
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+        
+        .recipe-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .recipe-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .recipe-info {
+            padding: 15px;
+        }
+        
+        .recipe-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--clr-black);
+        }
+        
+        .saved-date {
+            font-size: 0.8rem;
+            color: var(--clr-gray-med);
+            margin-bottom: 15px;
+        }
+        
+        .recipe-actions {
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .action-btn {
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 0.9rem;
+        }
+        
+        .view-btn {
+            background-color: var(--clr-orange);
+            color: white;
+            border: none;
+            text-decoration: none;
+        }
+        
+        .remove-btn {
+            background-color: white;
+            color: var(--clr-orange);
+            border: 1px solid var(--clr-orange);
+        }
+        
+        .empty-state {
+            text-align: center;
+            padding: 50px 20px;
+            color: var(--clr-gray-med);
+        }
+        
+        .empty-state i {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            color: var(--clr-gray-light);
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+    
+    <div class="saved-recipes-container">
+        <h1 class="page-title">Your Saved Recipes</h1>
+        
+        <div id="savedRecipesList" class="recipes-grid">
+            <!-- Recipes will be loaded here dynamically -->
+        </div>
+        
+        <div id="emptyState" class="empty-state" style="display: none;">
+            <i class="far fa-bookmark"></i>
+            <h2>No saved recipes yet</h2>
+            <p>Save recipes you love by clicking the bookmark icon on any recipe page</p>
+        </div>
+    </div>
+    
+    <div id="footer"></div>
+    
+    <script src="js/main.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedRecipes = JSON.parse(localStorage.getItem('savedRecipes')) || [];
+            const container = document.getElementById('savedRecipesList');
+            const emptyState = document.getElementById('emptyState');
+            
+            if (savedRecipes.length === 0) {
+                emptyState.style.display = 'block';
+                container.style.display = 'none';
+            } else {
+                emptyState.style.display = 'none';
+                container.style.display = 'grid';
+                
+                container.innerHTML = savedRecipes.map(recipe => `
+                    <div class="recipe-card">
+                        <img src="${recipe.image}" alt="${recipe.title}" class="recipe-image">
+                        <div class="recipe-info">
+                            <h3 class="recipe-title">${recipe.title}</h3>
+                            <div class="saved-date">Saved on ${new Date(recipe.savedAt).toLocaleDateString()}</div>
+                            <div class="recipe-actions">
+                                <a href="${recipe.id}.html" class="action-btn view-btn">View Recipe</a>
+                                <button class="action-btn remove-btn" data-id="${recipe.id}">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+                
+                // Add event listeners to remove buttons
+                document.querySelectorAll('.remove-btn').forEach(button => {
+                    button.addEventListener('click', function() {
+                        const recipeId = this.getAttribute('data-id');
+                        const updatedRecipes = savedRecipes.filter(recipe => recipe.id !== recipeId);
+                        localStorage.setItem('savedRecipes', JSON.stringify(updatedRecipes));
+                        location.reload();
+                    });
+                });
+            }
+        });
+    </script>
+</body>
+</html>
