@@ -1,163 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>404 - corner chef</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 - corner chef</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="CSS/styles.css">
+    <style>
+        /* Custom 404 Styles */
+        .error-page {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .error-content {
+            position: relative;
+            z-index: 2;
+            background-color: rgba(255, 255, 255, 0.95);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem auto;
+            max-width: 800px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .error-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background: url('assets/images/Cookie Monster.gif') center/cover no-repeat;
+            opacity: 0.7;
+        }
+        
+        .error-title {
+            font-family: 'Rubik', sans-serif;
+            font-size: 4rem;
+            color: #FF6B35;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 700;
+            text-shadow: 2px 2px 0px rgba(0,0,0,0.1);
+        }
+        
+        .error-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        .error-list {
+            margin: 2rem 0;
+            padding-left: 1.5rem;
+        }
+        
+        .error-list li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .error-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            justify-content: center;
+            margin: 2rem 0;
+        }
+        
+        .error-btn {
+            padding: 0.75rem 1.5rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .error-btn.primary {
+            background-color: #FF6B35;
+            color: white;
+        }
+        
+        .error-btn.secondary {
+            border: 2px solid #FF6B35;
+            color: #FF6B35;
+        }
+        
+        .error-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .surprise-btn {
+            background-color: #FFD100;
+            color: #2D2D2D;
+            font-weight: 700;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 2rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            margin-top: 1rem;
+        }
+        
+        .surprise-btn:hover {
+            transform: scale(1.05);
+        }
 
-  <!-- Fonts and Icons -->
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet"/>
-  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+        /* Fix for header/footer visibility */
+        #header-container, #footer-container {
+            position: relative;
+            z-index: 3;
+        }
 
-  <!-- Styles -->
-  <link rel="stylesheet" href="CSS/styles.css"/>
+        header, .footer {
+            background-color: rgba(255, 255, 255, 0.98) !important;
+        }
 
-  <style>
-    /* Your existing error page styles (same as before) */
-    .error-page { min-height: 100vh; display: flex; flex-direction: column; position: relative; }
-    .error-bg {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        z-index: 1;
-        background: url('assets/images/Cookie Monster.gif') center/cover no-repeat;
-        opacity: 0.7;
-    }
-    .error-content {
-        z-index: 2;
-        background-color: rgba(255,255,255,0.95);
-        padding: 2rem;
-        border-radius: 8px;
-        margin: 2rem auto;
-        max-width: 800px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        position: relative;
-    }
-    .error-title {
-        font-size: 4rem;
-        font-weight: 700;
-        text-align: center;
-        color: #FF6B35;
-        text-shadow: 2px 2px rgba(0,0,0,0.1);
-    }
-    .error-subtitle, .what-now-section h2, .error-list, .error-actions, .surprise-btn {
-        text-align: center;
-    }
-    .error-btn {
-        padding: 0.75rem 1.5rem;
-        border-radius: 2rem;
-        font-weight: 600;
-        text-decoration: none;
-        transition: all 0.2s;
-    }
-    .error-btn.primary {
-        background-color: #FF6B35;
-        color: white;
-    }
-    .error-btn.secondary {
-        border: 2px solid #FF6B35;
-        color: #FF6B35;
-    }
-    .error-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-    }
-    .surprise-btn {
-        background-color: #FFD100;
-        color: #2D2D2D;
-        font-weight: 700;
-        padding: 0.75rem 1.5rem;
-        border: none;
-        border-radius: 2rem;
-        cursor: pointer;
-        margin-top: 1rem;
-    }
-    .surprise-btn:hover { transform: scale(1.05); }
+        /* Center-align "What now?" section */
+        .what-now-section {
+            text-align: center;
+        }
 
-    header, .footer { position: relative; z-index: 3; background-color: rgba(255, 255, 255, 0.98); }
+        .what-now-section h2 {
+            text-align: center;
+            margin-bottom: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .error-title {
+                font-size: 3rem;
+            }
+            
+            .error-content {
+                margin: 1rem;
+                padding: 1.5rem;
+            }
+        }
+    </style>
 
-    @media (max-width: 768px) {
-        .error-title { font-size: 3rem; }
-        .error-content { margin: 1rem; padding: 1.5rem; }
-    }
-  </style>
+    <script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Load navigation
+    const navScript = document.createElement('script');
+    navScript.src = 'js/navigation.js';
+    document.body.appendChild(navScript);
+
+    // Load auth
+    const authScript = document.createElement('script');
+    authScript.src = 'js/auth.js';
+    document.body.appendChild(authScript);
+});
+</script>
 </head>
 <body class="error-page">
-  
-  <!-- HARDCODED HEADER START -->
-  <header>
-    <nav class="navbar">
-      <a href="index.html" class="logo">corner chef</a>
-      <ul class="nav-links">
-        <li><a href="recipes.html">Recipes</a></li>
-        <li><a href="techniques.html">Techniques</a></li>
-        <li><a href="collections.html">Collections</a></li>
-        <li><a href="about.html">About</a></li>
-      </ul>
-      <div class="nav-icons">
-        <a href="login.html" class="nav-icon"><i class="fas fa-user"></i></a>
-        <a href="search.html" class="nav-icon"><i class="fas fa-search"></i></a>
-      </div>
-    </nav>
-  </header>
-  <!-- HARDCODED HEADER END -->
-
-  <!-- Background GIF -->
-  <div class="error-bg"></div>
-
-  <!-- Main 404 Content -->
-  <main>
-    <div class="error-content">
-      <h1 class="error-title">404: Oh Crumbs!</h1>
-      <p class="error-subtitle">Well, this is awkward. It seems like we can't find the page you were looking for. Not to worry, though—unlike a soufflé, this is an easy fix!</p>
-
-      <h2>Here's what might have gone wrong:</h2>
-      <ul class="error-list">
-        <li>The recipe's name was a little <em>too unique</em>.</li>
-        <li>Someone took the page and forgot to put it back (we're looking at you, Cookie Monster).</li>
-        <li>A rogue pineapple snuck onto the pizza and broke everything.</li>
-      </ul>
-
-      <div class="what-now-section">
-        <h2><em>What now?</em></h2>
-        <div class="error-actions">
-          <a href="index.html" class="error-btn primary">Head back to our homepage</a>
-          <a href="recipes.html" class="error-btn secondary">Browse top-rated recipes</a>
+    <!-- Header will be loaded here -->
+    <div id="header-container"></div>
+    
+    <!-- Background GIF -->
+    <div class="error-bg"></div>
+    
+    <!-- Main Content -->
+    <main>
+        <div class="error-content">
+            <h1 class="error-title">404: Oh Crumbs!</h1>
+            
+            <p class="error-subtitle">Well, this is awkward. It seems like we can't find the page you were looking for. Not to worry, though—unlike a soufflé, this is an easy fix!</p>
+            
+            <h2>Here's what might have gone wrong:</h2>
+            <ul class="error-list">
+                <li>The recipe's name was a little <em>too unique</em>.</li>
+                <li>Someone took the page and forgot to put it back (we're looking at you, Cookie Monster).</li>
+                <li>A rogue pineapple snuck onto the pizza and broke everything.</li>
+            </ul>
+            
+            <div class="what-now-section">
+                <h2><em>What now?</em></h2>
+                
+                <div class="error-actions">
+                    <a href="index.html" class="error-btn primary">Head back to our homepage</a>
+                    <a href="404.html" class="error-btn secondary">Browse top-rated recipes</a>
+                </div>
+                
+                <p>Or, you can try your luck and hit the "surprise me" button. Who knows? You might find your next favorite dish!</p>
+                <button class="surprise-btn" onclick="window.location.href='#'">Surprise Me!</button>
+            </div>
+            
+            <p style="margin-top: 2rem; text-align: center;">If this keeps happening, maybe drop us a line, and we'll serve up a fix faster than you can say "whisk-taker."</p>
+            
+            <p style="text-align: center; font-style: italic; margin-top: 2rem;">Until then, keep calm and keep cooking—no one ever said the road to culinary genius was without a few burnt edges!</p>
         </div>
-        <p>Or, you can try your luck and hit the "surprise me" button. Who knows? You might find your next favorite dish!</p>
-        <button class="surprise-btn">Surprise Me!</button>
-      </div>
+    </main>
 
-      <p style="margin-top: 2rem; text-align: center;">If this keeps happening, maybe drop us a line, and we'll serve up a fix faster than you can say "whisk-taker."</p>
-      <p style="text-align: center; font-style: italic; margin-top: 2rem;">Until then, keep calm and keep cooking—no one ever said the road to culinary genius was without a few burnt edges!</p>
-    </div>
-  </main>
+    <!-- Footer will be loaded here -->
+    <div id="footer-container"></div>
 
-  <!-- HARDCODED FOOTER START -->
-  <footer class="footer">
-    <div class="footer-container">
-      <p>&copy; 2025 corner chef. All rights reserved.</p>
-      <ul class="footer-links">
-        <li><a href="privacy.html">Privacy Policy</a></li>
-        <li><a href="terms.html">Terms of Service</a></li>
-      </ul>
-    </div>
-  </footer>
-  <!-- HARDCODED FOOTER END -->
+    <script src="JS/scripts.js"></script>
+    <script>
+        // Simple surprise me functionality
+        document.querySelector('.surprise-btn').addEventListener('click', function() {
+            const surprisePages = [
+                'recipes/carrot-cake',
+                'recipes/perfect-risotto',
+                'techniques/knife-skills',
+                'collections/quick-dinners'
+            ];
+            const randomPage = surprisePages[Math.floor(Math.random() * surprisePages.length)];
+            alert(`Taking you to: ${randomPage}\n(In a real implementation, this would redirect)`);
+            // window.location.href = randomPage;
+        });
 
-  <script>
-    // Surprise button handler
-    document.querySelector('.surprise-btn').addEventListener('click', function () {
-      const surprisePages = [
-        'recipes/carrot-cake',
-        'recipes/perfect-risotto',
-        'techniques/knife-skills',
-        'collections/quick-dinners'
-      ];
-      const randomPage = surprisePages[Math.floor(Math.random() * surprisePages.length)];
-      window.location.href = randomPage;
-    });
-  </script>
+        // Ensure navigation works by reinitializing after load
+        document.addEventListener('DOMContentLoaded', function() {
+            if (typeof initNavigation === 'function') {
+                initNavigation();
+            }
+        });
+    </script>
 </body>
 </html>
