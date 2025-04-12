@@ -9,17 +9,30 @@
         <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
     </div>
     <div class="links">
-        <a href="#">About Us</a>
-        <a href="#">Contact</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms of Use</a>
+        <a href="about.html">About Us</a>
+        <a href="contact.html">Contact</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
     </div>
     <div class="legal">
         <p>&copy; <span id="currentYear"></span> Corner Chef. All rights reserved.</p>
     </div>
 
+    <!-- JavaScript Links -->
+    <script src="js/navigation.js"></script>
+    <script src="js/auth.js"></script>
+    
     <script>
         // Set current year in footer
         document.getElementById('currentYear').textContent = new Date().getFullYear();
+        
+        // Load Font Awesome if not already loaded
+        if (!document.querySelector('.fa')) {
+            const faScript = document.createElement('script');
+            faScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js';
+            faScript.integrity = 'sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==';
+            faScript.crossOrigin = 'anonymous';
+            document.body.appendChild(faScript);
+        }
     </script>
 </footer>
