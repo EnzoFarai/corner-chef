@@ -183,6 +183,8 @@
         .recipe-card a {
             text-decoration: none;
             color: inherit;
+            display: block;
+            height: 100%;
         }
 
         .recipe-card img {
@@ -277,16 +279,59 @@
         .video-grid {
             display: grid;
             grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(5, auto);
-            gap: 20px;
+            grid-template-rows: repeat(5, 1fr);
+            gap: 8px;
             max-width: 1200px;
             margin: 0 auto;
+        }
+
+        .grid-title {
+            grid-column: span 5;
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 800;
+            padding-bottom: 10px;
+        }
+
+        .watch-more-title {
+            grid-column: span 3;
+            grid-row: 1;
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .primary-video {
+            grid-column: span 2;
+            grid-row: span 2;
+            grid-row-start: 2;
+        }
+
+        .secondary-video {
+            grid-column-start: 3;
+        }
+
+        .secondary-video.first {
+            grid-row-start: 2;
+        }
+
+        .secondary-video.second {
+            grid-row-start: 3;
+        }
+
+        .watch-more {
+            grid-column: span 3;
+            grid-row-start: 4;
+            text-align: center;
+            margin-top: 20px;
         }
 
         .video-title {
             font-size: 1.2rem;
             font-weight: 600;
             margin-top: 15px;
+            color: var(--clr-white);
         }
 
         .video-box {
@@ -298,8 +343,9 @@
 
         .video-box video {
             width: 100%;
-            height: auto;
+            height: 100%;
             display: block;
+            object-fit: cover;
         }
 
         .video-box .play-button {
@@ -329,34 +375,42 @@
             flex-direction: column;
         }
 
-        .grid-title {
-            grid-column: span 5;
-            text-align: center;
-            font-size: 2rem;
-            font-weight: 800;
-            padding-bottom: 10px;
+        .btn-secondary {
+            background-color: var(--clr-white);
+            color: var(--clr-orange);
+            border: 2px solid var(--clr-white);
         }
 
-        .featured-video {
-            grid-column: span 3;
-            grid-row: span 2;
-            grid-row-start: 2;
+        .btn-secondary:hover {
+            background-color: transparent;
+            color: var(--clr-white);
         }
 
-        .secondary-video {
-            grid-column-start: 4;
+        /* Filtered state for mobile */
+        .recipe-carousel.filtered {
+            justify-content: center;
+            flex-wrap: wrap;
+            padding: 20px;
+            overflow-x: visible;
         }
 
-        .watch-more {
-            grid-column: span 5;
-            grid-row-start: 4;
-            text-align: center;
-            margin-top: 20px;
+        .recipe-carousel.filtered .recipe-card {
+            flex: 0 0 calc(50% - 20px);
+            margin-bottom: 20px;
         }
 
         @media (max-width: 900px) {
             .video-grid {
-                display: block;
+                grid-template-columns: 1fr;
+                grid-template-rows: auto;
+            }
+
+            .watch-more-title,
+            .primary-video,
+            .secondary-video,
+            .watch-more {
+                grid-column: 1;
+                grid-row: auto;
             }
 
             .video-wrapper {
@@ -381,20 +435,26 @@
                 -webkit-overflow-scrolling: touch;
                 justify-content: flex-start;
                 padding-bottom: 10px;
+                scrollbar-width: none;
             }
 
-            .featured-video {
-                grid-column: span 5;
-            }
-
-            .secondary-video {
-                grid-column: span 5;
+            .category-filters::-webkit-scrollbar {
+                display: none;
             }
 
             .carousel-nav button {
                 width: 30px;
                 height: 30px;
                 font-size: 14px;
+            }
+
+            /* Center filtered cards on mobile */
+            .recipe-carousel.filtered {
+                justify-content: center;
+            }
+
+            .recipe-carousel.filtered .recipe-card {
+                flex: 0 0 280px;
             }
         }
     </style>
@@ -436,7 +496,7 @@
             </div>
             <div class="recipe-carousel" id="recipeCarousel">
                 <div class="recipe-card" data-category="african">
-                    <a href="#">
+                    <a href="nyama-choma.html">
                         <img src="https://www.mykenyanpalate.com/wp-content/uploads/2021/05/Nyama-Choma-1.jpg" alt="Nyama Choma">
                         <div class="recipe-card-content">
                             <span class="category-tag">African</span>
@@ -447,7 +507,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="african">
-                    <a href="#">
+                    <a href="jollof-rice.html">
                         <img src="https://www.chefspencil.com/wp-content/uploads/Jollof-Rice-2.jpg" alt="Jollof Rice">
                         <div class="recipe-card-content">
                             <span class="category-tag">African</span>
@@ -458,7 +518,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="quick">
-                    <a href="#">
+                    <a href="shakshuka.html">
                         <img src="https://www.chefspencil.com/wp-content/uploads/Shakshuka-1.jpg.webp" alt="Shakshuka">
                         <div class="recipe-card-content">
                             <span class="category-tag">Quick</span>
@@ -469,7 +529,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="dessert">
-                    <a href="#">
+                    <a href="koeksisters-recipe.html">
                         <img src="https://www.rainbownation.com/wp-content/uploads/2019/04/Koe-1.jpg" alt="Koeksisters">
                         <div class="recipe-card-content">
                             <span class="category-tag">Dessert</span>
@@ -480,7 +540,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="quick">
-                    <a href="#">
+                    <a href="bobotie.html">
                         <img src="https://www.chefspencil.com/wp-content/uploads/Bobotie-1.jpg.webp" alt="Bobotie">
                         <div class="recipe-card-content">
                             <span class="category-tag">Quick</span>
@@ -491,7 +551,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="dessert">
-                    <a href="#">
+                    <a href="malva-pudding.html">
                         <img src="https://www.rainbownation.com/wp-content/uploads/2019/04/Malva-Pudding-1.jpg" alt="Malva Pudding">
                         <div class="recipe-card-content">
                             <span class="category-tag">Dessert</span>
@@ -508,43 +568,54 @@
     <section class="watch-section">
         <div class="video-grid">
             <div class="grid-title">WHAT TO WATCH</div>
+            
+            <div class="watch-more-title">Watch More</div>
 
-            <!-- Featured Video -->
-            <div class="video-wrapper featured-video">
+            <!-- Primary Video -->
+            <div class="video-wrapper primary-video">
                 <div class="video-box">
                     <video controls poster="assets/images/french-toast-deserves-a-good-soak.jpg">
                         <source src="assets/videos/french-toast-deserves-a-good-soak.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
                 </div>
                 <div class="video-title">French Toast Deserves a Good Soak</div>
             </div>
 
             <!-- Secondary Video 1 -->
-            <div class="video-wrapper secondary-video">
+            <div class="video-wrapper secondary-video first">
                 <div class="video-box">
                     <video controls poster="assets/images/hand-stretch-pizza-dough-like-a-total-pro.jpg">
                         <source src="assets/videos/hand-stretch-pizza-dough-like-a-total-pro.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
                 </div>
                 <div class="video-title">Hand Stretch Pizza Dough Like a Total Pro</div>
             </div>
 
             <!-- Secondary Video 2 -->
-            <div class="video-wrapper secondary-video">
+            <div class="video-wrapper secondary-video second">
                 <div class="video-box">
                     <video controls poster="assets/images/the-best-mayo-is-aways-homemade.jpg">
                         <source src="assets/videos/the-best-mayo-is-aways-homemade.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
+                    <div class="play-button">
+                        <i class="fas fa-play"></i>
+                    </div>
                 </div>
                 <div class="video-title">The Best Mayo Is Always Homemade</div>
             </div>
 
-            <!-- Watch More -->
+            <!-- Watch More Button -->
             <div class="watch-more">
-                <a href="video-gallery.html" class="btn btn-secondary">Watch More</a>
+                <a href="video-gallery.html" class="btn btn-secondary">Watch More Videos</a>
             </div>
         </div>
     </section>
@@ -563,10 +634,12 @@
         function filterRecipes(category) {
             const cards = document.querySelectorAll('.recipe-card');
             const buttons = document.querySelectorAll('.category-filters button');
+            const carousel = document.querySelector('.recipe-carousel');
 
             buttons.forEach(btn => btn.classList.remove('active'));
             document.querySelector(`.category-filters button[onclick*="${category}"]`).classList.add('active');
 
+            // Show/hide cards
             cards.forEach(card => {
                 const cardCategory = card.getAttribute('data-category');
                 if (category === 'all' || cardCategory === category) {
@@ -575,7 +648,29 @@
                     card.style.display = 'none';
                 }
             });
+
+            // On mobile, switch to centered grid layout when filtered
+            if (window.innerWidth <= 600 && category !== 'all') {
+                carousel.classList.add('filtered');
+            } else {
+                carousel.classList.remove('filtered');
+            }
         }
+
+        // Handle window resize to toggle between carousel and grid layout
+        function handleResize() {
+            const carousel = document.querySelector('.recipe-carousel');
+            const activeFilter = document.querySelector('.category-filters button.active');
+            
+            if (window.innerWidth <= 600 && activeFilter && activeFilter.textContent !== 'All') {
+                carousel.classList.add('filtered');
+            } else {
+                carousel.classList.remove('filtered');
+            }
+        }
+
+        // Add event listener for window resize
+        window.addEventListener('resize', handleResize);
 
         // Load header and footer
         document.addEventListener('DOMContentLoaded', function() {
@@ -593,6 +688,21 @@
                 .then(data => {
                     document.getElementById('footer').innerHTML = data;
                 });
+
+            // Initialize video play buttons
+            document.querySelectorAll('.video-box').forEach(box => {
+                const video = box.querySelector('video');
+                const playButton = box.querySelector('.play-button');
+                
+                playButton.addEventListener('click', () => {
+                    video.play();
+                    playButton.style.display = 'none';
+                });
+                
+                video.addEventListener('pause', () => {
+                    playButton.style.display = 'flex';
+                });
+            });
         });
     </script>
 </body>
