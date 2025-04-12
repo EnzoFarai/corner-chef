@@ -5,16 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>404 - corner chef</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="css/style.css" rel="stylesheet">
     <style>
+        :root {
+            --clr-orange: #FF6600;
+            --clr-orange-light: #FFA500;
+            --clr-orange-dark: #cc4b2c;
+            --clr-white: #ffffff;
+            --clr-gray-light: #f5f5f5;
+            --clr-gray-med: #616b74;
+            --clr-gray-dark: #414b56;
+            --clr-black: #111111;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--clr-white);
+            color: var(--clr-gray-dark);
+            margin: 0;
+            line-height: 1.5;
+        }
+
+        /* Header and Footer Fixes */
+        header, .footer {
+            position: relative;
+            z-index: 3;
+            background-color: rgba(255, 255, 255, 0.98) !important;
+        }
+
         /* Custom 404 Styles */
         .error-page {
             position: relative;
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            font-family: 'Inter', sans-serif;
         }
         
         .error-content {
@@ -41,7 +68,7 @@
         
         .error-title {
             font-size: 3rem;
-            color: #FF6600;
+            color: var(--clr-orange);
             margin-bottom: 1rem;
             text-align: center;
             font-weight: 800;
@@ -82,22 +109,22 @@
         }
         
         .error-btn.primary {
-            background-color: #FF6600;
+            background-color: var(--clr-orange);
             color: white;
         }
         
         .error-btn.primary:hover {
-            background-color: #cc4b2c;
+            background-color: var(--clr-orange-dark);
         }
         
         .error-btn.secondary {
-            border: 1px solid #FF6600;
-            color: #FF6600;
+            border: 1px solid var(--clr-orange);
+            color: var(--clr-orange);
             background-color: white;
         }
         
         .error-btn.secondary:hover {
-            background-color: #FFA500;
+            background-color: var(--clr-orange-light);
             color: white;
         }
         
@@ -203,12 +230,18 @@
 
         // Load header and footer
         document.addEventListener('DOMContentLoaded', function() {
+            // Load header
             fetch('header.html')
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById('header').innerHTML = data;
+                    // Initialize navigation if needed
+                    if (typeof initNavigation === 'function') {
+                        initNavigation();
+                    }
                 });
             
+            // Load footer
             fetch('footer.html')
                 .then(response => response.text())
                 .then(data => {
