@@ -1,38 +1,20 @@
 <footer class="footer">
-    <h2><span class="small-caps">corner chef</span></h2>
+    <h2>corner chef</h2>
     <p>Recipes you want to make. Cooking advice that works. Restaurant recommendations you trust.</p>
     <div class="social-media">
-        <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-        <a href="#" aria-label="Threads"><i class="fab fa-threads"></i></a>
-        <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest"></i></a>
-        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-threads"></i></a>
+        <a href="#"><i class="fab fa-pinterest"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-youtube"></i></a>
     </div>
     <div class="links">
-        <a href="about.html">About Us</a>
-        <a href="contact.html">Contact</a>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
+        <a href="#">About Us</a>
+        <a href="#">Contact</a>
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Use</a>
     </div>
     <div class="legal">
-        <p>&copy; <span id="currentYear"></span> Corner Chef. All rights reserved.</p>
+        <p>&copy; 2025 corner chef. All rights reserved.</p>
     </div>
-
-    <!-- JavaScript Links -->
-    <script src="js/navigation.js"></script>
-    <script src="js/auth.js"></script>
-    
-    <script>
-        // Set current year in footer
-        document.getElementById('currentYear').textContent = new Date().getFullYear();
-        
-        // Load Font Awesome if not already loaded
-        if (!document.querySelector('.fa')) {
-            const faScript = document.createElement('script');
-            faScript.src = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js';
-            faScript.integrity = 'sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==';
-            faScript.crossOrigin = 'anonymous';
-            document.body.appendChild(faScript);
-        }
-    </script>
 </footer>
