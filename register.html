@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORNER CHEF | Register</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --clr-orange: #FF6600;
+            --clr-orange-light: #FFA500;
+            --clr-orange-dark: #cc4b2c;
+            --clr-white: #ffffff;
+            --clr-gray-light: #f5f5f5;
+            --clr-gray-med: #616b74;
+            --clr-gray-dark: #414b56;
+            --clr-black: #111111;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--clr-white);
+            color: var(--clr-gray-dark);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .register-container {
+            max-width: 500px;
+            width: 90%;
+            padding: 40px;
+            background-color: var(--clr-white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .logo {
+            color: var(--clr-orange);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .subheading {
+            color: var(--clr-gray-med);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--clr-gray-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--clr-gray-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--clr-orange);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: var(--clr-orange);
+            color: var(--clr-white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--clr-orange-dark);
+        }
+
+        .footer-text {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--clr-gray-med);
+        }
+
+        .footer-text a {
+            color: var(--clr-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--clr-gray-med);
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 8px;
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        @media (max-width: 600px) {
+            .register-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="register-container">
+        <div class="logo">CORNER CHEF</div>
+        <div class="subheading">Create your free account</div>
+        
+        <form id="registerForm">
+            <div class="form-group">
+                <label for="fullName">Full Name</label>
+                <input type="text" id="fullName" placeholder="Enter your full name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="regEmail">Email address</label>
+                <input type="email" id="regEmail" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="form-group password-container">
+                <label for="regPassword">Password</label>
+                <input type="password" id="regPassword" placeholder="Create a password" required>
+                <span class="toggle-password" id="toggleRegPassword">
+                    <i class="fas fa-eye"></i>
+                </span>
+            </div>
+            
+            <div class="form-group">
+                <label>Gender</label>
+                <div class="radio-group">
+                    <div class="radio-option">
+                        <input type="radio" id="male" name="gender" value="male">
+                        <label for="male">Male</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="female" name="gender" value="female">
+                        <label for="female">Female</label>
+                    </div>
+                    <div class="radio-option">
+                        <input type="radio" id="other" name="gender" value="other">
+                        <label for="other">Other</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="dob">Date of Birth</label>
+                <input type="date" id="dob" required>
+            </div>
+            
+            <button type="button" class="btn btn-primary" id="registerBtn">CREATE ACCOUNT</button>
+            
+            <div class="footer-text">
+                Already have an account? <a href="login.html">Sign in</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const toggleRegPassword = document.getElementById('toggleRegPassword');
+            const regPasswordInput = document.getElementById('regPassword');
+            const registerBtn = document.getElementById('registerBtn');
+            const regEmailInput = document.getElementById('regEmail');
+            
+            // Toggle password visibility
+            toggleRegPassword.addEventListener('click', function() {
+                const type = regPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                regPasswordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+            
+            // Check if email was passed from login page
+            const urlParams = new URLSearchParams(window.location.search);
+            const registerEmail = urlParams.get('email');
+            if (registerEmail) {
+                regEmailInput.value = registerEmail;
+            }
+            
+            // Register button handler
+            registerBtn.addEventListener('click', function() {
+                // Simple validation
+                if (document.getElementById('fullName').value.trim() && 
+                    regEmailInput.value.trim() && 
+                    regPasswordInput.value &&
+                    document.querySelector('input[name="gender"]:checked') &&
+                    document.getElementById('dob').value) {
+                    
+                    // Fake successful registration
+                    alert('Account created successfully! (This is a demo)');
+                    
+                    // Redirect back to login
+                    window.location.href = "login.html";
+                } else {
+                    alert('Please fill in all fields');
+                }
+            });
+            
+            // Handle Enter key
+            document.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    registerBtn.click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
