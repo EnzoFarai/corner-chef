@@ -64,16 +64,18 @@
             text-align: center;
         }
 
-        /* Hero Section */
+        /* Hero Section - Updated Layout */
         .recipe-hero {
             display: flex;
-            gap: 40px;
+            flex-direction: column;
+            gap: 30px;
             margin-bottom: 40px;
         }
         
         .recipe-image {
-            flex: 1;
-            min-width: 300px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .recipe-image img {
@@ -82,17 +84,19 @@
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
         }
         
-        .recipe-details {
-            flex: 1;
-            min-width: 300px;
+        .recipe-content-wrapper {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
         }
 
         /* Action Buttons */
         .recipe-actions {
             display: flex;
             gap: 15px;
-            margin: 30px 0;
+            margin: 20px 0 30px;
             justify-content: center;
+            flex-wrap: wrap;
         }
         
         .action-btn {
@@ -143,23 +147,24 @@
         .recipe-intro {
             margin-bottom: 30px;
             line-height: 1.6;
+            text-align: center;
         }
         
         .cooks-note {
             background-color: var(--clr-gray-light);
             padding: 15px;
             border-radius: 8px;
-            margin: 20px 0;
+            margin: 20px auto;
             font-style: italic;
+            max-width: 600px;
         }
         
         .recipe-content {
             display: flex;
+            flex-direction: column;
             gap: 40px;
-        }
-        
-        .main-content {
-            flex: 2;
+            max-width: 800px;
+            margin: 0 auto;
         }
         
         .detail-card {
@@ -178,10 +183,14 @@
             display: flex;
             align-items: center;
             gap: 10px;
+            justify-content: center;
         }
         
         .ingredients-list {
             list-style: none;
+            padding: 0;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .ingredient-item {
@@ -209,6 +218,8 @@
         .instructions-list {
             list-style-type: decimal;
             padding-left: 20px;
+            max-width: 600px;
+            margin: 0 auto;
         }
         
         .instructions-list li {
@@ -232,20 +243,17 @@
         }
 
         /* Responsive Styles */
-        @media (max-width: 900px) {
-            .recipe-hero,
-            .recipe-content {
-                flex-direction: column;
+        @media (min-width: 768px) {
+            .recipe-hero {
+                align-items: center;
             }
             
-            .recipe-image,
-            .recipe-details {
-                width: 100%;
+            .recipe-content-wrapper {
+                text-align: center;
             }
-
+            
             .recipe-actions {
-                flex-direction: column;
-                align-items: center;
+                justify-content: center;
             }
         }
     </style>
@@ -265,10 +273,13 @@
         </div>
         
         <div class="recipe-hero">
+            <!-- Image at the top -->
             <div class="recipe-image">
                 <img src="assets/images/koeksisters.jpg" alt="Koeksisters">
             </div>
-            <div class="recipe-details">
+            
+            <!-- Content below image -->
+            <div class="recipe-content-wrapper">
                 <!-- Action Buttons -->
                 <div class="recipe-actions">
                     <button class="action-btn save-btn" id="saveRecipe">
@@ -296,79 +307,77 @@
         
         <!-- Recipe Content -->
         <div class="recipe-content">
-            <div class="main-content">
-                <div class="detail-card" id="ingredients">
-                    <h3 class="detail-title"><i class="fas fa-list"></i> Ingredients</h3>
-                    <ul class="ingredients-list" id="ingredientsList">
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Flour" data-amount="4" data-unit="cups"><i class="fas fa-plus-circle"></i></span>
-                            <span>4 cups (500g) all-purpose flour</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Baking powder" data-amount="4" data-unit="tsp"><i class="fas fa-plus-circle"></i></span>
-                            <span>4 tsp baking powder</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Salt" data-amount="1" data-unit="tsp"><i class="fas fa-plus-circle"></i></span>
-                            <span>1 tsp salt</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Butter" data-amount="4" data-unit="tbsp"><i class="fas fa-plus-circle"></i></span>
-                            <span>4 tbsp (60g) butter, chilled and cubed</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Egg" data-amount="1" data-unit=""><i class="fas fa-plus-circle"></i></span>
-                            <span>1 large egg</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Water" data-amount="1" data-unit="cup"><i class="fas fa-plus-circle"></i></span>
-                            <span>1 cup (250ml) ice water</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Sugar" data-amount="3" data-unit="cups"><i class="fas fa-plus-circle"></i></span>
-                            <span>3 cups (750ml) sugar (for syrup)</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Water" data-amount="1.5" data-unit="cups"><i class="fas fa-plus-circle"></i></span>
-                            <span>1½ cups (375ml) water (for syrup)</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Lemon juice" data-amount="1" data-unit="tbsp"><i class="fas fa-plus-circle"></i></span>
-                            <span>1 tbsp lemon juice (for syrup)</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Cinnamon" data-amount="1" data-unit="tsp"><i class="fas fa-plus-circle"></i></span>
-                            <span>1 tsp ground cinnamon (for syrup)</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Ginger" data-amount="0.5" data-unit="tsp"><i class="fas fa-plus-circle"></i></span>
-                            <span>½ tsp ground ginger (for syrup)</span>
-                        </li>
-                        <li class="ingredient-item">
-                            <span class="add-to-list" data-ingredient="Oil" data-amount="" data-unit="for frying"><i class="fas fa-plus-circle"></i></span>
-                            <span>Vegetable oil for deep frying</span>
-                        </li>
-                    </ul>
-                </div>
-                
-                <div class="detail-card" id="instructions">
-                    <h3 class="detail-title"><i class="fas fa-list-ol"></i> Instructions</h3>
-                    <ol class="instructions-list">
-                        <li><strong>Make the syrup first:</strong> Combine sugar, water, lemon juice, cinnamon and ginger in a saucepan. Bring to boil, then simmer for 10 minutes. Remove from heat and chill in refrigerator (must be cold when used).</li>
-                        <li><strong>Make the dough:</strong> Sift flour, baking powder and salt together. Rub in butter until mixture resembles breadcrumbs.</li>
-                        <li>Beat egg lightly and add to flour mixture with enough ice water to make a stiff dough. Knead lightly until smooth.</li>
-                        <li>Roll out dough to about 5mm thickness. Cut into strips about 8cm long and 2cm wide.</li>
-                        <li>Make 2 lengthwise cuts in each strip, leaving one end intact. Plait the 3 strands and press ends together to seal.</li>
-                        <li><strong>Fry the koeksisters:</strong> Heat oil to 180°C (350°F). Fry a few koeksisters at a time until golden brown, about 3-4 minutes.</li>
-                        <li>Remove with slotted spoon and immediately dip into the cold syrup for about 30 seconds until well coated.</li>
-                        <li>Remove from syrup and place on wire rack to drain excess syrup and cool completely.</li>
-                        <li>Store in airtight container once cooled. Best served the same day but will keep for 2-3 days.</li>
-                    </ol>
-                </div>
-                
-                <div class="back-to-top">
-                    <a href="#"><i class="fas fa-arrow-up"></i> Back to Top</a>
-                </div>
+            <div class="detail-card" id="ingredients">
+                <h3 class="detail-title"><i class="fas fa-list"></i> Ingredients</h3>
+                <ul class="ingredients-list" id="ingredientsList">
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Flour" data-amount="4" data-unit="cups"><i class="fas fa-plus-circle"></i></span>
+                        <span>4 cups (500g) all-purpose flour</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Baking powder" data-amount="4" data-unit="tsp"><i class="fas fa-plus-circle"></i></span>
+                        <span>4 tsp baking powder</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Salt" data-amount="1" data-unit="tsp"><i class="fas fa-plus-circle"></i></span>
+                        <span>1 tsp salt</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Butter" data-amount="4" data-unit="tbsp"><i class="fas fa-plus-circle"></i></span>
+                        <span>4 tbsp (60g) butter, chilled and cubed</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Egg" data-amount="1" data-unit=""><i class="fas fa-plus-circle"></i></span>
+                        <span>1 large egg</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Water" data-amount="1" data-unit="cup"><i class="fas fa-plus-circle"></i></span>
+                        <span>1 cup (250ml) ice water</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Sugar" data-amount="3" data-unit="cups"><i class="fas fa-plus-circle"></i></span>
+                        <span>3 cups (750ml) sugar (for syrup)</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Water" data-amount="1.5" data-unit="cups"><i class="fas fa-plus-circle"></i></span>
+                        <span>1½ cups (375ml) water (for syrup)</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Lemon juice" data-amount="1" data-unit="tbsp"><i class="fas fa-plus-circle"></i></span>
+                        <span>1 tbsp lemon juice (for syrup)</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Cinnamon" data-amount="1" data-unit="tsp"><i class="fas fa-plus-circle"></i></span>
+                        <span>1 tsp ground cinnamon (for syrup)</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Ginger" data-amount="0.5" data-unit="tsp"><i class="fas fa-plus-circle"></i></span>
+                        <span>½ tsp ground ginger (for syrup)</span>
+                    </li>
+                    <li class="ingredient-item">
+                        <span class="add-to-list" data-ingredient="Oil" data-amount="" data-unit="for frying"><i class="fas fa-plus-circle"></i></span>
+                        <span>Vegetable oil for deep frying</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="detail-card" id="instructions">
+                <h3 class="detail-title"><i class="fas fa-list-ol"></i> Instructions</h3>
+                <ol class="instructions-list">
+                    <li><strong>Make the syrup first:</strong> Combine sugar, water, lemon juice, cinnamon and ginger in a saucepan. Bring to boil, then simmer for 10 minutes. Remove from heat and chill in refrigerator (must be cold when used).</li>
+                    <li><strong>Make the dough:</strong> Sift flour, baking powder and salt together. Rub in butter until mixture resembles breadcrumbs.</li>
+                    <li>Beat egg lightly and add to flour mixture with enough ice water to make a stiff dough. Knead lightly until smooth.</li>
+                    <li>Roll out dough to about 5mm thickness. Cut into strips about 8cm long and 2cm wide.</li>
+                    <li>Make 2 lengthwise cuts in each strip, leaving one end intact. Plait the 3 strands and press ends together to seal.</li>
+                    <li><strong>Fry the koeksisters:</strong> Heat oil to 180°C (350°F). Fry a few koeksisters at a time until golden brown, about 3-4 minutes.</li>
+                    <li>Remove with slotted spoon and immediately dip into the cold syrup for about 30 seconds until well coated.</li>
+                    <li>Remove from syrup and place on wire rack to drain excess syrup and cool completely.</li>
+                    <li>Store in airtight container once cooled. Best served the same day but will keep for 2-3 days.</li>
+                </ol>
+            </div>
+            
+            <div class="back-to-top">
+                <a href="#"><i class="fas fa-arrow-up"></i> Back to Top</a>
             </div>
         </div>
     </div>
@@ -450,4 +459,4 @@
         });
     </script>
 </body>
-                            </html>
+</html>
