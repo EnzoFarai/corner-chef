@@ -128,23 +128,56 @@
     <script>
         // Load header and footer
         document.addEventListener('DOMContentLoaded', function() {
+            // Load header first
             fetch('header.html')
-                .then(response => response.text())
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load header');
+                    }
+                    return response.text();
+                })
                 .then(data => {
                     document.getElementById('header').innerHTML = data;
-                    // Load navigation.js after header is inserted
-                    const script = document.createElement('script');
-                    script.src = 'js/navigation.js';
-                    document.body.appendChild(script);
-                });
-
-            fetch('footer.html')
-                .then(response => response.text())
+                    
+                    // Now load footer
+                    return fetch('footer.html');
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Failed to load footer');
+                    }
+                    return response.text();
+                })
                 .then(data => {
                     document.getElementById('footer').innerHTML = data;
+                    
+                    // Now load scripts sequentially
+                    const scriptsToLoad = [
+                        'js/navigation.js',
+                        'js/auth.js'
+                    ];
+                    
+                    function loadScript(index) {
+                        if (index >= scriptsToLoad.length) return;
+                        
+                        const script = document.createElement('script');
+                        script.src = scriptsToLoad[index];
+                        script.onload = function() {
+                            loadScript(index + 1);
+                        };
+                        script.onerror = function() {
+                            console.error('Failed to load script:', scriptsToLoad[index]);
+                            loadScript(index + 1);
+                        };
+                        document.body.appendChild(script);
+                    }
+                    
+                    loadScript(0);
+                })
+                .catch(error => {
+                    console.error('Error loading components:', error);
                 });
         });
     </script>
-    <script src="js/auth.js"></script>
 </body>
 </html>
