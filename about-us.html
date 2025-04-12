@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Corner Chef | Your Trusted Recipe Resource</title>
+    <title>About Corner Chef | Discover Culinary Creativity</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
     <style>
         :root {
             --clr-orange: #FF6600;
@@ -28,184 +29,200 @@
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 20px;
         }
 
         .header {
+            background-color: var(--clr-orange);
+            color: var(--clr-white);
+            padding: 60px 0;
             text-align: center;
-            margin-bottom: 40px;
         }
 
-        .logo {
-            color: var(--clr-orange);
-            font-size: 3rem;
-            font-weight: 800;
+        .header h1 {
+            font-size: 2.5rem;
             margin-bottom: 10px;
         }
 
-        .subheading {
-            color: var(--clr-gray-med);
-            font-size: 1.2rem;
+        .header p {
+            font-size: 1.1rem;
             max-width: 700px;
             margin: 0 auto;
         }
 
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto 50px;
+        .about-section {
+            padding: 60px 0;
         }
 
-        .about-content p {
+        .about-section h2 {
+            color: var(--clr-orange);
+            font-size: 1.8rem;
             margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .team-section {
-            margin: 60px 0;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            color: var(--clr-black);
-            border-bottom: 2px solid var(--clr-orange-light);
-            padding-bottom: 10px;
-            margin-bottom: 30px;
         }
 
         .team-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
             gap: 30px;
+            margin: 40px 0;
         }
 
         .team-member {
-            text-align: center;
-            background: var(--clr-gray-light);
-            padding: 20px;
+            background: var(--clr-white);
             border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .team-member:hover {
+            transform: translateY(-5px);
         }
 
         .team-member img {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
+            width: 100%;
+            height: 250px;
             object-fit: cover;
-            margin: 0 auto 15px;
-            border: 3px solid var(--clr-orange);
         }
 
-        .team-member h3 {
+        .team-member-info {
+            padding: 20px;
+        }
+
+        .team-member-info h3 {
+            margin: 0 0 5px 0;
             color: var(--clr-black);
-            margin: 10px 0 5px;
         }
 
-        .team-member p {
+        .team-member-info p {
+            margin: 0;
             color: var(--clr-gray-med);
             font-size: 0.9rem;
         }
 
         .process-section {
-            background: var(--clr-gray-light);
-            padding: 40px;
-            border-radius: 12px;
-            margin: 40px 0;
+            background-color: var(--clr-gray-light);
+            padding: 60px 0;
         }
 
-        .process-item {
-            margin-bottom: 30px;
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
         }
 
-        .process-item h3 {
+        .process-card {
+            background: var(--clr-white);
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+
+        .process-card h3 {
             color: var(--clr-orange);
-            margin-bottom: 10px;
+            margin-top: 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: var(--clr-orange);
+            color: var(--clr-white);
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s;
+            margin-top: 20px;
+        }
+
+        .btn:hover {
+            background-color: var(--clr-orange-dark);
         }
 
         @media (max-width: 768px) {
             .team-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .process-section {
-                padding: 20px;
-            }
         }
     </style>
 </head>
 <body>
     <div id="header"></div>
-
-    <div class="container">
-        <div class="header">
-            <div class="logo">CORNER CHEF</div>
-            <div class="subheading">Your trusted resource for authentic, approachable recipes from around the world</div>
+    
+    <div class="header">
+        <div class="container">
+            <h1>About Corner Chef</h1>
+            <p>Your trusted companion for creative, accessible home cooking that celebrates global flavors and local ingredients.</p>
         </div>
+    </div>
 
-        <div class="about-content">
-            <p>Corner Chef began as a passion project to celebrate global home cooking. What started as a small collection of family recipes has grown into a comprehensive resource for cooks who want to explore world flavors in their own kitchens.</p>
-            
-            <p>We specialize in recipes that use accessible ingredients without sacrificing authenticity. Whether you're craving South African koeksisters, Nigerian jollof rice, or quick weeknight meals, our tested recipes deliver real flavor with clear instructions.</p>
-        </div>
-
-        <div class="process-section">
-            <h2 class="section-title">Our Recipe Process</h2>
-            
-            <div class="process-item">
-                <h3>Authenticity First</h3>
-                <p>Every recipe begins with extensive research into traditional preparation methods. We consult with home cooks and chefs from each recipe's culture of origin to ensure we honor its roots.</p>
-            </div>
-            
-            <div class="process-item">
-                <h3>Practical Testing</h3>
-                <p>Our team tests each recipe multiple times in home kitchens (not professional settings) using standard equipment. We time every step and note potential sticking points.</p>
-            </div>
-            
-            <div class="process-item">
-                <h3>Ingredient Accessibility</h3>
-                <p>We suggest substitutions for hard-to-find ingredients and provide guidance on where to source specialty items when they're essential to the dish.</p>
-            </div>
-        </div>
-
-        <div class="team-section">
-            <h2 class="section-title">Meet Our Team</h2>
-            
-            <div class="team-grid">
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Recipe Director">
-                    <h3>Sarah Johnson</h3>
-                    <p>Recipe Director</p>
+    <div class="container about-section">
+        <h2>Our Story</h2>
+        <p>Founded in 2023, Corner Chef began as a passion project to make diverse culinary traditions accessible to home cooks everywhere. What started as a small collection of family recipes has grown into a vibrant community of food lovers exploring the world through their kitchens.</p>
+        
+        <p>We believe great cooking doesn't require professional equipment or hard-to-find ingredients. Our recipes are developed with your real kitchen in mind—celebrating the creativity that happens when you make the most of what you have on hand.</p>
+        
+        <h2>Meet Our Team</h2>
+        <div class="team-grid">
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" alt="Founder">
+                <div class="team-member-info">
+                    <h3>Enzo Farai</h3>
+                    <p>Founder & Head Chef</p>
                 </div>
-                
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Test Kitchen Chef">
-                    <h3>David Mbeki</h3>
-                    <p>Test Kitchen Chef</p>
+            </div>
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" alt="Recipe Developer">
+                <div class="team-member-info">
+                    <h3>Sarah Chen</h3>
+                    <p>Recipe Developer</p>
                 </div>
-                
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Content Editor">
-                    <h3>Amira Chen</h3>
+            </div>
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1562788860-ddb5c5394764" alt="Food Photographer">
+                <div class="team-member-info">
+                    <h3>Jamal Wright</h3>
+                    <p>Food Photographer</p>
+                </div>
+            </div>
+            <div class="team-member">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956" alt="Content Editor">
+                <div class="team-member-info">
+                    <h3>Priya Patel</h3>
                     <p>Content Editor</p>
                 </div>
-                
-                <div class="team-member">
-                    <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Photography Director">
-                    <h3>James Okoro</h3>
-                    <p>Photography Director</p>
-                </div>
             </div>
         </div>
+    </div>
 
-        <div class="about-content">
-            <h2 class="section-title">Our Promise</h2>
-            <p>At Corner Chef, we believe great cooking should be accessible to everyone. That's why we:</p>
+    <div class="process-section">
+        <div class="container">
+            <h2>Our Recipe Development Process</h2>
+            <div class="process-grid">
+                <div class="process-card">
+                    <h3>Research & Inspiration</h3>
+                    <p>We explore traditional cooking methods, seasonal ingredients, and global flavor combinations to create recipes that are both authentic and accessible.</p>
+                </div>
+                <div class="process-card">
+                    <h3>Kitchen Testing</h3>
+                    <p>Every recipe undergoes multiple tests in home kitchens (not professional ones) to ensure they work with standard equipment and realistic cooking times.</p>
+                </div>
+                <div class="process-card">
+                    <h3>Community Feedback</h3>
+                    <p>We collaborate with home cooks of all skill levels to refine our instructions and make sure our recipes deliver consistent results.</p>
+                </div>
+            </div>
+            
+            <h2 style="margin-top: 40px;">Our Promise to You</h2>
+            <p>At Corner Chef, we're committed to:</p>
             <ul>
-                <li>Provide clear, step-by-step instructions with process photos</li>
-                <li>Note potential substitutions without compromising flavor</li>
-                <li>Include cooking times and difficulty levels for every recipe</li>
-                <li>Offer both traditional and simplified versions where appropriate</li>
+                <li>Clear, detailed instructions that actually work</li>
+                <li>Honoring the cultural origins of every dish</li>
+                <li>Highlighting adaptable recipes that work with what you have</li>
+                <li>Celebrating the joy of cooking without perfectionism</li>
             </ul>
             
-            <p>We're constantly expanding our collection of global recipes while maintaining our commitment to authenticity and approachability. Have a recipe request? Reach out through our contact page!</p>
+            <a href="recipes.html" class="btn">Explore Our Recipes</a>
         </div>
     </div>
 
