@@ -95,6 +95,16 @@
             background-color: var(--clr-orange-dark);
         }
 
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--clr-white);
+            border: 2px solid var(--clr-white);
+        }
+
+        .btn-secondary:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
         /* What to Cook Tonight Section */
         .recipes-section {
             padding: 40px 20px;
@@ -124,6 +134,7 @@
             justify-content: center;
             gap: 12px;
             margin-bottom: 32px;
+            width: 100%;
         }
 
         .category-filters button {
@@ -274,64 +285,22 @@
             background-color: var(--clr-orange);
             color: var(--clr-white);
             padding: 40px 20px;
+            text-align: center;
         }
 
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(5, 1fr);
-            grid-template-rows: repeat(5, 1fr);
-            gap: 8px;
-            max-width: 1200px;
+        .watch-section-container {
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        .grid-title {
-            grid-column: span 5;
-            text-align: center;
+        .section-header {
             font-size: 2rem;
             font-weight: 800;
-            padding-bottom: 10px;
+            margin-bottom: 30px;
         }
 
-        .watch-more-title {
-            grid-column: span 3;
-            grid-row: 1;
-            display: flex;
-            align-items: center;
-            font-size: 1.5rem;
-            font-weight: 700;
-        }
-
-        .primary-video {
-            grid-column: span 2;
-            grid-row: span 2;
-            grid-row-start: 2;
-        }
-
-        .secondary-video {
-            grid-column-start: 3;
-        }
-
-        .secondary-video.first {
-            grid-row-start: 2;
-        }
-
-        .secondary-video.second {
-            grid-row-start: 3;
-        }
-
-        .watch-more {
-            grid-column: span 3;
-            grid-row-start: 4;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .video-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-top: 15px;
-            color: var(--clr-white);
+        .featured-video {
+            margin-bottom: 30px;
         }
 
         .video-box {
@@ -339,83 +308,35 @@
             border-radius: 12px;
             overflow: hidden;
             box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            margin-bottom: 15px;
         }
 
         .video-box video {
             width: 100%;
-            height: 100%;
+            height: auto;
             display: block;
-            object-fit: cover;
         }
 
-        .video-box .play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background-color: rgba(0, 0, 0, 0.6);
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            font-size: 24px;
-            display: flex;
+        .video-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+        }
+
+        .watch-more-btn {
+            display: inline-flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: background 0.3s ease;
+            gap: 8px;
+            font-size: 1.1rem;
+            padding: 12px 24px;
         }
 
-        .video-box .play-button:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+        .watch-more-btn i {
+            transition: transform 0.3s ease;
         }
 
-        .video-wrapper {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .btn-secondary {
-            background-color: var(--clr-white);
-            color: var(--clr-orange);
-            border: 2px solid var(--clr-white);
-        }
-
-        .btn-secondary:hover {
-            background-color: transparent;
-            color: var(--clr-white);
-        }
-
-        /* Filtered state for mobile */
-        .recipe-carousel.filtered {
-            justify-content: center;
-            flex-wrap: wrap;
-            padding: 20px;
-            overflow-x: visible;
-        }
-
-        .recipe-carousel.filtered .recipe-card {
-            flex: 0 0 calc(50% - 20px);
-            margin-bottom: 20px;
-        }
-
-        @media (max-width: 900px) {
-            .video-grid {
-                grid-template-columns: 1fr;
-                grid-template-rows: auto;
-            }
-
-            .watch-more-title,
-            .primary-video,
-            .secondary-video,
-            .watch-more {
-                grid-column: 1;
-                grid-row: auto;
-            }
-
-            .video-wrapper {
-                margin-bottom: 30px;
-            }
+        .watch-more-btn:hover i {
+            transform: translateY(3px);
         }
 
         @media (max-width: 600px) {
@@ -435,26 +356,12 @@
                 -webkit-overflow-scrolling: touch;
                 justify-content: flex-start;
                 padding-bottom: 10px;
-                scrollbar-width: none;
-            }
-
-            .category-filters::-webkit-scrollbar {
-                display: none;
             }
 
             .carousel-nav button {
                 width: 30px;
                 height: 30px;
                 font-size: 14px;
-            }
-
-            /* Center filtered cards on mobile */
-            .recipe-carousel.filtered {
-                justify-content: center;
-            }
-
-            .recipe-carousel.filtered .recipe-card {
-                flex: 0 0 280px;
             }
         }
     </style>
@@ -529,7 +436,7 @@
                 </div>
 
                 <div class="recipe-card" data-category="dessert">
-                    <a href="koeksisters-recipe.html">
+                    <a href="koeksisters.html">
                         <img src="https://www.rainbownation.com/wp-content/uploads/2019/04/Koe-1.jpg" alt="Koeksisters">
                         <div class="recipe-card-content">
                             <span class="category-tag">Dessert</span>
@@ -566,57 +473,22 @@
 
     <!-- What to Watch Section -->
     <section class="watch-section">
-        <div class="video-grid">
-            <div class="grid-title">WHAT TO WATCH</div>
+        <div class="watch-section-container">
+            <h2 class="section-header">WHAT TO WATCH</h2>
             
-            <div class="watch-more-title">Watch More</div>
-
-            <!-- Primary Video -->
-            <div class="video-wrapper primary-video">
+            <div class="featured-video">
                 <div class="video-box">
                     <video controls poster="assets/images/french-toast-deserves-a-good-soak.jpg">
                         <source src="assets/videos/french-toast-deserves-a-good-soak.mp4" type="video/mp4">
                         Your browser does not support the video tag.
                     </video>
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
                 </div>
-                <div class="video-title">French Toast Deserves a Good Soak</div>
+                <h3 class="video-title">French Toast Deserves a Good Soak</h3>
             </div>
-
-            <!-- Secondary Video 1 -->
-            <div class="video-wrapper secondary-video first">
-                <div class="video-box">
-                    <video controls poster="assets/images/hand-stretch-pizza-dough-like-a-total-pro.jpg">
-                        <source src="assets/videos/hand-stretch-pizza-dough-like-a-total-pro.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="video-title">Hand Stretch Pizza Dough Like a Total Pro</div>
-            </div>
-
-            <!-- Secondary Video 2 -->
-            <div class="video-wrapper secondary-video second">
-                <div class="video-box">
-                    <video controls poster="assets/images/the-best-mayo-is-aways-homemade.jpg">
-                        <source src="assets/videos/the-best-mayo-is-aways-homemade.mp4" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
-                    <div class="play-button">
-                        <i class="fas fa-play"></i>
-                    </div>
-                </div>
-                <div class="video-title">The Best Mayo Is Always Homemade</div>
-            </div>
-
-            <!-- Watch More Button -->
-            <div class="watch-more">
-                <a href="video-gallery.html" class="btn btn-secondary">Watch More Videos</a>
-            </div>
+            
+            <a href="video-gallery.html" class="btn btn-secondary watch-more-btn">
+                Watch More <i class="fas fa-arrow-down"></i>
+            </a>
         </div>
     </section>
 
@@ -639,7 +511,13 @@
             buttons.forEach(btn => btn.classList.remove('active'));
             document.querySelector(`.category-filters button[onclick*="${category}"]`).classList.add('active');
 
-            // Show/hide cards
+            // Center align the filtered cards
+            if (category !== 'all') {
+                carousel.style.justifyContent = 'center';
+            } else {
+                carousel.style.justifyContent = 'flex-start';
+            }
+
             cards.forEach(card => {
                 const cardCategory = card.getAttribute('data-category');
                 if (category === 'all' || cardCategory === category) {
@@ -648,29 +526,7 @@
                     card.style.display = 'none';
                 }
             });
-
-            // On mobile, switch to centered grid layout when filtered
-            if (window.innerWidth <= 600 && category !== 'all') {
-                carousel.classList.add('filtered');
-            } else {
-                carousel.classList.remove('filtered');
-            }
         }
-
-        // Handle window resize to toggle between carousel and grid layout
-        function handleResize() {
-            const carousel = document.querySelector('.recipe-carousel');
-            const activeFilter = document.querySelector('.category-filters button.active');
-            
-            if (window.innerWidth <= 600 && activeFilter && activeFilter.textContent !== 'All') {
-                carousel.classList.add('filtered');
-            } else {
-                carousel.classList.remove('filtered');
-            }
-        }
-
-        // Add event listener for window resize
-        window.addEventListener('resize', handleResize);
 
         // Load header and footer
         document.addEventListener('DOMContentLoaded', function() {
@@ -688,21 +544,6 @@
                 .then(data => {
                     document.getElementById('footer').innerHTML = data;
                 });
-
-            // Initialize video play buttons
-            document.querySelectorAll('.video-box').forEach(box => {
-                const video = box.querySelector('video');
-                const playButton = box.querySelector('.play-button');
-                
-                playButton.addEventListener('click', () => {
-                    video.play();
-                    playButton.style.display = 'none';
-                });
-                
-                video.addEventListener('pause', () => {
-                    playButton.style.display = 'flex';
-                });
-            });
         });
     </script>
 </body>
