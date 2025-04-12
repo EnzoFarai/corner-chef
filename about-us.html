@@ -60,67 +60,27 @@
             margin-bottom: 20px;
         }
 
-        .team-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 30px;
+        /* Newspaper-style columns */
+        .process-columns {
+            column-count: 3;
+            column-gap: 30px;
             margin: 40px 0;
         }
 
-        .team-member {
-            background: var(--clr-white);
-            border-radius: 8px;
-            overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
-        }
-
-        .team-member:hover {
-            transform: translateY(-5px);
-        }
-
-        .team-member img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-        }
-
-        .team-member-info {
-            padding: 20px;
-        }
-
-        .team-member-info h3 {
-            margin: 0 0 5px 0;
-            color: var(--clr-black);
-        }
-
-        .team-member-info p {
-            margin: 0;
-            color: var(--clr-gray-med);
-            font-size: 0.9rem;
-        }
-
-        .process-section {
-            background-color: var(--clr-gray-light);
-            padding: 60px 0;
-        }
-
-        .process-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 30px;
-        }
-
         .process-card {
+            break-inside: avoid;
             background: var(--clr-white);
             padding: 25px;
             border-radius: 8px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
         }
 
         .process-card h3 {
             color: var(--clr-orange);
             margin-top: 0;
+            border-bottom: 2px solid var(--clr-orange-light);
+            padding-bottom: 10px;
         }
 
         .btn {
@@ -140,8 +100,8 @@
         }
 
         @media (max-width: 768px) {
-            .team-grid {
-                grid-template-columns: 1fr;
+            .process-columns {
+                column-count: 1;
             }
         }
     </style>
@@ -162,68 +122,37 @@
         
         <p>We believe great cooking doesn't require professional equipment or hard-to-find ingredients. Our recipes are developed with your real kitchen in mind—celebrating the creativity that happens when you make the most of what you have on hand.</p>
         
-        <h2>Meet Our Team</h2>
-        <div class="team-grid">
-            <div class="team-member">
-                <img src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2" alt="Founder">
-                <div class="team-member-info">
-                    <h3>Enzo Farai</h3>
-                    <p>Founder & Head Chef</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2" alt="Recipe Developer">
-                <div class="team-member-info">
-                    <h3>Sarah Chen</h3>
-                    <p>Recipe Developer</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <img src="https://images.unsplash.com/photo-1562788860-ddb5c5394764" alt="Food Photographer">
-                <div class="team-member-info">
-                    <h3>Jamal Wright</h3>
-                    <p>Food Photographer</p>
-                </div>
-            </div>
-            <div class="team-member">
-                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956" alt="Content Editor">
-                <div class="team-member-info">
-                    <h3>Priya Patel</h3>
-                    <p>Content Editor</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="process-section">
-        <div class="container">
-            <h2>Our Recipe Development Process</h2>
-            <div class="process-grid">
-                <div class="process-card">
-                    <h3>Research & Inspiration</h3>
-                    <p>We explore traditional cooking methods, seasonal ingredients, and global flavor combinations to create recipes that are both authentic and accessible.</p>
-                </div>
-                <div class="process-card">
-                    <h3>Kitchen Testing</h3>
-                    <p>Every recipe undergoes multiple tests in home kitchens (not professional ones) to ensure they work with standard equipment and realistic cooking times.</p>
-                </div>
-                <div class="process-card">
-                    <h3>Community Feedback</h3>
-                    <p>We collaborate with home cooks of all skill levels to refine our instructions and make sure our recipes deliver consistent results.</p>
-                </div>
+        <h2>Our Recipe Development Process</h2>
+        <div class="process-columns">
+            <div class="process-card">
+                <h3>Research & Inspiration</h3>
+                <p>We explore traditional cooking methods, seasonal ingredients, and global flavor combinations to create recipes that are both authentic and accessible. Our team spends weeks researching regional techniques before testing begins.</p>
+                <p>Every recipe begins with respect for its cultural origins while considering modern kitchen realities.</p>
             </div>
             
-            <h2 style="margin-top: 40px;">Our Promise to You</h2>
-            <p>At Corner Chef, we're committed to:</p>
-            <ul>
-                <li>Clear, detailed instructions that actually work</li>
-                <li>Honoring the cultural origins of every dish</li>
-                <li>Highlighting adaptable recipes that work with what you have</li>
-                <li>Celebrating the joy of cooking without perfectionism</li>
-            </ul>
+            <div class="process-card">
+                <h3>Kitchen Testing</h3>
+                <p>Every recipe undergoes multiple tests in home kitchens (not professional ones) to ensure they work with standard equipment and realistic cooking times. We document every variation and failure to refine our methods.</p>
+                <p>Testers include both experienced cooks and complete beginners to ensure clarity in instructions.</p>
+            </div>
             
-            <a href="recipes.html" class="btn">Explore Our Recipes</a>
+            <div class="process-card">
+                <h3>Community Feedback</h3>
+                <p>We collaborate with home cooks of all skill levels to refine our instructions and make sure our recipes deliver consistent results. Before finalizing, recipes are shared with a diverse group of home cooks for real-world validation.</p>
+                <p>Their feedback helps us identify unclear steps or potential pitfalls in the cooking process.</p>
+            </div>
         </div>
+        
+        <h2>Our Promise to You</h2>
+        <p>At Corner Chef, we're committed to:</p>
+        <ul>
+            <li>Clear, detailed instructions that actually work</li>
+            <li>Honoring the cultural origins of every dish</li>
+            <li>Highlighting adaptable recipes that work with what you have</li>
+            <li>Celebrating the joy of cooking without perfectionism</li>
+        </ul>
+        
+        <a href="recipes.html" class="btn">Explore Our Recipes</a>
     </div>
 
     <div id="footer"></div>
