@@ -3,181 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Corner Chef - Home</title>
-    <!-- Google Fonts -->
+    <title>corner chef</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Font Awesome -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
-    <!-- Main CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="css/style.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Header will be inserted here by JavaScript -->
     <div id="header"></div>
-
-    <main class="main-content">
-        <!-- Hero Section -->
-        <section class="hero">
-            <div class="hero-content">
-                <h2>Discover Authentic African & Global Recipes</h2>
-                <p>From traditional Koeksisters to modern fusion dishes</p>
-                <a href="koeksisters.html" class="btn btn-primary">Explore Recipes</a>
-            </div>
-        </section>
-
-        <!-- Featured Recipe -->
-        <section class="featured-recipe">
-            <div class="section-header">
-                <h3>Recipe of the Day</h3>
-                <a href="#" class="btn btn-outline">View All</a>
-            </div>
-            <div class="recipe-card featured">
-                <div class="recipe-image">
-                    <img src="images/koeksisters.jpg" alt="Koeksisters">
-                    <span class="recipe-tag trending">Trending</span>
-                </div>
-                <div class="recipe-details">
-                    <h4>Koeksisters</h4>
-                    <p class="recipe-description">Sweet, syrupy South African doughnuts that are twisted and deep-fried to perfection.</p>
-                    <div class="recipe-meta">
-                        <span><i class="fas fa-clock"></i> 45 mins</span>
-                        <span><i class="fas fa-utensils"></i> Intermediate</span>
-                    </div>
-                    <a href="koeksisters.html" class="btn btn-primary">View Recipe</a>
-                </div>
-            </div>
-        </section>
-
-        <!-- Recipe Categories -->
-        <section class="recipe-categories">
-            <div class="section-header">
-                <h3>Browse by Category</h3>
-            </div>
-            <div class="category-grid">
-                <a href="#" class="category-card">
-                    <div class="category-image">
-                        <img src="images/african-cuisine.jpg" alt="African Cuisine">
-                    </div>
-                    <h4>African Cuisine</h4>
-                </a>
-                <a href="#" class="category-card">
-                    <div class="category-image">
-                        <img src="images/vegetarian.jpg" alt="Vegetarian">
-                    </div>
-                    <h4>Vegetarian</h4>
-                </a>
-                <a href="#" class="category-card">
-                    <div class="category-image">
-                        <img src="images/baking.jpg" alt="Baking">
-                    </div>
-                    <h4>Baking</h4>
-                </a>
-                <a href="#" class="category-card">
-                    <div class="category-image">
-                        <img src="images/quick-meals.jpg" alt="Quick Meals">
-                    </div>
-                    <h4>Quick Meals</h4>
-                </a>
-            </div>
-        </section>
-
-        <!-- Video Gallery -->
-        <section class="video-gallery">
-            <div class="section-header">
-                <h3>Latest Videos</h3>
-                <a href="video-gallery.html" class="btn btn-outline">View All</a>
-            </div>
-            <div class="video-grid">
-                <div class="main-video">
-                    <div class="video-thumbnail">
-                        <img src="images/video-thumb-1.jpg" alt="Cooking Video">
-                        <div class="play-button">
-                            <i class="fas fa-play"></i>
-                        </div>
-                    </div>
-                    <h4>How to Make Perfect Koeksisters</h4>
-                </div>
-                <div class="side-videos">
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <img src="images/video-thumb-2.jpg" alt="Cooking Video">
-                            <div class="play-button small">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                        <h5>5 Essential South African Dishes</h5>
-                    </div>
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <img src="images/video-thumb-3.jpg" alt="Cooking Video">
-                            <div class="play-button small">
-                                <i class="fas fa-play"></i>
-                            </div>
-                        </div>
-                        <h5>Vegetarian Bobotie Recipe</h5>
-                    </div>
-                </div>
-            </div>
-        </section>
+    
+    <main>
+        <h1>Welcome to corner chef</h1>
+        <p>Your main content goes here</p>
     </main>
-
-    <!-- Footer will be inserted here by JavaScript -->
+    
     <div id="footer"></div>
-
-    <!-- JavaScript Files -->
-    <script>
-        // Load header and footer
-        document.addEventListener('DOMContentLoaded', function() {
-            // Load header first
-            fetch('header.html')
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to load header');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
-                    
-                    // Now load footer
-                    return fetch('footer.html');
-                })
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Failed to load footer');
-                    }
-                    return response.text();
-                })
-                .then(data => {
-                    document.getElementById('footer').innerHTML = data;
-                    
-                    // Now load scripts sequentially
-                    const scriptsToLoad = [
-                        'js/navigation.js',
-                        'js/auth.js'
-                    ];
-                    
-                    function loadScript(index) {
-                        if (index >= scriptsToLoad.length) return;
-                        
-                        const script = document.createElement('script');
-                        script.src = scriptsToLoad[index];
-                        script.onload = function() {
-                            loadScript(index + 1);
-                        };
-                        script.onerror = function() {
-                            console.error('Failed to load script:', scriptsToLoad[index]);
-                            loadScript(index + 1);
-                        };
-                        document.body.appendChild(script);
-                    }
-                    
-                    loadScript(0);
-                })
-                .catch(error => {
-                    console.error('Error loading components:', error);
-                });
-        });
-    </script>
+    
+    <script src="js/main.js"></script>
 </body>
 </html>
