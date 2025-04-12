@@ -9,13 +9,20 @@
     --border: #E0E0E0;
 }
 
-/* General Styles */
+/* Base Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
-    margin: 0;
     color: var(--dark);
     background: var(--light);
-    line-height: 1.5;
+    line-height: 1.6;
+    position: relative;
+    min-height: 100vh;
 }
 
 .small-caps {
@@ -23,14 +30,15 @@ body {
     letter-spacing: 1px;
 }
 
-/* Header and Navigation */
+/* Header Styles */
 header {
     background-color: var(--light);
     padding: 1rem 2rem;
     border-bottom: 1px solid var(--light-gray);
     display: flex;
     align-items: center;
-    position: relative;
+    position: sticky;
+    top: 0;
     z-index: 1000;
 }
 
@@ -41,27 +49,29 @@ header {
     margin-right: auto;
 }
 
+/* Mobile Navigation Toggle */
 .nav-icon {
     font-size: 1.5rem;
     cursor: pointer;
     color: var(--dark);
     margin-right: 1rem;
-    display: none; /* Hidden by default on desktop */
+    display: none;
 }
 
+/* Navigation Menu */
 .nav-menu {
     position: fixed;
     top: 0;
     left: 0;
     width: 80%;
     max-width: 300px;
-    height: 100%;
+    height: 100vh;
     background-color: var(--light);
-    padding: 1rem;
-    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    padding: 2rem 1rem;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
     transform: translateX(-100%);
     transition: transform 0.3s ease;
-    z-index: 1000;
+    z-index: 1001;
     overflow-y: auto;
 }
 
@@ -77,7 +87,7 @@ header {
     height: 100%;
     background-color: rgba(0, 0, 0, 0.5);
     display: none;
-    z-index: 999;
+    z-index: 1000;
 }
 
 .nav-overlay.active {
@@ -96,6 +106,12 @@ header {
     border: 1px solid var(--light-gray);
     border-radius: 0.5rem;
     font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.search-bar input:focus {
+    outline: none;
+    border-color: var(--primary);
 }
 
 .search-icon {
@@ -109,13 +125,10 @@ header {
 /* Navigation Items */
 .nav-menu ul {
     list-style: none;
-    padding: 0;
-    margin: 0;
 }
 
 .nav-menu > ul > li {
     margin: 0.75rem 0;
-    position: relative;
 }
 
 .nav-menu a {
@@ -128,7 +141,7 @@ header {
     align-items: center;
     padding: 0.75rem;
     border-radius: 0.25rem;
-    transition: all 0.2s;
+    transition: all 0.2s ease;
 }
 
 .nav-menu a:hover {
@@ -136,7 +149,7 @@ header {
     color: var(--primary);
 }
 
-/* Submenu Indicators */
+/* Submenu Styles */
 .has-submenu > a::after {
     content: "↓";
     font-size: 0.9rem;
@@ -174,6 +187,7 @@ header {
     padding-left: 1.25rem;
 }
 
+/* User Options */
 .separator {
     border-top: 1px solid var(--light-gray);
     margin: 1.5rem 0;
@@ -206,6 +220,7 @@ header {
     padding: 3rem 1rem;
     text-align: center;
     border-top: 1px solid var(--border);
+    margin-top: auto;
 }
 
 .footer h2 {
@@ -218,16 +233,17 @@ header {
     color: var(--gray);
     max-width: 600px;
     margin: 0 auto 1.5rem;
-    font-size: 1rem;
 }
 
 .social-media {
     margin: 1.5rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
 }
 
 .social-media a {
     color: var(--dark);
-    margin: 0 1rem;
     font-size: 1.5rem;
     transition: color 0.2s;
 }
@@ -264,16 +280,16 @@ header {
 
 /* Modal Styles */
 .modal {
-    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 2000;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: none;
     justify-content: center;
     align-items: center;
+    z-index: 2000;
 }
 
 .modal.active {
@@ -284,9 +300,23 @@ header {
     background-color: var(--light);
     padding: 2rem;
     border-radius: 8px;
-    max-width: 500px;
     width: 90%;
+    max-width: 500px;
     position: relative;
+    animation: modalFadeIn 0.3s ease-out;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .close-modal {
@@ -295,24 +325,38 @@ header {
     right: 1rem;
     font-size: 1.5rem;
     cursor: pointer;
+    color: var(--gray);
+    transition: color 0.2s;
+}
+
+.close-modal:hover {
+    color: var(--dark);
 }
 
 /* Form Styles */
 .form-group {
-    margin-bottom: 1rem;
+    margin-bottom: 1.25rem;
 }
 
 .form-group label {
     display: block;
     margin-bottom: 0.5rem;
     font-weight: 600;
+    color: var(--dark);
 }
 
 .form-group input {
     width: 100%;
-    padding: 0.5rem;
-    border: 1px solid var(--gray);
+    padding: 0.75rem;
+    border: 1px solid var(--border);
     border-radius: 4px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary);
 }
 
 .radio-group {
@@ -326,24 +370,33 @@ header {
     display: flex;
     align-items: center;
     gap: 0.5rem;
+    cursor: pointer;
 }
 
 .btn {
     display: inline-block;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.5rem;
     border-radius: 5px;
     font-weight: 600;
-    transition: all 0.2s;
+    text-align: center;
     text-decoration: none;
     background-color: var(--primary);
     color: var(--light);
     border: none;
     cursor: pointer;
+    transition: all 0.2s;
     width: 100%;
+    margin-top: 0.5rem;
 }
 
 .btn:hover {
-    opacity: 0.9;
+    background-color: var(--dark);
+    transform: translateY(-2px);
+}
+
+/* Utility Classes */
+.no-scroll {
+    overflow: hidden;
 }
 
 /* Responsive Styles */
@@ -354,52 +407,25 @@ header {
 
     .nav-menu {
         width: 90%;
+        max-width: 350px;
     }
-    
+
     .footer {
         padding: 2rem 1rem;
     }
 }
 
-/* Ensure proper modal stacking */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
-    display: none;
-    justify-content: center;
-    align-items: center;
-    z-index: 9999;
-}
+@media (max-width: 480px) {
+    header {
+        padding: 1rem;
+    }
 
-.modal-content {
-    background: white;
-    padding: 2rem;
-    border-radius: 8px;
-    width: 90%;
-    max-width: 500px;
-    position: relative;
-    animation: modalFadeIn 0.3s ease-out;
-}
+    .modal-content {
+        padding: 1.5rem;
+    }
 
-@keyframes modalFadeIn {
-    from { opacity: 0; transform: translateY(-20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Prevent scrolling when modal is open */
-.no-scroll {
-    overflow: hidden;
-}
-
-/* Mobile menu z-index fix */
-.nav-menu {
-    z-index: 1000;
-}
-
-.nav-overlay {
-    z-index: 999;
-        }
+    .radio-group {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    }
