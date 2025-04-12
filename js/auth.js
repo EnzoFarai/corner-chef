@@ -1,17 +1,33 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Show modal after 10 seconds only on homepage
-    if (window.location.pathname === '/' || window.location.pathname === '/index.html') {
+    // Modal elements
+    const loginModal = document.getElementById('loginModal');
+    const registerModal = document.getElementById('registerModal');
+    const showRegister = document.getElementById('showRegister');
+    const closeModals = document.querySelectorAll('.close-modal');
+
+    // Only show on homepage after 10 seconds
+    if (window.location.pathname.endsWith('index.html') || 
+       window.location.pathname === '/') {
         setTimeout(function() {
             const user = localStorage.getItem('cornerChefUser');
-            if (!user) {
-                document.getElementById('loginModal').style.display = 'flex';
+            if (!user && loginModal) {
+                loginModal.style.display = 'flex';
                 document.body.classList.add('no-scroll');
             }
-        }, 10000); // 10 seconds
+        }, 10000); // 10 seconds = 10000 milliseconds
     }
 
-    // Close modal functionality
-    document.querySelectorAll('.close-modal').forEach(button => {
+    // Modal toggle functionality
+    if (showRegister) {
+        showRegister.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (loginModal) loginModal.style.display = 'none';
+            if (registerModal) registerModal.style.display = 'flex';
+        });
+    }
+
+    // Close modals
+    closeModals.forEach(button => {
         button.addEventListener('click', function() {
             document.querySelectorAll('.modal').forEach(modal => {
                 modal.style.display = 'none';
@@ -20,15 +36,15 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Toggle between login and register
-    const showRegister = document.getElementById('showRegister');
-    if (showRegister) {
-        showRegister.addEventListener('click', function(e) {
-            e.preventDefault();
-            document.getElementById('loginModal').style.display = 'none';
-            document.getElementById('registerModal').style.display = 'flex';
-        });
-    }
+    // Close when clicking outside modal content
+    window.addEventListener('click', function(e) {
+        if (e.target.classList.contains('modal')) {
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.style.display = 'none';
+            });
+            document.body.classList.remove('no-scroll');
+        }
+    });
 
     // Login form submission
     const loginForm = document.getElementById('loginForm');
@@ -43,14 +59,9 @@ document.addEventListener('DOMContentLoaded', function() {
                     email: email,
                     loggedIn: true
                 }));
-                this.reset();
-                document.querySelectorAll('.modal').forEach(modal => {
-                    modal.style.display = 'none';
-                });
-                document.body.classList.remove('no-scroll');
                 window.location.reload();
             } else {
-                alert('Invalid credentials. Try email: mypretendemail@gmail.com and password: thisisfake');
+                alert('Invalid credentials. Try:\nEmail: mypretendemail@gmail.com\nPassword: thisisfake');
             }
         });
     }
@@ -70,12 +81,17 @@ document.addEventListener('DOMContentLoaded', function() {
             };
             
             localStorage.setItem('cornerChefUser', JSON.stringify(userData));
-            this.reset();
-            document.querySelectorAll('.modal').forEach(modal => {
-                modal.style.display = 'none';
-            });
-            document.body.classList.remove('no-scroll');
             window.location.reload();
         });
+    }
+
+    // Update UI based on login status
+    const loginBtn = document.getElementById('login-btn');
+    if (loginBtn) {
+        const user = localStorage.getItem('cornerChefUser');
+        if (user) {
+            const userData = JSON.parse(user);
+            loginBtn.textContent = userData.username || 'My Account';
+        }
     }
 });
