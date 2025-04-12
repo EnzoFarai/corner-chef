@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Corner Chef | Your Trusted Recipe Resource</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --clr-orange: #FF6600;
+            --clr-orange-light: #FFA500;
+            --clr-orange-dark: #cc4b2c;
+            --clr-white: #ffffff;
+            --clr-gray-light: #f5f5f5;
+            --clr-gray-med: #616b74;
+            --clr-gray-dark: #414b56;
+            --clr-black: #111111;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--clr-white);
+            color: var(--clr-gray-dark);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .logo {
+            color: var(--clr-orange);
+            font-size: 3rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .subheading {
+            color: var(--clr-gray-med);
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .about-content {
+            max-width: 800px;
+            margin: 0 auto 50px;
+        }
+
+        .about-content p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .team-section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: var(--clr-black);
+            border-bottom: 2px solid var(--clr-orange-light);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-member {
+            text-align: center;
+            background: var(--clr-gray-light);
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .team-member img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            border: 3px solid var(--clr-orange);
+        }
+
+        .team-member h3 {
+            color: var(--clr-black);
+            margin: 10px 0 5px;
+        }
+
+        .team-member p {
+            color: var(--clr-gray-med);
+            font-size: 0.9rem;
+        }
+
+        .process-section {
+            background: var(--clr-gray-light);
+            padding: 40px;
+            border-radius: 12px;
+            margin: 40px 0;
+        }
+
+        .process-item {
+            margin-bottom: 30px;
+        }
+
+        .process-item h3 {
+            color: var(--clr-orange);
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-section {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header"></div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo">CORNER CHEF</div>
+            <div class="subheading">Your trusted resource for authentic, approachable recipes from around the world</div>
+        </div>
+
+        <div class="about-content">
+            <p>Corner Chef began as a passion project to celebrate global home cooking. What started as a small collection of family recipes has grown into a comprehensive resource for cooks who want to explore world flavors in their own kitchens.</p>
+            
+            <p>We specialize in recipes that use accessible ingredients without sacrificing authenticity. Whether you're craving South African koeksisters, Nigerian jollof rice, or quick weeknight meals, our tested recipes deliver real flavor with clear instructions.</p>
+        </div>
+
+        <div class="process-section">
+            <h2 class="section-title">Our Recipe Process</h2>
+            
+            <div class="process-item">
+                <h3>Authenticity First</h3>
+                <p>Every recipe begins with extensive research into traditional preparation methods. We consult with home cooks and chefs from each recipe's culture of origin to ensure we honor its roots.</p>
+            </div>
+            
+            <div class="process-item">
+                <h3>Practical Testing</h3>
+                <p>Our team tests each recipe multiple times in home kitchens (not professional settings) using standard equipment. We time every step and note potential sticking points.</p>
+            </div>
+            
+            <div class="process-item">
+                <h3>Ingredient Accessibility</h3>
+                <p>We suggest substitutions for hard-to-find ingredients and provide guidance on where to source specialty items when they're essential to the dish.</p>
+            </div>
+        </div>
+
+        <div class="team-section">
+            <h2 class="section-title">Meet Our Team</h2>
+            
+            <div class="team-grid">
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Recipe Director">
+                    <h3>Sarah Johnson</h3>
+                    <p>Recipe Director</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Test Kitchen Chef">
+                    <h3>David Mbeki</h3>
+                    <p>Test Kitchen Chef</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Content Editor">
+                    <h3>Amira Chen</h3>
+                    <p>Content Editor</p>
+                </div>
+                
+                <div class="team-member">
+                    <img src="https://images.unsplash.com/photo-1573497620053-ea5300f94f21?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80" alt="Photography Director">
+                    <h3>James Okoro</h3>
+                    <p>Photography Director</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="about-content">
+            <h2 class="section-title">Our Promise</h2>
+            <p>At Corner Chef, we believe great cooking should be accessible to everyone. That's why we:</p>
+            <ul>
+                <li>Provide clear, step-by-step instructions with process photos</li>
+                <li>Note potential substitutions without compromising flavor</li>
+                <li>Include cooking times and difficulty levels for every recipe</li>
+                <li>Offer both traditional and simplified versions where appropriate</li>
+            </ul>
+            
+            <p>We're constantly expanding our collection of global recipes while maintaining our commitment to authenticity and approachability. Have a recipe request? Reach out through our contact page!</p>
+        </div>
+    </div>
+
+    <div id="footer"></div>
+
+    <script>
+        // Load header and footer
+        document.addEventListener('DOMContentLoaded', function() {
+            fetch('header.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('header').innerHTML = data;
+                });
+            
+            fetch('footer.html')
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById('footer').innerHTML = data;
+                });
+        });
+    </script>
+</body>
+</html>
