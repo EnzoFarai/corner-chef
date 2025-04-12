@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CORNER CHEF | Sign In</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --clr-orange: #FF6600;
+            --clr-orange-light: #FFA500;
+            --clr-orange-dark: #cc4b2c;
+            --clr-white: #ffffff;
+            --clr-gray-light: #f5f5f5;
+            --clr-gray-med: #616b74;
+            --clr-gray-dark: #414b56;
+            --clr-black: #111111;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--clr-white);
+            color: var(--clr-gray-dark);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .login-container {
+            max-width: 500px;
+            width: 90%;
+            padding: 40px;
+            background-color: var(--clr-white);
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .logo {
+            color: var(--clr-orange);
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+        }
+
+        .subheading {
+            color: var(--clr-gray-med);
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--clr-gray-dark);
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid var(--clr-gray-light);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--clr-orange);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background-color: var(--clr-orange);
+            color: var(--clr-white);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--clr-orange-dark);
+        }
+
+        .divider {
+            display: flex;
+            align-items: center;
+            margin: 25px 0;
+            color: var(--clr-gray-med);
+        }
+
+        .divider::before, .divider::after {
+            content: "";
+            flex: 1;
+            border-bottom: 1px solid var(--clr-gray-light);
+        }
+
+        .divider::before {
+            margin-right: 15px;
+        }
+
+        .divider::after {
+            margin-left: 15px;
+        }
+
+        .footer-text {
+            margin-top: 20px;
+            font-size: 0.9rem;
+            color: var(--clr-gray-med);
+        }
+
+        .footer-text a {
+            color: var(--clr-orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .error-message {
+            color: #e74c3c;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            display: none;
+        }
+
+        .password-container {
+            position: relative;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: var(--clr-gray-med);
+        }
+
+        @media (max-width: 600px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">CORNER CHEF</div>
+        <div class="subheading">Sign in to save your favorite recipes</div>
+        
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" id="email" placeholder="Enter your email" required>
+            </div>
+            
+            <div class="form-group password-container" id="passwordGroup" style="display: none;">
+                <label for="password">Password</label>
+                <input type="password" id="password" placeholder="Enter your password" required>
+                <span class="toggle-password" id="togglePassword">
+                    <i class="fas fa-eye"></i>
+                </span>
+                <div class="error-message" id="passwordError">Incorrect password. Please try again.</div>
+            </div>
+            
+            <button type="button" class="btn btn-primary" id="continueBtn">CONTINUE</button>
+            
+            <div class="divider">or</div>
+            
+            <button type="button" class="btn btn-primary" style="background-color: #4285F4;">
+                <i class="fab fa-google" style="margin-right: 10px;"></i> Continue with Google
+            </button>
+            
+            <div class="footer-text">
+                Don't have an account? <a href="#" id="registerLink">Sign up</a>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const emailInput = document.getElementById('email');
+            const passwordGroup = document.getElementById('passwordGroup');
+            const passwordInput = document.getElementById('password');
+            const continueBtn = document.getElementById('continueBtn');
+            const passwordError = document.getElementById('passwordError');
+            const togglePassword = document.getElementById('togglePassword');
+            const registerLink = document.getElementById('registerLink');
+            
+            let isPasswordStage = false;
+            const validEmail = "thisisafake@gmail.com";
+            const validPassword = "notreal";
+            
+            // Toggle password visibility
+            togglePassword.addEventListener('click', function() {
+                const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+                passwordInput.setAttribute('type', type);
+                this.innerHTML = type === 'password' ? '<i class="fas fa-eye"></i>' : '<i class="fas fa-eye-slash"></i>';
+            });
+            
+            // Continue button handler
+            continueBtn.addEventListener('click', function() {
+                if (!isPasswordStage) {
+                    // Email stage
+                    if (emailInput.value.trim() === validEmail) {
+                        passwordGroup.style.display = 'block';
+                        continueBtn.textContent = 'SIGN IN';
+                        isPasswordStage = true;
+                        passwordError.style.display = 'none';
+                    } else if (emailInput.value.trim()) {
+                        // Redirect to registration with email as parameter
+                        window.location.href = "register.html?email=" + encodeURIComponent(emailInput.value.trim());
+                    }
+                } else {
+                    // Password stage
+                    if (passwordInput.value === validPassword) {
+                        // Fake successful login - in a real app this would redirect
+                        alert('Successfully signed in! (This is a demo)');
+                        
+                        // Simulate changing the navigation to "Sign Out"
+                        if (window.opener) {
+                            window.opener.postMessage({action: 'loginSuccess'}, '*');
+                        }
+                        
+                        // Close the window after a short delay
+                        setTimeout(() => {
+                            window.close();
+                        }, 1000);
+                    } else {
+                        passwordError.style.display = 'block';
+                    }
+                }
+            });
+            
+            // Register link handler
+            registerLink.addEventListener('click', function(e) {
+                e.preventDefault();
+                window.location.href = "register.html";
+            });
+            
+            // Handle Enter key
+            document.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    continueBtn.click();
+                }
+            });
+            
+            // Check if email was passed for registration
+            const urlParams = new URLSearchParams(window.location.search);
+            const registerEmail = urlParams.get('email');
+            if (registerEmail) {
+                emailInput.value = registerEmail;
+            }
+        });
+        
+        // This would be in your main site's JavaScript to handle the login state
+        window.addEventListener('message', function(e) {
+            if (e.data.action === 'loginSuccess') {
+                // Change your navigation from "Sign In" to "Sign Out"
+                const signInLink = document.querySelector('.sign-in-link');
+                if (signInLink) {
+                    signInLink.textContent = 'Sign Out';
+                    signInLink.href = '#';
+                    signInLink.onclick = function() {
+                        // Handle sign out logic
+                        alert('Signed out (demo)');
+                        this.textContent = 'Sign In';
+                        return false;
+                    };
+                }
+            }
+        }, false);
+    </script>
+</body>
+</html>
