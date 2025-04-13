@@ -3,9 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>About Corner Chef | Discover Culinary Creativity</title>
+    <title>About Corner Chef</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
     <style>
         :root {
             --clr-orange: #FF6600;
@@ -18,85 +19,21 @@
             --clr-black: #111111;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--clr-white);
-            color: var(--clr-gray-dark);
-            margin: 0;
-            line-height: 1.6;
-        }
+        /* Debug borders - can remove after confirmation */
+        #header { border: 1px solid red; min-height: 50px; }
+        #footer { border: 1px solid blue; min-height: 50px; }
 
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .header {
+        .about-header {
             background-color: var(--clr-orange);
             color: var(--clr-white);
-            padding: 60px 0;
+            padding: 80px 20px;
             text-align: center;
         }
 
-        .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .about-section {
-            padding: 60px 0;
-        }
-
-        .about-section h2 {
-            color: var(--clr-orange);
-            font-size: 1.8rem;
-            margin-bottom: 20px;
-        }
-
-        /* Newspaper-style columns */
         .process-columns {
             column-count: 3;
             column-gap: 30px;
             margin: 40px 0;
-        }
-
-        .process-card {
-            break-inside: avoid;
-            background: var(--clr-white);
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-            margin-bottom: 30px;
-        }
-
-        .process-card h3 {
-            color: var(--clr-orange);
-            margin-top: 0;
-            border-bottom: 2px solid var(--clr-orange-light);
-            padding-bottom: 10px;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: var(--clr-orange);
-            color: var(--clr-white);
-            border-radius: 5px;
-            text-decoration: none;
-            font-weight: 600;
-            transition: background-color 0.3s;
-            margin-top: 20px;
-        }
-
-        .btn:hover {
-            background-color: var(--clr-orange-dark);
         }
 
         @media (max-width: 768px) {
@@ -107,71 +44,74 @@
     </style>
 </head>
 <body>
+    <!-- Header placeholder - will be replaced by main.js -->
     <div id="header"></div>
-    
-    <div class="header">
-        <div class="container">
-            <h1>About Corner Chef</h1>
-            <p>Your trusted companion for creative, accessible home cooking that celebrates global flavors and local ingredients.</p>
-        </div>
+
+    <div class="about-header">
+        <h1>About Corner Chef</h1>
+        <p>Your trusted kitchen companion</p>
     </div>
 
-    <div class="container about-section">
-        <h2>Our Story</h2>
-        <p>Founded in 2023, Corner Chef began as a passion project to make diverse culinary traditions accessible to home cooks everywhere. What started as a small collection of family recipes has grown into a vibrant community of food lovers exploring the world through their kitchens.</p>
-        
-        <p>We believe great cooking doesn't require professional equipment or hard-to-find ingredients. Our recipes are developed with your real kitchen in mind—celebrating the creativity that happens when you make the most of what you have on hand.</p>
-        
-        <h2>Our Recipe Development Process</h2>
-        <div class="process-columns">
-            <div class="process-card">
-                <h3>Research & Inspiration</h3>
-                <p>We explore traditional cooking methods, seasonal ingredients, and global flavor combinations to create recipes that are both authentic and accessible. Our team spends weeks researching regional techniques before testing begins.</p>
-                <p>Every recipe begins with respect for its cultural origins while considering modern kitchen realities.</p>
+    <main class="container" style="max-width:1200px; margin:0 auto; padding:20px;">
+        <section>
+            <h2>Our Recipe Process</h2>
+            <div class="process-columns">
+                <article style="break-inside:avoid; margin-bottom:30px; padding:20px; background:var(--clr-white); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <h3 style="color:var(--clr-orange);">Research</h3>
+                    <p>We study traditional techniques and modern adaptations...</p>
+                </article>
+                <article style="break-inside:avoid; margin-bottom:30px; padding:20px; background:var(--clr-white); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <h3 style="color:var(--clr-orange);">Testing</h3>
+                    <p>Every recipe undergoes multiple kitchen tests...</p>
+                </article>
+                <article style="break-inside:avoid; margin-bottom:30px; padding:20px; background:var(--clr-white); border-radius:8px; box-shadow:0 2px 8px rgba(0,0,0,0.1);">
+                    <h3 style="color:var(--clr-orange);">Feedback</h3>
+                    <p>We incorporate community input for clarity...</p>
+                </article>
             </div>
-            
-            <div class="process-card">
-                <h3>Kitchen Testing</h3>
-                <p>Every recipe undergoes multiple tests in home kitchens (not professional ones) to ensure they work with standard equipment and realistic cooking times. We document every variation and failure to refine our methods.</p>
-                <p>Testers include both experienced cooks and complete beginners to ensure clarity in instructions.</p>
-            </div>
-            
-            <div class="process-card">
-                <h3>Community Feedback</h3>
-                <p>We collaborate with home cooks of all skill levels to refine our instructions and make sure our recipes deliver consistent results. Before finalizing, recipes are shared with a diverse group of home cooks for real-world validation.</p>
-                <p>Their feedback helps us identify unclear steps or potential pitfalls in the cooking process.</p>
-            </div>
-        </div>
-        
-        <h2>Our Promise to You</h2>
-        <p>At Corner Chef, we're committed to:</p>
-        <ul>
-            <li>Clear, detailed instructions that actually work</li>
-            <li>Honoring the cultural origins of every dish</li>
-            <li>Highlighting adaptable recipes that work with what you have</li>
-            <li>Celebrating the joy of cooking without perfectionism</li>
-        </ul>
-        
-        <a href="recipes.html" class="btn">Explore Our Recipes</a>
-    </div>
+        </section>
+    </main>
 
+    <!-- Footer placeholder - will be replaced by main.js -->
     <div id="footer"></div>
 
+    <!-- DEBUG: Add this script temporarily -->
     <script>
-        // Load header and footer
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
-                });
-            
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer').innerHTML = data;
-                });
-        });
+        console.log("Debug: About page loaded");
+        console.log("Current directory:", window.location.pathname);
+    </script>
+
+    <!-- MAIN JS LOADING - THREE OPTIONS -->
+
+    <!-- Option 1: Standard (works if files are in root) -->
+    <script src="js/main.js"></script>
+
+    <!-- Option 2: Absolute path (if root-relative fails) -->
+    <!-- <script src="/js/main.js"></script> -->
+
+    <!-- Option 3: Fallback with error handling -->
+    <script>
+        function loadScript(src) {
+            return new Promise((resolve, reject) => {
+                const script = document.createElement('script');
+                script.src = src;
+                script.onload = resolve;
+                script.onerror = () => reject(new Error(`Failed to load ${src}`));
+                document.body.appendChild(script);
+            });
+        }
+
+        loadScript('js/main.js')
+            .catch(err => {
+                console.error(err);
+                // Fallback to absolute path
+                return loadScript('/js/main.js')
+                    .catch(() => {
+                        console.error("Both relative and absolute paths failed");
+                        document.getElementById('header').innerHTML = '<nav style="padding:20px;background:var(--clr-orange);color:white;">Header failed to load</nav>';
+                        document.getElementById('footer').innerHTML = '<footer style="padding:20px;background:var(--clr-gray-dark);color:white;">Footer failed to load</footer>';
+                    });
+            });
     </script>
 </body>
 </html>
