@@ -363,11 +363,50 @@
                 height: 30px;
                 font-size: 14px;
             }
+
+            .cookie-popup {
+  display: none;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #fff5e1;
+  border: 2px solid #f2c94c;
+  padding: 20px 25px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+  font-family: 'Segoe UI', sans-serif;
+  font-size: 16px;
+  z-index: 9999;
+  text-align: center;
+}
+
+.cookie-popup button {
+  margin-top: 10px;
+  background-color: #f2994a;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.cookie-popup button:hover {
+  background-color: #eb984e;
+}
+            
         }
     </style>
 </head>
 <body>
     <div id="header"></div>
+    
+    <div id="cookie-popup" class="cookie-popup">
+  <p>We use cookies to improve your appetite... I mean, experience!</p>
+  <button onclick="closeCookiePopup()">Mmm, cookies!</button>
+    </div>
+    
     
     <!-- Recipe of the Day -->
     <div class="recipe-of-the-day">
@@ -508,55 +547,60 @@
 
     <script src="js/main.js"></script>
     <script>
-        // Carousel functionality
-        function scrollCarousel(offset) {
-            const carousel = document.querySelector('.recipe-carousel');
-            carousel.scrollBy({ left: offset, behavior: 'smooth' });
-        }
+    // Carousel functionality
+    function scrollCarousel(offset) {
+        const carousel = document.querySelector('.recipe-carousel');
+        carousel.scrollBy({ left: offset, behavior: 'smooth' });
+    }
 
-        // Filter functionality
-        function filterRecipes(category) {
-            const cards = document.querySelectorAll('.recipe-card');
-            const buttons = document.querySelectorAll('.category-filters button');
-            const carousel = document.querySelector('.recipe-carousel');
+    // Filter functionality
+    function filterRecipes(category) {
+        const cards = document.querySelectorAll('.recipe-card');
+        const buttons = document.querySelectorAll('.category-filters button');
+        const carousel = document.querySelector('.recipe-carousel');
 
-            buttons.forEach(btn => btn.classList.remove('active'));
-            document.querySelector(`.category-filters button[onclick*="${category}"]`).classList.add('active');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        document.querySelector(`.category-filters button[onclick*="${category}"]`).classList.add('active');
 
-            // Center align the filtered cards
-            if (category !== 'all') {
-                carousel.style.justifyContent = 'center';
-            } else {
-                carousel.style.justifyContent = 'flex-start';
-            }
+        // Center align the filtered cards
+        carousel.style.justifyContent = category !== 'all' ? 'center' : 'flex-start';
 
-            cards.forEach(card => {
-                const cardCategory = card.getAttribute('data-category');
-                if (category === 'all' || cardCategory === category) {
-                    card.style.display = 'block';
-                } else {
-                    card.style.display = 'none';
+        cards.forEach(card => {
+            const cardCategory = card.getAttribute('data-category');
+            card.style.display = category === 'all' || cardCategory === category ? 'block' : 'none';
+        });
+    }
+
+    // Load header and footer
+    document.addEventListener('DOMContentLoaded', function() {
+        fetch('header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header').innerHTML = data;
+                if (typeof initNavigation === 'function') {
+                    initNavigation();
                 }
             });
-        }
 
-        // Load header and footer
-        document.addEventListener('DOMContentLoaded', function() {
-            fetch('header.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('header').innerHTML = data;
-                    if (typeof initNavigation === 'function') {
-                        initNavigation();
-                    }
-                });
-            
-            fetch('footer.html')
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById('footer').innerHTML = data;
-                });
-        });
-    </script>
+        fetch('footer.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('footer').innerHTML = data;
+            });
+
+        // Show cookie popup after 5 seconds
+        setTimeout(showCookiePopup, 5000);
+    });
+
+    // Cookie popup functions
+    function showCookiePopup() {
+        document.getElementById('cookie-popup').style.display = 'block';
+    }
+
+    function closeCookiePopup() {
+        document.getElementById('cookie-popup').style.display = 'none';
+    }
+</script>
+
 </body>
                             </html>
